@@ -1,6 +1,6 @@
 ### Gitian Building
 
-Bitcoin Core releases are created using a [reproducible build](https://reproducible-builds.org) process, which uses [Gitian Builder](https://github.com/devrandom/gitian-builder).
+Bitcoin Core releases are [reproducibly built](https://reproducible-builds.org) using [Gitian Builder](https://github.com/devrandom/gitian-builder).
 
 ```bash
 brew install coreutils
@@ -10,15 +10,15 @@ Gitian-builder needs `sha256sum`, which doesn't exist on macOS:
 sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 ```
 
-`date` on macOS doesn't work as expected, patch `gitian-builder` to use gdate (from coreutils). See `gdate.patch`.
+`date` on macOS doesn't work as expected, patch `gitian-builder` to use gdate (from coreutils). See [`gdate.patch`](gdate.patch).
 
 ```bash
 brew cask install docker
 ```
-Once docker is installed, open the .app binary at least once.
-This is required so that Docker can request and setup the neccessary permissions.
-You might also want to give Docker access to more CPUs, RAM etc.
-Go to Preferences -> Advanced and allocate as required.
+Once Docker is installed, open the .app binary at least once.
+This is required so it can request and setup the neccessary permissions.  
+You might also want to give Docker access to more CPUs, RAM etc.  
+Go to `Preferences -> Advanced` and allocate as required.
 
 ### Setup
 ```bash
@@ -133,12 +133,13 @@ popd
 Done 🍻
 
 #### Notes:
-Follow build prgress using:
+Follow build progress using:
 ```bash
 pushd gitian-builder
-tail -f var/install.log # VM setup
+tail -f var/install.log # Setup
 tail -f var/build.log # Building dependencies and Core
 ```
 
-The first time `depends` is built for a new version, i.e 0.17.0rc1, it can take a *long* time, as [dependencies](https://github.com/bitcoin/bitcoin/tree/master/depends/packages) are being built for all architectures and operating systems.
+The first time `depends` is built for a new version, it can take a *long* time, 
+as [dependencies](https://github.com/bitcoin/bitcoin/tree/master/depends/packages) are being built for all architectures and operating systems.  
 Subsequent builds (0.17.0rc2) will be much faster, as only Bitcoin Core is being compiled.
