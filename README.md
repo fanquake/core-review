@@ -4,4 +4,5 @@ Mostly based on using a macOS 10.13.x system.
 
 - [Determinism](determinism.md)
 - [Gitian Building](/gitian-building/)
+- [Locale Dependence](/locale-dependence/)
 - [Operating Systems](operating-systems.md)
