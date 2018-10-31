@@ -64,8 +64,12 @@ pushd gitian-builder
 make -C ../bitcoin/depends download SOURCES_PATH=`pwd`/cache/common
 mkdir -p inputs
 wget -P inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
-wget -P inputs http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
+wget -P inputs https://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 ```
+
+If you want to build macOS signatures, you'll need to get hold of the macOS 10.11 SDK.  
+You can read the documentation [here](https://github.com/bitcoin/bitcoin/blob/master/doc/README_osx.md) about how to create it.  
+Once you have `MacOSX10.11.sdk.tar.gz`, place it in `gitian-builder/inputs/`.
 
 ### Build Unsigned Sigs
 Adjust `num-make` and `memory` as needed.
