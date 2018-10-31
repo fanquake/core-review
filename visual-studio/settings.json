@@ -1,0 +1,45 @@
+{
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/depends/": true,
+        
+    },
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/autom4te.cache/": true,
+        "**/.deps": true,
+        "**/.libs": true,
+        "**/*.o": true,
+        "**/*.a": true,
+        "**/*.la": true,
+        "**/*.lai": true,
+        "**/*.lo": true,
+        "**/*.dylib": true,
+        "**/__pycache__": true,
+        "**/*.dirstamp": true,
+        "**/*.tmp": true,
+        "build_msvc": true,
+        "**/*.qm": true,
+        "**/*.ts": true,
+        "background.tiff*": true,
+        "Bitcoin-Qt.dmg": true,
+        "**/moc_*.cpp": true,
+        "**/*.moc": true,
+        "**/qrc_*.cpp": true,
+    },
+
+    // C++
+    "C_Cpp.clang_format_path": "/usr/local/bin/clang-format",
+    "C_Cpp.clang_format_style": "src/.clang-format",
+
+    // Python
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.linting.enabled": false,
+}
