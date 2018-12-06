@@ -2,6 +2,7 @@
 
 | Operating System | Versions |
 | --- | --- |
+| [CentOS](https://www.centos.org) | 7, 8 |
 | [Debian](https://www.debian.org) | 8.11, 9.5 |
 | [Fedora](https://getfedora.org) | 27, 28 |
 | [FreeBSD](https://www.freebsd.org) | 10.4, 11.2 |
