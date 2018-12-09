@@ -53,7 +53,7 @@ export SIGNER=your_username
 export USE_DOCKER=1
 
 pushd gitian.sigs
-git checkout -b your_username-$VERSION
+git checkout -b $SIGNER-$VERSION
 popd
 
 pushd bitcoin
