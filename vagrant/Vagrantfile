@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.synced_folder "~/github/bitcoin", "/home/bitcoin", type: "rsync",
+  rsync__exclude: [".vscode", "depends/x86_64-apple-darwin*"],
+  rsync__args: ["-a"]
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.cpus = 6
+    vb.customize ["modifyvm", :id, "--audio", "none"]
+    vb.customize ["modifyvm", :id, "--clipboard", "disabled"]
+    vb.customize ["modifyvm", :id, "--draganddrop", "disabled"]
+    vb.customize ["modifyvm", :id, "--videocap", "off"]
+    vb.gui = false
+    vb.memory = 4096
+  end
+
+  config.vm.define "openbsd64" do |box|
+    box.vm.box = "generic/openbsd6"
+    config.vm.box_download_checksum_type = "sha256"
+    config.vm.box_download_checksum = "d518e138e8cd7b0e8d84d2d97edcfe1a107328ac8210ebd4c81fe00dd415b9c6"
+    config.vm.box_version = "1.8.50"
+
+    box.vm.provision "shell" do |s|
+      s.path = "openbsd.sh"
+      s.name = "Setup"
+      s.args = ["setup"]
+    end
+    box.vm.provision "shell", run: "always" do |s|
+      s.path = "openbsd.sh"
+      s.name = "Compile & Test"
+      s.args = ["compile"]
+    end
+  end
+
+  config.vm.define "someOtherBox" do |box|
+    # ...
+  end
+end
