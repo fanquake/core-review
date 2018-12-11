@@ -1,6 +1,6 @@
 #!/bin/sh
 
-install() {
+setup() {
     # Using automake 1.15 due to #14404
     pkg_add -v automake-1.15.1 \
     autoconf-2.69p2 \
@@ -21,7 +21,6 @@ compile() {
     export AUTOMAKE_VERSION=1.15
     export AUTOCONF_VERSION=2.69
     export BDB_PREFIX=/home/bitcoin/db4
-    export LC_CTYPE=en_US.UTF-8
 
     cd /home/bitcoin
     git clean -fx
@@ -34,7 +33,7 @@ compile() {
 }
 
 tests() {
-    # Run unit and functional tests
+    export LC_CTYPE=en_US.UTF-8
     gmake check -j6
     test/functional/test_runner.py --jobs=6 \
         --tmpdirprefix=/home/bitcoin/test_tmp
@@ -42,7 +41,7 @@ tests() {
 
 case $1 in
 	setup)
-		install
+		setup
 	;;
 	compile)
         compile

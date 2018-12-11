@@ -6,4 +6,5 @@ Based on using a macOS 10.14.x system.
 - [Gitian Building](/gitian-building/)
 - [Locale Dependence](/locale-dependence/)
 - [Operating Systems](operating-systems.md)
+- [Vagrant](/vagrant)
 - [Visual Studio Code Workspace](/visual-studio/)

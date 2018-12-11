@@ -24,7 +24,10 @@ setup() {
 }
 
 compile() {
-    cd /home/bitcoin/depends
+    cd /home/bitcoin
+    git clean -fx
+    git status
+    cd depends
     make NO_QT=1 NO_UPNP=1 DEBUG=1 ALLOW_HOST_PACKAGES=1 RAPIDCHECK=1 -j6
     cd ..
     ./autogen.sh
@@ -39,12 +42,12 @@ compile() {
 
 case $1 in
 	setup)
-		setup
+        setup
 	;;
 	compile)
         compile
 	;;
 	*)
-	    echo "Usage: travis.sh setup|compile"
+        echo "Usage: travis.sh setup|compile"
 	;;
 esac
