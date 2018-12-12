@@ -19,9 +19,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "openbsd64" do |box|
     box.vm.box = "generic/openbsd6"
-    config.vm.box_download_checksum_type = "sha256"
-    config.vm.box_download_checksum = "d518e138e8cd7b0e8d84d2d97edcfe1a107328ac8210ebd4c81fe00dd415b9c6"
-    config.vm.box_version = "1.8.50"
+    box.vm.box_download_checksum = "d518e138e8cd7b0e8d84d2d97edcfe1a107328ac8210ebd4c81fe00dd415b9c6"
+    box.vm.box_download_checksum_type = "sha256"
+    box.vm.box_version = "1.8.50"
 
     box.vm.provision "shell" do |s|
       s.path = "openbsd.sh"
@@ -37,9 +37,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "travis-linux-no-depends-qt" do |box|
     box.vm.box = "generic/ubuntu1804"
-    config.vm.box_download_checksum_type = "sha256"
-    config.vm.box_download_checksum = "626e59f8361f95bff7371a5af0aa0849ddd06246f8b0293be2f7a454a617ba5c"
-    config.vm.box_version = "1.8.50"
+    box.vm.box_download_checksum = "626e59f8361f95bff7371a5af0aa0849ddd06246f8b0293be2f7a454a617ba5c"
+    box.vm.box_download_checksum_type = "sha256"
+    box.vm.box_version = "1.8.50"
 
     box.vm.provision "shell" do |s|
       s.path = "travis.sh"
