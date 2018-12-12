@@ -3,7 +3,7 @@
 Where possible, usage of locale dependent functions should be avoided, as  
 their usage can produce unexpected results.
 
-Some exmaples include:
+Some examples include:
 
 ### std::isspace
 Compile [isspace.cpp](isspace.cpp):
