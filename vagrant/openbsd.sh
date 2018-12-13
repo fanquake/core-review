@@ -1,8 +1,9 @@
 #!/bin/sh
 
 setup() {
-    # Using automake 1.15 due to #14404
-    pkg_add -v automake-1.15.1 \
+    # Using automake 1.15 due 
+    # to https://github.com/bitcoin/bitcoin/issues/14404
+    pkg_add automake-1.15.1 \
     autoconf-2.69p2 \
     boost \
     git \
@@ -21,6 +22,7 @@ compile() {
     export AUTOMAKE_VERSION=1.15
     export AUTOCONF_VERSION=2.69
     export BDB_PREFIX=/home/bitcoin/db4
+    export LC_CTYPE=en_US.UTF-8
 
     cd /home/bitcoin
     git clean -fx
@@ -29,25 +31,17 @@ compile() {
     ./configure --with-gui=no CC=cc CXX=c++ \
         BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
         BDB_CFLAGS="-I${BDB_PREFIX}/include"
-    gmake -j6
-}
-
-tests() {
-    export LC_CTYPE=en_US.UTF-8
-    gmake check -j6
-    test/functional/test_runner.py --jobs=6 \
-        --tmpdirprefix=/home/bitcoin/test_tmp
+    gmake check -j4
 }
 
 case $1 in
 	setup)
-		setup
+        setup
 	;;
 	compile)
         compile
-        tests
 	;;
 	*)
-	    echo "Usage: openbsd.sh setup|compile"
+        echo "Usage: openbsd.sh setup|compile"
 	;;
 esac
