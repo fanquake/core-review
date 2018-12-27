@@ -37,7 +37,7 @@ compile() {
         --enable-glibc-back-compat \
         --enable-reduce-exports \
         --enable-debug CXXFLAGS="-g0 -O2"
-    make -j6
+    make -j4
 }
 
 case $1 in
