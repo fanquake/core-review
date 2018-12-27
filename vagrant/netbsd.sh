@@ -2,7 +2,7 @@
 
 setup() {
     pkg_add autoconf \
-        automake boost \
+        automake \
         boost \
         gdb \
         git \
