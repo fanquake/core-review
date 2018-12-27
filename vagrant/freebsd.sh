@@ -29,7 +29,7 @@ compile() {
     ./configure --with-gui=no --disable-dependency-tracking \
         BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
         BDB_CFLAGS="-I${BDB_PREFIX}/include"
-    gmake check
+    gmake
 }
 
 case $1 in
