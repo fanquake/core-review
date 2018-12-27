@@ -4,8 +4,10 @@
 Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "~/github/bitcoin", "/home/bitcoin", type: "rsync",
-  rsync__exclude: [".vscode", "depends/x86_64-apple-darwin*"],
-  rsync__args: ["--verbose", "--archive", "--delete", "--compress"]
+  rsync__args: ["--verbose", "--archive", "--delete", "--compress"],
+  rsync__exclude: [".vscode", "depends/built/", "depends/work/", 
+                    "depends/x86_64-apple-darwin*", "db4/", "*.o", 
+                    "*.a", "*.log", "*.Po", ".lo"]
 
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = 6
