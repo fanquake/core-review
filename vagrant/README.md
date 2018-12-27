@@ -16,6 +16,9 @@ You can connect to the box using:
 vagrant ssh openbsd64
 ```
 
+This Vagrantfile is being used with [Virtualbox 6.0](https://www.virtualbox.org/). 
+Compatibility with earlier versions is not guaranteed.
+
 
 #### Testing Pull Requests:
 
