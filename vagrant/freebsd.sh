@@ -8,6 +8,7 @@ setup() {
         gmake \
         libevent \
         libtool \
+        libzmq4 \
         openssl \
         pkgconf \
         python3
