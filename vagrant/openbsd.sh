@@ -31,7 +31,7 @@ compile() {
     ./configure --with-gui=no CC=cc CXX=c++ \
         BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
         BDB_CFLAGS="-I${BDB_PREFIX}/include"
-    gmake check -j4
+    gmake -j4
 }
 
 case $1 in
