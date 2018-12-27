@@ -21,9 +21,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "openbsd64" do |box|
     box.vm.box = "generic/openbsd6"
-    box.vm.box_download_checksum = "d518e138e8cd7b0e8d84d2d97edcfe1a107328ac8210ebd4c81fe00dd415b9c6"
-    box.vm.box_download_checksum_type = "sha256"
-    box.vm.box_version = "1.8.50"
 
     box.vm.provision "shell" do |s|
       s.path = "openbsd.sh"
@@ -39,9 +36,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "travis-linux-no-depends-qt" do |box|
     box.vm.box = "generic/ubuntu1804"
-    box.vm.box_download_checksum = "626e59f8361f95bff7371a5af0aa0849ddd06246f8b0293be2f7a454a617ba5c"
-    box.vm.box_download_checksum_type = "sha256"
-    box.vm.box_version = "1.8.50"
 
     box.vm.provision "shell" do |s|
       s.path = "travis.sh"
@@ -57,9 +51,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "freebsd112" do |box|
     box.vm.box = "generic/freebsd11"
-    box.vm.box_download_checksum_type = "sha256"
-    box.vm.box_download_checksum = "e9fb3d15885a270463780dba5eac04a4c36f1fee1c3e2ad8a634d75d0faa107b"
-    box.vm.box_version = "1.8.50"
 
     box.vm.provision "shell" do |s|
       s.path = "freebsd.sh"
@@ -75,7 +66,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "netbsd8" do |box|
     box.vm.box = "generic/netbsd8"
-    box.vm.box_version = "1.8.50"
 
     box.vm.provision "shell" do |s|
       s.path = "netbsd.sh"
