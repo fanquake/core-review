@@ -24,7 +24,9 @@ compile() {
     git clean -fx
     git status
     ./autogen.sh
-    ./configure --with-gui=no \
+    # --disable-dependency-tracking to work around automake issues
+    # https://github.com/bitcoin/bitcoin/issues/14404
+    ./configure --with-gui=no --disable-dependency-tracking \
         BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
         BDB_CFLAGS="-I${BDB_PREFIX}/include"
     gmake check
