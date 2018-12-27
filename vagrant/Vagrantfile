@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
                     "*.a", "*.log", "*.Po", ".lo"]
 
   config.vm.provider "virtualbox" do |vb|
-    vb.cpus = 6
+    vb.cpus = 4
     vb.customize ["modifyvm", :id, "--audio", "none"]
     vb.customize ["modifyvm", :id, "--clipboard", "disabled"]
     vb.customize ["modifyvm", :id, "--draganddrop", "disabled"]
