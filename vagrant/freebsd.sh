@@ -11,7 +11,7 @@ setup() {
         libzmq4 \
         openssl \
         pkgconf \
-        python3
+        python37
     
     cd /home/bitcoin
     ./contrib/install_db4.sh `pwd`
