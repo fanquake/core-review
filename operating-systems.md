@@ -13,5 +13,5 @@ Bitcoin Core is expected to run on the following (non-exhaustive) list of operat
 | [netBSD](https://www.netbsd.org) | 7.2, 8.0 |
 | [OpenBSD](https://www.openbsd.org) | 6.2, 6.3, 6.4 |
 | [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | 6, 7 |
-| [Ubuntu](https://www.ubuntu.com) | 14.04, 16.04, 18.04 |
+| [Ubuntu](https://www.ubuntu.com) | 14.04, 16.04, 18.04, 18.10 |
 | [Windows](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms) | 7, 10 |
