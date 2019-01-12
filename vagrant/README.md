@@ -1,24 +1,21 @@
 ### Vagrant
 
-The `Vagrantfile` in this directory contains definitions for multiple different  
-operating systems that are useful for testing Bitcoin Core.
+The `Vagrantfile` in this directory contains definitions for multiple different operating systems that are useful for testing Bitcoin Core.
 
-For example:
+It is currently being used with [Virtualbox 6.0](https://www.virtualbox.org/). Compatibility with earlier versions is not guaranteed.
+
+Usage:
 ```
 vagrant up openbsd64 rsync-auto
 ```
 
-This provisions an OpenBSD 6.4 box (using openbsd.sh), installs dependencies,  
-copies in the core source, configures and compiles binaries and runs tests.
+This provisions an OpenBSD 6.4 VM (using [`openbsd.sh`](/vagrant/openbsd.sh)), installs dependencies,  
+copies in the core source and configures and compiles binaries.
 
-You can connect to the box using:
+Connect to the box using:
 ```
 vagrant ssh openbsd64
 ```
-
-This Vagrantfile is being used with [Virtualbox 6.0](https://www.virtualbox.org/). 
-Compatibility with earlier versions is not guaranteed.
-
 
 #### Testing Pull Requests:
 
@@ -27,14 +24,12 @@ Use the [github-merge.py](https://github.com/bitcoin/bitcoin/blob/master/contrib
 bitcoin/contrib/devtools/github-merge.py 14853
 ```
 
-Then start/provision a VM:
+Then start/provision a VM.  
+In this instance, we'll ssh in and use `gdb` to get a backtrace from a failing unit test:
 ```
 vagrant rsync travis-linux-no-depends-qt
 vagrant up travis-linux-no-depends-qt
-```
 
-In this instance, we'll ssh into the box to run `gdb` on a certain unit test:
-```
 vagrant ssh travis-linux-no-depends-qt
 cd /home/bitcoin
 ```
