@@ -48,7 +48,7 @@ popd
 
 ### Setup Build & Fetch Gitian Inputs
 ```bash
-export VERSION=0.17.0rc4
+export VERSION=0.18.0rc1
 export SIGNER=your_username
 export USE_DOCKER=1
 
@@ -68,7 +68,7 @@ wget -P inputs https://downloads.sourceforge.net/project/osslsigncode/osslsignco
 ```
 
 If you want to build macOS signatures, you'll need to get hold of the macOS 10.11 SDK.  
-You can read the documentation [here](https://github.com/bitcoin/bitcoin/blob/master/doc/README_osx.md) about how to create it.  
+You can read the documentation [here](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md#deterministic-macos-dmg-notes) about how to create it.  
 Once you have `MacOSX10.11.sdk.tar.gz`, place it in `gitian-builder/inputs/`.
 
 ### Build Unsigned Sigs
@@ -146,4 +146,4 @@ tail -f var/build.log # Building dependencies and Core
 
 The first time `depends` is built for a new version, it can take a *long* time, 
 as [dependencies](https://github.com/bitcoin/bitcoin/tree/master/depends/packages) are being built for all architectures and operating systems.  
-Subsequent builds (0.17.0rc2) will be much faster, as only Bitcoin Core is being compiled.
+Subsequent builds (0.18.0rc2) will be much faster, as only Bitcoin Core is being compiled.
