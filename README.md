@@ -5,6 +5,7 @@ Based on using a macOS 10.14.x system.
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Determinism](determinism.md) - Notes on determinism.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
+- [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Vagrant](/vagrant) - Box definitions for PR review/testing.
