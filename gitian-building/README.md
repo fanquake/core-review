@@ -97,7 +97,7 @@ popd
 ```bash
 pushd gitian.sigs
 git add .
-git commit -m "your_username version unsigned sigs"
+git commit -m "$SIGNER $VERSION unsigned sigs"
 git push
 popd
 ```
@@ -129,7 +129,7 @@ popd
 ```bash
 pushd gitian.sigs
 git add .
-git commit -m "your_username signed sigs"
+git commit -m "$SIGNER $VERSION signed sigs"
 git push
 popd
 ```
