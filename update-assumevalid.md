@@ -9,7 +9,7 @@ Validating updates is simply running RPC commands, and verifying that the output
 
 For example, if you were reviewing [#15429](https://github.com/bitcoin/bitcoin/pull/15429):
 
-Run `bitcoin-cli getchainstats` with a block window of `4096`, and the blockhash of the new assumevalid block.
+Run `bitcoin-cli getchaintxstats` with a block window of `4096`, and the blockhash of the new assumevalid block.
 
 From the output, check that the following values match those in the PR:
 
