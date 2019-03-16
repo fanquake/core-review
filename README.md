@@ -8,6 +8,7 @@ Based on using a macOS 10.14.x system.
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
+- [`assumevalid` Updates](update-assumevalid.md) - How to review pull requests that update `assumevalid`.
 - [Vagrant](/vagrant) - Box definitions for PR review/testing.
 - [Visual Studio Code](/visual-studio/) - Config files for Visual Studio Code.
 - [Windows](windows.md) - Windows 10 VM setup for native builds.
