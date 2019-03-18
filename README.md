@@ -1,7 +1,7 @@
 ## Core Review
 Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoin) development, code review and gitian building. Based on using a macOS 10.14.x system.
 
-- [Clang Tools] - Setting up & using Clang Tools
+- [Clang Tools](clang-tools.md) - Setting up & using Clang Tools
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Determinism](determinism.md) - Notes on determinism.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
