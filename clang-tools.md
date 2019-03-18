@@ -64,3 +64,89 @@ src/init.cpp:1106:5: warning: missing username/bug in TODO [google-readability-t
 src/util/system.h:17:10: error: 'attributes.h' file not found [clang-diagnostic-error]
 Suppressed 5947 warnings (5947 in non-user code).
 ```
+
+## Generating a compilation database
+
+I'm using [`compiledb`](https://github.com/nickdiego/compiledb). There are tools like [Build EAR](https://github.com/rizsotto/Bear), or if using Cmake, you could pass `-DCMAKE_EXPORT_COMPILE_COMMANDS`. However, Build EAR didn't work for me (see [#232](https://github.com/rizsotto/Bear/issues/232) and [#215](https://github.com/rizsotto/Bear/issues/215)), and Core doesn't use CMake.
+
+### Install
+
+__Note:__ Python >= 3.6 is required.
+
+```bash
+pip3 install compiledb
+```
+
+### Usage
+
+```bash
+pushd bitcoin
+./autogen.sh && ./configure
+
+# When calling make use compiledb
+compiledb make -j6
+```
+
+This should generate a `compile_commands.json` file, which will contain output like this:
+
+```json
+[
+ {
+  "directory": "/Users/michael/github/bitcoin/src",
+  "arguments": [
+   "g++",
+   "-std=c++11",
+   "-DHAVE_CONFIG_H",
+   "-I.",
+   "-I../src/config",
+   "-U_FORTIFY_SOURCE",
+   "-D_FORTIFY_SOURCE=2",
+   "-I.",
+   "-DBOOST_SP_USE_STD_ATOMIC",
+   "-DBOOST_AC_USE_STD_ATOMIC",
+   "-pthread",
+   "-I/usr/local/include",
+   "-I./leveldb/include",
+   "-I./leveldb/helpers/memenv",
+   "-I/usr/local/Cellar/openssl/1.0.2q/include",
+   "-I/usr/local/Cellar/openssl/1.0.2q/include",
+   "-I./secp256k1/include",
+   "-I./univalue/include",
+   "-Qunused-arguments",
+   "-DHAVE_BUILD_INFO",
+   "-D__STDC_FORMAT_MACROS",
+   "-I/usr/local/opt/berkeley-db@4/include",
+   "-DMAC_OSX",
+   "-Wstack-protector",
+   "-fstack-protector-all",
+   "-Wall",
+   "-Wextra",
+   "-Wformat",
+   "-Wvla",
+   "-Wformat-security",
+   "-Wthread-safety-analysis",
+   "-Wrange-loop-analysis",
+   "-Wredundant-decls",
+   "-Wno-unused-parameter",
+   "-Wno-self-assign",
+   "-Wno-unused-local-typedef",
+   "-Wno-deprecated-register",
+   "-Wno-implicit-fallthrough",
+   "-g",
+   "-O2",
+   "-MT",
+   "bitcoind-bitcoind.o",
+   "-MD",
+   "-MP",
+   "-MF",
+   ".deps/bitcoind-bitcoind.Tpo",
+   "-c",
+   "-o",
+   "bitcoind-bitcoind.o",
+   "bitcoind.cpp"
+  ],
+  "file": "bitcoind.cpp"
+ },
+ ....
+]
+```
