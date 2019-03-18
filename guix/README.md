@@ -14,12 +14,16 @@ DOCKER_BUILDKIT=1 docker build -t alpine-guix .
 
 ### Run the alpine-guix container
 
-Note the use of [__--privileged__](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) here. Read the documentation before running any image with this flag.
-
+To `exec` a `guix-daemon` (a prerequisite for guix builds)
 ```bash
 pushd bitcoin
 docker run -it --name alpine-guix --privileged -v $PWD:/bitcoin --workdir /bitcoin alpine-guix
 ```
+
+The daemon will run in the foreground, so don't be alarmed if it hangs.
+
+Note the use of [__--privileged__](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) here. Read the documentation before running any image with this flag.
+
 
 ### Do a Bitcoin Core build:
 
