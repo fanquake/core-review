@@ -7,6 +7,7 @@ RUN apk --no-cache --update add bash \
   curl \
   file \
   make \
+  patchelf \
   sudo
 
 RUN cd /tmp \
