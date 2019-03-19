@@ -23,14 +23,23 @@ RUN ln -sf /var/guix/profiles/per-user/root/current-guix ~root/.guix-profile
 RUN guix archive --authorize < ~root/.guix-profile/share/guix/hydra.gnu.org.pub
 RUN guix archive --authorize < ~root/.guix-profile/share/guix/ci.guix.info.pub
 
-RUN addgroup guixbuild
-RUN addgroup guix-builder
-RUN chgrp guix-builder -R /gnu/store
-RUN chmod 1775 /gnu/store
+# Build Environment Setup
+# https://www.gnu.org/software/guix/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
 
-RUN for i in `seq -w 1 10` ; do \
-    adduser -S guix-builder$i guix-builder ;\
-    adduser guix-builder$i guix-builder ;\
+RUN addgroup guixbuild
+
+RUN for i in `seq -w 1 10`; \
+  do \
+    # user name
+    adduser guix-builder$i \
+    # Dont assign a password
+    -D \
+    # Group
+    -G guixbuild \
+    # home directory
+    -h /var/empty \
+    # login shell
+    -s `which nologin`; \
   done
 
-CMD guix-daemon --build-users-group=guix-builder
+CMD guix-daemon --build-users-group=guixbuild
