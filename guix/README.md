@@ -10,7 +10,7 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 
 ```bash
 pushd bitcoin
-DOCKER_BUILDKIT=1 docker build -t alpine-guix .
+DOCKER_BUILDKIT=1 docker build -f /path/to/this/dockerfile -t alpine-guix .
 ```
 
 ### Run the alpine-guix container
