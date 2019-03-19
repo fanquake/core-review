@@ -5,9 +5,9 @@ ENV PATH /root/.guix-profile/bin:$PATH
 
 COPY . /bitcoin
 
-RUN apk --no-cache --update add bash \
+RUN apk --no-cache --update add \
+  bash \
   curl \
-  file \
   make \
   patchelf \
   sudo
