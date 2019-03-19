@@ -3,6 +3,8 @@ FROM gliderlabs/alpine:3.9
 ENV GUIX_VERSION 0.16.0
 ENV PATH /root/.guix-profile/bin:$PATH
 
+COPY . /bitcoin
+
 RUN apk --no-cache --update add bash \
   curl \
   file \

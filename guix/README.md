@@ -9,25 +9,24 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 ### Create the alpine-guix image:
 
 ```bash
+pushd bitcoin
 DOCKER_BUILDKIT=1 docker build -t alpine-guix .
 ```
 
 ### Run the alpine-guix container
 
-To `exec` a `guix-daemon` (a prerequisite for guix builds)
+To `exec` a `guix-daemon` (a prerequisite for guix builds):
+
 ```bash
-pushd bitcoin
-docker run -it --name alpine-guix --privileged -v $PWD:/bitcoin --workdir /bitcoin alpine-guix
+docker run -it --name alpine-guix --privileged --workdir /bitcoin alpine-guix
 ```
 
-The daemon will run in the foreground, so don't be alarmed if it hangs.
+The daemon will run in the foreground, so don't be alarmed if it hangs (you may see output like `accepted connection from pid 2828, user root`).
 
 Note the use of [__--privileged__](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) here. Read the documentation before running any image with this flag.
-
 
 ### Do a Bitcoin Core build:
 
 ```bash
-pushd bitcoin
 docker exec -it alpine-guix /bin/bash -c "contrib/guix/guix-build.sh"
 ```
