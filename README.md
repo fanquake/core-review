@@ -6,7 +6,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Determinism](determinism.md) - Notes on determinism.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
-- [Guix](guix.md) - Notes on setting up / using Guix.
+- [Guix](guix/README.md) - Notes on setting up / using Guix.
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
