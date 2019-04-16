@@ -23,10 +23,15 @@ docker run -it --name alpine-guix --privileged --workdir /bitcoin alpine-guix
 
 The daemon will run in the foreground, so don't be alarmed if it hangs (you may see output like `accepted connection from pid 2828, user root`).
 
-Note the use of [__--privileged__](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) here. Read the documentation before running any image with this flag.
+Note the use of `--privileged`. Read the Docker [capabilities documentation](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) before running any image with this flag.
 
 ### Do a Bitcoin Core build:
 
 ```bash
 docker exec -it alpine-guix /bin/bash -c "contrib/guix/guix-build.sh"
+```
+
+If you have issues with packages not being available, you might want to run `guix pull` before the build script. i.e
+```
+guix pull && export PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" && contrib/guix/guix-build.sh
 ```
