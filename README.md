@@ -5,6 +5,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Clang Tools](clang-tools.md) - Setting up & using Clang Tools
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Determinism](determinism.md) - Notes on determinism.
+- [`diffoscope`](diffoscope.md) - A tool for generating diffs of just about anything.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
 - [Guix](guix/README.md) - Notes on setting up / using Guix.
 - [LLDB](lldb.md) - Notes on using LLDB.
