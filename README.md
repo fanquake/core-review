@@ -6,6 +6,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Determinism](determinism.md) - Notes on determinism.
 - [`diffoscope`](diffoscope.md) - A tool for generating diffs of just about anything.
+- [`github-merge.py`](github-merge.md) - Script for merging PRs from GitHub.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
 - [Guix](guix/README.md) - Notes on setting up / using Guix.
 - [LLDB](lldb.md) - Notes on using LLDB.
