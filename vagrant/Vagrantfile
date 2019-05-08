@@ -1,13 +1,24 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure("2") do |config|
+# https://stackoverflow.com/questions/14124234/
+# how-to-pass-parameter-on-vagrant-up-and-have-it-in-the-scope-of-vagrantfile
+require 'getoptlong'
 
-  config.vm.synced_folder "~/github/bitcoin", "/home/bitcoin", type: "rsync",
-  rsync__args: ["--verbose", "--archive", "--delete", "--compress"],
-  rsync__exclude: [".vscode", "depends/built/", "depends/work/", 
-                    "depends/x86_64-apple-darwin*", "db4/", "*.o", 
-                    "*.a", "*.log", "*.Po", ".lo"]
+opts = GetoptLong.new(
+  [ '--pr', GetoptLong::OPTIONAL_ARGUMENT ]
+)
+
+pr=''
+
+opts.each do |opt, arg|
+  case opt
+    when '--pr'
+      pr=arg
+  end
+end
+
+Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = 4
@@ -24,13 +35,13 @@ Vagrant.configure("2") do |config|
 
     box.vm.provision "shell" do |s|
       s.path = "openbsd.sh"
-      s.name = "Setup"
-      s.args = ["setup"]
+      s.name = "Provision"
+      s.args = ["provision"]
     end
     box.vm.provision "shell", run: "always" do |s|
       s.path = "openbsd.sh"
-      s.name = "Compile"
-      s.args = ["compile"]
+      s.name = "Setup"
+      s.args = ["setup", "#{pr}"]
     end
   end
 

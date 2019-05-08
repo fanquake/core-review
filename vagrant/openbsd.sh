@@ -1,8 +1,9 @@
 #!/bin/sh
 
-setup() {
-    # Using automake 1.15 due 
-    # to https://github.com/bitcoin/bitcoin/issues/14404
+provision() {
+
+    # Using automake 1.15 due to
+    # https://github.com/bitcoin/bitcoin/issues/14404
     pkg_add automake-1.15.1 \
     autoconf-2.69p2 \
     boost \
@@ -13,35 +14,50 @@ setup() {
     python-3.6.6p1 \
     zeromq
 
-    # Install BerkeleyDB
-    cd /home/bitcoin
-    ./contrib/install_db4.sh `pwd` CC=cc CXX=c++
+    git clone https://github.com/bitcoin/bitcoin
+
+    chmod -R 777 bitcoin/
 }
 
-compile() {
-    export AUTOMAKE_VERSION=1.15
-    export AUTOCONF_VERSION=2.69
-    export BDB_PREFIX=/home/bitcoin/db4
-    export LC_CTYPE=en_US.UTF-8
+setup() {
 
-    cd /home/bitcoin
-    git clean -fx
-    git status
-    ./autogen.sh
-    ./configure --with-gui=no CC=cc CXX=c++ \
-        BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
-        BDB_CFLAGS="-I${BDB_PREFIX}/include"
-    gmake -j4
+    if ! grep -q "export AUTOMAKE_VERSION=1.15" .bash_profile ; then
+    echo "cd bitcoin/" >> .bash_profile 
+    echo "export AUTOMAKE_VERSION=1.15" >> .bash_profile
+    echo "export AUTOCONF_VERSION=2.69" >> .bash_profile
+    echo "export BDB_PREFIX=/home/vagrant/bitcoin/db4" >> .bash_profile
+    echo "export LC_CTYPE=en_US.UTF-8" >> .bash_profile
+    echo "echo --with-gui=no CC=cc CXX=c++" >> .bash_profile
+    echo "echo 'BDB_LIBS=\"-L/home/vagrant/bitcoin/db4/lib -ldb_cxx-4.8\" BDB_CFLAGS=\"-I/home/vagrant/bitcoin/db4/include\"' " >> .bash_profile
+    fi
+
+    cd bitcoin
+
+    git clean -fxd
+
+    git stash && git checkout master
+
+    if [ -z "$2" ]
+    then
+        git fetch origin pull/$1/head:$1-testing
+        git checkout $1-testing
+        # contrib/devtools/github-merge.py $1
+    fi
+
+    # Install BerkeleyDB
+    ./contrib/install_db4.sh `pwd` CC=cc CXX=c++
+
+    git log --name-status HEAD^..HEAD
 }
 
 case $1 in
-	setup)
-        setup
+	provision)
+        provision
 	;;
-	compile)
-        compile
+	setup)
+        setup $2
 	;;
 	*)
-        echo "Usage: openbsd.sh setup|compile"
+        echo "Usage: openbsd.sh provision|setup PR"
 	;;
 esac

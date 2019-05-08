@@ -4,16 +4,19 @@ The `Vagrantfile` in this directory contains definitions for multiple different 
 
 It is currently being used with [Virtualbox 6.0](https://www.virtualbox.org/). Compatibility with earlier versions is not guaranteed.
 
-Usage:
-```
-vagrant up openbsd64 rsync-auto
+## Usage:
+
+If you wanted to test Pull Request [#15968](https://github.com/bitcoin/bitcoin/pull/15968):
+
+```shell
+vagrant --pr=15968 up openbsd64
 ```
 
-This provisions an OpenBSD 6.4 VM (using [`openbsd.sh`](/vagrant/openbsd.sh)), installs dependencies,  
-copies in the core source and configures and compiles binaries.
+This provisions a OpenBSD 6.4 VM (using [`openbsd.sh`](/vagrant/openbsd.sh)), installs build dependencies and sets up some useful env vars.
+It also checks out the `#15968` branch and compiles `BerkeleyDB`.
 
-Connect to the box using:
-```
+You can then connect to the box using:
+```shell
 vagrant ssh openbsd64
 ```
 
@@ -35,7 +38,7 @@ cd /home/bitcoin
 ```
 
 Setup gdb:
-```
+```shell
 gdb --args src/test/test_bitcoin --log_level=all --run_test=key_properties
 GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
 ... snip ...
@@ -43,7 +46,7 @@ Reading symbols from src/test/test_bitcoin...done.
 ```
 
 Run:
-```
+```shell
 (gdb) run
 Starting program: /home/bitcoin/src/test/test_bitcoin --log_level=all --run_test=key_properties
 [Thread debugging using libthread_db enabled]
@@ -59,7 +62,7 @@ Program received signal SIGSEGV, Segmentation fault.
 ```
 
 Obtain a backtrace:
-```
+```shell
 (gdb) thread apply all bt
 Thread 1 (Thread 0x7ffff7fe3780 (LWP 32251)):
 #0  0x000055555622120f in rc::Shrinkable<rc::detail::Any>::value() const ()
