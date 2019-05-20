@@ -1,13 +1,27 @@
 # Docker
 
-Fedora 29
-```
-DOCKER_BUILDKIT=1 docker build -f path/to/fedora.dockerfile -t fedora-depends .
+## General Usage
 
-docker run -it --name fedora-depends --workdir /bitcoin fedora-depends
+The dockerfiles in this directory can be used to run `depends` builds for various `HOST`s.
+The images will contain all the dependencies required for cross compiling.
+
+
+For example, to build the Debian image and use it for a build targeting the `RISCV-64` host:
+
+```shell
+# Build container
+DOCKER_BUILDKIT=1 docker build -f debian.dockerfile -t debian-depends .
+
+# Run with a Bash shell
+docker run -it --name debian-depends --workdir /bitcoin debian-depends /bin/bash
+
+# Inside the container
 pushd depends
-make -j6 RAPIDCHECK=1
+
+# Build for RISCV-64 bit, skipping Qt packages
+make HOST=riscv64-linux-gnu RAPIDCHECK=1 NO_QT=1
 popd
-./autogen.sh && ./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu
+./autogen.sh
+./configure --prefix=/bitcoin/depends/riscv64-linux-gnu
 make check -j6
 ```
