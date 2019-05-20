@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.9
 
-ENV GUIX_VERSION 1.0.0
+ENV GUIX_VERSION 1.0.1
 ENV PATH /root/.guix-profile/bin:$PATH
 
 COPY . /bitcoin
