@@ -8,6 +8,8 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 
 ### Create the alpine-guix image:
 
+Guix building is a WIP and requires the changes in [#15277](https://github.com/bitcoin/bitcoin/pull/15277). Merge them into your local repo before building the image.
+
 ```bash
 pushd bitcoin
 DOCKER_BUILDKIT=1 docker build -f ../core-review/guix/Dockerfile -t alpine-guix .
@@ -31,7 +33,17 @@ Note the use of `--privileged`. Read the Docker [capabilities documentation](htt
 docker exec -it alpine-guix /bin/bash -c "contrib/guix/guix-build.sh"
 ```
 
-If you have issues with packages not being available, you might want to run `guix pull` before the build script. i.e
+If you have issues with packages not being available, similar to:
+
+```shell
+guix environment: error: gcc: package not found for version 8.3.0
+guix environment: error: failed to load 'contrib/guix/manifest.scm':
+gnu/packages.scm:540:4: In procedure specification->package+output:
+Throw to key `quit' with args `(1)'.
 ```
+
+you might need to run `guix pull` before running the build script. i.e:
+
+```shell
 guix pull && export PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" && contrib/guix/guix-build.sh
 ```
