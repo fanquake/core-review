@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.9
 
-ENV GUIX_VERSION 0.16.0
+ENV GUIX_VERSION 1.0.0
 ENV PATH /root/.guix-profile/bin:$PATH
 
 COPY . /bitcoin
@@ -13,7 +13,7 @@ RUN apk --no-cache --update add \
   sudo
 
 RUN cd /tmp \
-  && wget -qO- ftp://alpha.gnu.org/gnu/guix/guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz \
+  && wget -qO- ftp://ftp.gnu.org/gnu/guix/guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz \
   | tar xJf - \
   && mv var/guix /var/ \
   && mv gnu /
