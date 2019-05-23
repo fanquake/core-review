@@ -1,8 +1,6 @@
-FROM fedora:29
+FROM fedora:30
 
-COPY . /bitcoin
-
-RUN dnf update -y && dnf install -y \
+RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     autoconf \
     automake \
     bzip2 \
@@ -16,4 +14,4 @@ RUN dnf update -y && dnf install -y \
     which \
     xz
 
-RUN cd bitcoin && git clean -fxd
+RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
