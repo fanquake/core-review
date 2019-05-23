@@ -45,21 +45,6 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.define "travis-linux-no-depends-qt" do |box|
-    box.vm.box = "generic/ubuntu1804"
-
-    box.vm.provision "shell" do |s|
-      s.path = "travis.sh"
-      s.name = "Setup"
-      s.args = ["setup"]
-    end
-    box.vm.provision "shell", run: "always" do |s|
-      s.path = "travis.sh"
-      s.name = "Compile"
-      s.args = ["compile"]
-    end
-  end
-
   config.vm.define "freebsd112" do |box|
     box.vm.box = "freebsd/FreeBSD-11.2-STABLE"
     box.ssh.shell = "sh"
