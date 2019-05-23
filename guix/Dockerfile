@@ -8,9 +8,7 @@ COPY . /bitcoin
 RUN apk --no-cache --update add \
   bash \
   curl \
-  make \
-  patchelf \
-  sudo
+  make
 
 RUN cd /tmp \
   && wget -qO- ftp://ftp.gnu.org/gnu/guix/guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz \
