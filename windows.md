@@ -66,12 +66,20 @@ Start the installation.
 
 When promted to connect anything, `deny`, `not now`, `never` etc.
 
+# Install Python3
+
+You can use [Chocolatey](https://chocolatey.org/) to install `Python 3`:
+
+```powershell
+choco install python
+```
+
 ## Install dependencies and generate project files
-[Vcpkg](https://github.com/Microsoft/vcpkg.git) is used to install dependencies.
+[Vcpkg](https://github.com/Microsoft/vcpkg.git) is used to install `c++` dependencies.
 See the Bitcoin Core [MSVC build docs](https://github.com/bitcoin/bitcoin/tree/master/build_msvc) for more info.
 
 Open `Windows PowerShell`:
-```bash
+```powershell
 git clone https://github.com/bitcoin/bitcoin.git
 git clone https://github.com/Microsoft/vcpkg.git
 
@@ -89,3 +97,9 @@ cd ..
 cd bitcoin\build_msvc
 python msvc-autogen.py
 ```
+
+## Build in Visual Studio
+
+Open the `bitcoin\build_msvc\bitcoin.sln` file in Visual Studio.
+
+![Windows](screenshots/windows.png)
