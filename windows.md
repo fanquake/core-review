@@ -54,11 +54,11 @@ When the updates finish, reboot the VM.
 
 ## Install Visual Studio
 
-Download the `Community 2017` version of [Visual Studio](https://visualstudio.microsoft.com/vs/).
+Download the latest `Community` version of [Visual Studio](https://visualstudio.microsoft.com/vs/).
 
 Run the Installer, when prompted choose the `Desktop development with CPP` workload. 
 
-Choose `Git for Windows` from the Induvidual Components menu.
+Choose `Git for Windows` from the Individual Components menu.
 
 You can uncheck the `NuGet package manager`.
 
@@ -86,7 +86,7 @@ cd vcpkg
 .\vcpkg integrate install
 
 # Install Bitcoin Core dependencies
-.\vcpkg install --triplet x64-windows-static boost-filesystem boost-signals2 boost-test libevent openssl zeromq berkeleydb secp256k1 leveldb
+.\vcpkg install --triplet x64-windows-static boost-filesystem boost-signals2 boost-test libevent openssl zeromq berkeleydb secp256k1 leveldb rapidcheck
 cd ..
 
 # Generate Project Files
@@ -97,5 +97,7 @@ python msvc-autogen.py
 ## Build in Visual Studio
 
 Open the `bitcoin\build_msvc\bitcoin.sln` file in Visual Studio.
+
+Choose `Release` and `x86`, then `Build -> Build Solution`.
 
 ![Windows](screenshots/windows.png)
