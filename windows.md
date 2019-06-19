@@ -68,11 +68,7 @@ When promted to connect anything, `deny`, `not now`, `never` etc.
 
 # Install Python3
 
-You can use [Chocolatey](https://chocolatey.org/) to install `Python 3`:
-
-```powershell
-choco install python
-```
+Search for `Python` in the Microsoft store.
 
 ## Install dependencies and generate project files
 [Vcpkg](https://github.com/Microsoft/vcpkg.git) is used to install `c++` dependencies.
