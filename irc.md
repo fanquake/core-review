@@ -5,7 +5,7 @@ Bitcoin Core development and discussion happens across various IRC channels.
 The following channels can be found on [Freenode](https://freenode.net).
 
 ## #bitcoin-core-dev - Bitcoin Core development discussion and commits.
-This channel hosts the weekly core dev meeting.
+This channel hosts the weekly core dev meeting as well as the core dev wallet meeting (every second week).
 
 Past and future topics can be found [here](https://gist.github.com/moneyball/071d608fdae217c2a6d7c35955881d8a). 
 If you have a topic you'd like to see discussed at the meeting, you can join the channel and propose it using `#proposedmeetingtopic`.
