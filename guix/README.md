@@ -47,3 +47,7 @@ you might need to run `guix pull` before running the build script. i.e:
 ```shell
 guix pull && export PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" && contrib/guix/guix-build.sh
 ```
+
+### Misc
+
+After `guix pull` you'll normally want to run something like `export PATH="$HOME/.config/guix/current/bin:$PATH"`.
