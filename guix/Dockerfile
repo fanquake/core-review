@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.9
+FROM alpine:3.10
 
 ENV GUIX_VERSION 1.0.1
 ENV PATH /root/.guix-profile/bin:$PATH
