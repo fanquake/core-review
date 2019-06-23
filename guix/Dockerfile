@@ -11,8 +11,9 @@ RUN apk --no-cache --update add \
   make
 
 RUN cd /tmp \
-  && wget -qO- ftp://ftp.gnu.org/gnu/guix/guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz \
-  | tar xJf - \
+  && wget -q -O guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz ftp://ftp.gnu.org/gnu/guix/guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz \
+  && echo "0b254610209fab571d7f4db156324cb541af2be354e74bf5391bedc79908583b  guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz" | sha256sum -c \
+  && tar xJf guix-binary-${GUIX_VERSION}.x86_64-linux.tar.xz \
   && mv var/guix /var/ \
   && mv gnu /
 
