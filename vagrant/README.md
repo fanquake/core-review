@@ -9,7 +9,7 @@ It is currently being used with [Virtualbox 6.0](https://www.virtualbox.org/). C
 If you wanted to test Pull Request [#15968](https://github.com/bitcoin/bitcoin/pull/15968):
 
 ```shell
-vagrant --pr=15968 up openbsd64
+PR=15968 vagrant up openbsd64
 ```
 
 This provisions a OpenBSD 6.4 VM (using [`openbsd.sh`](/vagrant/openbsd.sh)), installs build dependencies and sets up some useful env vars.

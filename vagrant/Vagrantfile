@@ -1,23 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# https://stackoverflow.com/questions/14124234/
-# how-to-pass-parameter-on-vagrant-up-and-have-it-in-the-scope-of-vagrantfile
-require 'getoptlong'
-
-opts = GetoptLong.new(
-  [ '--pr', GetoptLong::OPTIONAL_ARGUMENT ]
-)
-
-pr=''
-
-opts.each do |opt, arg|
-  case opt
-    when '--pr'
-      pr=arg
-  end
-end
-
 Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
@@ -41,7 +24,7 @@ Vagrant.configure("2") do |config|
     box.vm.provision "shell", run: "always" do |s|
       s.path = "openbsd.sh"
       s.name = "Setup"
-      s.args = ["setup", "#{pr}"]
+      s.args = ["setup", ENV['PR']]
     end
   end
 
