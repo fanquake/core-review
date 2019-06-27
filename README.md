@@ -3,6 +3,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 
 - [`assumevalid` Updates](update-assumevalid.md) - How to review pull requests that update `assumevalid`.
 - [Clang Tools](clang-tools.md) - Setting up & using Clang Tools
+- [Compiler Explorer](compiler-explorer.md) - Example Compiler Explorer use case.
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Determinism](determinism.md) - Notes on determinism.
 - [`diffoscope`](diffoscope.md) - A tool for generating diffs of just about anything.
