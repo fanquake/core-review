@@ -64,16 +64,18 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "netbsd8" do |box|
     box.vm.box = "generic/netbsd8"
+    box.ssh.shell = "sh"
+    config.vm.synced_folder ".", "/vagrant", disabled: true
 
     box.vm.provision "shell" do |s|
       s.path = "netbsd.sh"
-      s.name = "Setup"
-      s.args = ["setup"]
+      s.name = "Provision"
+      s.args = ["provision"]
     end
     box.vm.provision "shell", run: "always" do |s|
       s.path = "netbsd.sh"
-      s.name = "Compile"
-      s.args = ["compile"]
+      s.name = "Setup"
+      s.args = ENV['PR'] ? ["setup", ENV['PR']] : ["setup"]
     end
   end
 end
