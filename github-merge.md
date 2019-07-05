@@ -17,3 +17,12 @@ git config user.name "Test"
 
 contrib/devtools/github-merge.py 12345
 ```
+# Checking out GitHub PRs
+
+```bash
+git clone https://github.com/bitcoin/bitcoin
+
+git fetch origin pull/PR/head:PR-testing
+
+git checkout PR-testing
+```
