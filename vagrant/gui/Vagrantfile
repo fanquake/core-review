@@ -1,0 +1,57 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Do a "vagrant up" to provision, 
+# then "vagrant reload" to restart and use the GUI.
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "debian/contrib-stretch64"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.post_up_message = "git fetch origin pull/PR/head:test-PR"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = "6144"
+    vb.cpus = 6
+    vb.customize ["modifyvm", :id, "--vram", "128"]
+    vb.customize ["modifyvm", :id, "--audio", "none"]
+    vb.customize ["modifyvm", :id, "--clipboard", "disabled"]
+    vb.customize ["modifyvm", :id, "--draganddrop", "disabled"]
+    vb.customize ["modifyvm", :id, "--recording", "off"]
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update && 
+    apt-get upgrade -y &&
+    apt-get install --no-install-recommends -y build-essential \
+    curl \
+    git \
+    libtool \
+    autotools-dev \
+    automake \
+    pkg-config \
+    bsdmainutils \
+    python3 \
+    libdb-dev \
+    libdb++-dev \
+    libssl-dev \
+    libevent-dev \
+    libboost-system-dev \
+    libboost-filesystem-dev \
+    libboost-chrono-dev \
+    libboost-test-dev \
+    libboost-thread-dev \
+    libminiupnpc-dev \
+    libzmq3-dev \
+    libqt5gui5 \
+    libqt5core5a \
+    libqt5dbus5 \
+    qttools5-dev \
+    qttools5-dev-tools \
+    libprotobuf-dev \
+    protobuf-compiler \
+    libqrencode-dev \
+    task-gnome-desktop
+  SHELL
+end
