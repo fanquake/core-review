@@ -6,7 +6,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "debian/contrib-stretch64"
+  config.vm.box = "debian/contrib-buster64"
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.post_up_message = "git fetch origin pull/PR/head:test-PR"
 
