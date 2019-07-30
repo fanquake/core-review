@@ -9,6 +9,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [`diffoscope`](diffoscope.md) - A tool for generating diffs of just about anything.
 - [`github-merge.py`](github-merge.md) - Script for merging PRs from GitHub.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
+- [gnuplot](gnuplot/README.md) - Simple `gnuplot` usage for benchmarking PRs.
 - [Guix](guix/README.md) - Notes on setting up / using Guix.
 - [IRC](irc.md) - Where to find Bitcoin Core related discussion on IRC.
 - [LLDB](lldb.md) - Notes on using LLDB.
