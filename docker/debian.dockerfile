@@ -39,5 +39,7 @@ RUN apt-get install --no-install-recommends -y \
 
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
 
+RUN git clone git://github.com/bitcoin-core/bitcoin-maintainer-tools
+
 # https://github.com/bitcoin/bitcoin/blob/master/doc/build-windows.md#footnotes
 RUN update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
