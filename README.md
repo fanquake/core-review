@@ -2,6 +2,7 @@
 Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoin) development, code review and gitian building. Based on using a macOS 10.14.x system.
 
 - [`assumevalid` Updates](update-assumevalid.md) - How to review pull requests that update `assumevalid`.
+- [Binary Compare](binary-compare.md) - Notes on doing binary comparisons of Bitcoin Core
 - [Clang Tools](clang-tools.md) - Setting up & using Clang Tools
 - [Compiler Explorer](compiler-explorer.md) - Example Compiler Explorer use case.
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
