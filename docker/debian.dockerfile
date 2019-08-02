@@ -7,6 +7,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     ca-certificates \
     cmake \
     curl \
+    diffoscope \
     g++-multilib \
     git \
     libtool \
