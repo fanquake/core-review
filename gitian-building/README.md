@@ -10,8 +10,6 @@ Gitian-builder needs `sha256sum`, which doesn't exist on macOS:
 sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 ```
 
-`date` on macOS doesn't work as expected, patch `gitian-builder` to use gdate (from coreutils). See [`gdate.patch`](gdate.patch).
-
 ```bash
 brew cask install docker
 ```
@@ -46,9 +44,9 @@ popd
 ```
 
 
-### Setup Build & Fetch Gitian Inputs
+### Fetch Gitian Inputs
 ```bash
-export VERSION=0.18.0rc1
+export VERSION=0.18.1
 export SIGNER=your_username
 export USE_DOCKER=1
 
@@ -67,7 +65,7 @@ wget -P inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.p
 wget -P inputs https://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 ```
 
-If you want to build macOS signatures, you'll need to get hold of the macOS 10.11 SDK.  
+If you want to gitian build for macOS, you'll need to get hold of the macOS 10.11 SDK.  
 You can read the documentation [here](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md#deterministic-macos-dmg-notes) about how to create it.  
 Once you have `MacOSX10.11.sdk.tar.gz`, place it in `gitian-builder/inputs/`.
 
@@ -75,18 +73,18 @@ Once you have `MacOSX10.11.sdk.tar.gz`, place it in `gitian-builder/inputs/`.
 Adjust `num-make` and `memory` as needed.
 ```bash
 # Linux
-bin/gbuild --num-make 6 --memory 6000 --commit bitcoin=v${VERSION} ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
+bin/gbuild --num-make 6 --memory 4000 --commit bitcoin=v${VERSION} ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
 bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
 mv build/out/bitcoin-*.tar.gz build/out/src/bitcoin-*.tar.gz ../
 
 # Windows
-bin/gbuild --num-make 6 --memory 6000 --commit bitcoin=v${VERSION} ../bitcoin/contrib/gitian-descriptors/gitian-win.yml
+bin/gbuild --num-make 6 --memory 4000 --commit bitcoin=v${VERSION} ../bitcoin/contrib/gitian-descriptors/gitian-win.yml
 bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-win.yml
 mv build/out/bitcoin-*-win-unsigned.tar.gz inputs/bitcoin-win-unsigned.tar.gz
 mv build/out/bitcoin-*.zip build/out/bitcoin-*.exe ../
 
 # macOS
-bin/gbuild --num-make 6 --memory 6000 --commit bitcoin=v${VERSION} ../bitcoin/contrib/gitian-descriptors/gitian-osx.yml
+bin/gbuild --num-make 6 --memory 4000 --commit bitcoin=v${VERSION} ../bitcoin/contrib/gitian-descriptors/gitian-osx.yml
 bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-osx.yml
 mv build/out/bitcoin-*-osx-unsigned.tar.gz inputs/bitcoin-osx-unsigned.tar.gz
 mv build/out/bitcoin-*.tar.gz build/out/bitcoin-*.dmg ../
@@ -102,7 +100,7 @@ git push
 popd
 ```
 
-### Build Signed Signatures
+### Build Signed Sigs
 
 Signed signatures can be built once the `detached sigs` are available in the [detached-sigs repo](https://github.com/bitcoin-core/bitcoin-detached-sigs/).
 
