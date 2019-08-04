@@ -25,15 +25,16 @@ ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin/clang-tidy
 clang-tidy -version
 
 LLVM (http://llvm.org/):
-  LLVM version 7.0.1
+  LLVM version 8.0.0
   Optimized build.
-  Default target: x86_64-apple-darwin18.2.0
+  Default target: x86_64-apple-darwin18.7.0
   Host CPU: skylake
+
+clang-format -version
+clang-format version 8.0.0 (tags/RELEASE_800/final)
 ```
 
-__Note:__ You might already have `clang-format` installed via brew, as it is available as a stand-alone formula. 
-The stand-alone version is currently newer (8.0.0 vs 7.0.1) than the one installed with `llvm`.
-
+__Note:__ You may already have `clang-format` installed via `brew`, as it's available as a stand-alone formula.
 
 ## clang-format
 
@@ -43,7 +44,7 @@ If you are going to use `clang-format` over any of the Bitcoin Core code, ensure
 
 `clang-tidy` has been used to submit pull requests in the past, such as [#10735](https://github.com/bitcoin/bitcoin/pull/10735).
 
-While this usage can generally be __ok__, the project is not on a crusade to _silence all the warnings_.
+While this usage can generally be __ok__, the project is not on a crusade to _silence every warning_.
 
 Naive usage of tools like `clang-tidy` will like result in 100's, if not 1000's of "warnings" generated for any particular file.
 
@@ -67,7 +68,7 @@ Suppressed 5947 warnings (5947 in non-user code).
 
 ## Generating a compilation database
 
-I'm using [`compiledb`](https://github.com/nickdiego/compiledb). There are tools like [Build EAR](https://github.com/rizsotto/Bear), or if using Cmake, you could pass `-DCMAKE_EXPORT_COMPILE_COMMANDS`. However, Build EAR didn't work for me (see [#232](https://github.com/rizsotto/Bear/issues/232) and [#215](https://github.com/rizsotto/Bear/issues/215)), and Core doesn't use CMake.
+I'm using [`compiledb`](https://github.com/nickdiego/compiledb). There are similar tools like [Build EAR](https://github.com/rizsotto/Bear), however that didn't work for me (see [#232](https://github.com/rizsotto/Bear/issues/232) and [#215](https://github.com/rizsotto/Bear/issues/215)).
 
 ### Install
 
@@ -108,8 +109,8 @@ This should generate a `compile_commands.json` file, which will contain output l
    "-I/usr/local/include",
    "-I./leveldb/include",
    "-I./leveldb/helpers/memenv",
-   "-I/usr/local/Cellar/openssl/1.0.2q/include",
-   "-I/usr/local/Cellar/openssl/1.0.2q/include",
+   "-I/usr/local/Cellar/openssl/1.0.2s/include",
+   "-I/usr/local/Cellar/openssl/1.0.2s/include",
    "-I./secp256k1/include",
    "-I./univalue/include",
    "-Qunused-arguments",
@@ -123,6 +124,7 @@ This should generate a `compile_commands.json` file, which will contain output l
    "-Wextra",
    "-Wformat",
    "-Wvla",
+   "-Wswitch",
    "-Wformat-security",
    "-Wthread-safety-analysis",
    "-Wrange-loop-analysis",
