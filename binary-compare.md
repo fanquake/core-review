@@ -6,13 +6,10 @@ These notes use the [debian-depends Dockerfile](/docker/debian.dockerfile).
 
 ```bash
 docker container start debian-depends
-docker exec -it debian-depends /bin/bash
+docker exec -it debian-depends --workdir /bitcoin /bin/bash
 
 # build master
-pushd bitcoin
-pushd depends
-make -j5
-popd
+make -j5 -C depends/
 git rev-parse HEAD
 > 25f0edd59fee454495da39c6c63f19b97cd75e96
 ../bitcoin-maintainer-tools/build-for-compare.py 25f0edd59fee454495da39c6c63f19b97cd75e96 \
@@ -25,9 +22,7 @@ git rev-parse HEAD
 
 # Check the PR you'd like to compare. In this case #16370
 git fetch origin pull/16370/head:16370 && git checkout 16370
-pushd depends
-make -j5
-popd
+make -j5 -C depends/
 git rev-parse HEAD
 12061016eca4cf4c77fa042ea95682e5dc2b302b
 # build for comparison into /tmp/16370
