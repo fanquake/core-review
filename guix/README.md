@@ -8,8 +8,6 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 
 ### Create the alpine-guix image:
 
-Guix building is a WIP and requires the changes in [#15277](https://github.com/bitcoin/bitcoin/pull/15277). Merge them into your local repo before building the image.
-
 ```bash
 pushd bitcoin
 docker build -f ../core-review/guix/Dockerfile \
