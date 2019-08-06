@@ -1,0 +1,25 @@
+diff --git a/flamegraph.pl b/flamegraph.pl
+index 0610645..2df029b 100755
+--- a/flamegraph.pl
++++ b/flamegraph.pl
+@@ -398,6 +398,20 @@ sub color {
+ 	}
+ 
+ 	# multi palettes
++	if (defined $type and $type eq "bitcoin") {
++		if ($name =~ /leveldb::/) { # LevelDB
++			$type = "green";
++		} elsif ($name =~ /boost::/) { # Boost
++			$type = "blue";
++		} elsif ($name =~ /bitcoind|bitcoin-qt/) {	# bitcoin annotation
++			$type = "yellow";
++		} elsif ($name =~ /libc|libs/) { # system
++			$type = "orange";
++		} else { # something else
++			$type = "red";
++		}
++		# fall-through to color palettes
++	}
+ 	if (defined $type and $type eq "java") {
+ 		# Handle both annotations (_[j], _[i], ...; which are
+ 		# accurate), as well as input that lacks any annotations, as
