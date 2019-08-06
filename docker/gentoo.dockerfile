@@ -1,4 +1,4 @@
-FROM gentoo:stage3-amd64
+FROM gentoo/stage3-amd64
 
 RUN emerge-webrsync && emerge --sync && emerge boost \
     dev-vcs/git \
