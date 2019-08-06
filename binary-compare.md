@@ -20,7 +20,7 @@ git rev-parse HEAD
 >>> [do_build] Copying object files...
 >>> [do_build] Performing basic analysis pass...
 
-# Check the PR you'd like to compare. In this case #16370
+# Checkout the PR you'd like to compare. In this case #16370
 git fetch origin pull/16370/head:16370 && git checkout 16370
 make -j5 -C depends/
 git rev-parse HEAD
