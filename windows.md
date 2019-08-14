@@ -15,6 +15,9 @@ Open Settings:
     - Increase video memory. 
     - Turn off Remote Display.
 
+- Storage:
+    - Add an Optical Drive attachment (for Virtualbox addition updates)
+
 - Audio
     - Disable Audio.
 
@@ -54,27 +57,23 @@ When the updates finish, reboot the VM.
 
 ## Install Visual Studio
 
-Download the latest `Community` version of [Visual Studio](https://visualstudio.microsoft.com/vs/).
+Download the latest `Community` version of [Visual Studio](https://visualstudio.microsoft.com/vs/community/).
 
 Run the Installer, when prompted choose the `Desktop development with CPP` workload. 
 
-Choose `Git for Windows` from the Individual Components menu.
+Choose `Git for Windows` and `Python 3` from the Individual Components menu.
 
-You can uncheck the `NuGet package manager`.
+You can uncheck the `NuGet package manager` and related components.
 
 Start the installation.
 
 When promted to connect anything, `deny`, `not now`, `never` etc.
 
-# Install Python3
-
-Search for `Python` in the Microsoft store.
-
 ## Install dependencies and generate project files
-[Vcpkg](https://github.com/Microsoft/vcpkg.git) is used to install `c++` dependencies.
+[Vcpkg](https://github.com/Microsoft/vcpkg.git) is used to install build dependencies.
 See the Bitcoin Core [MSVC build docs](https://github.com/bitcoin/bitcoin/tree/master/build_msvc) for more info.
 
-Open `Windows PowerShell`:
+Open `Developer Powershell for VS 2019`:
 ```powershell
 git clone https://github.com/bitcoin/bitcoin.git
 git clone https://github.com/Microsoft/vcpkg.git
@@ -83,21 +82,29 @@ cd vcpkg
 .\bootstrap-vcpkg.bat
 
 # hook up user-wide integration
-.\vcpkg integrate install
+.\vcpkg.exe integrate install
 
 # Install Bitcoin Core dependencies
-.\vcpkg install --triplet x64-windows-static boost-filesystem boost-signals2 boost-test libevent openssl zeromq berkeleydb secp256k1 leveldb rapidcheck
+.\vcpkg.exe install --triplet x64-windows-static boost-filesystem boost-signals2 boost-test libevent openssl zeromq berkeleydb secp256k1 leveldb rapidcheck
 cd ..
 
 # Generate Project Files
 cd bitcoin\build_msvc
-python msvc-autogen.py
+py -3 msvc-autogen.py
 ```
 
 ## Build in Visual Studio
 
-Open the `bitcoin\build_msvc\bitcoin.sln` file in Visual Studio.
+Open `bitcoin\build_msvc\bitcoin.sln` in Visual Studio.
+
+If you are asked to `Retarget Projects`, choose `Yes`.
 
 Choose `Release` and `x86`, then `Build -> Build Solution`.
+
+## Create a VM Snapshot
+
+The Microsoft VMs expire after 90 days.
+
+Once everything is setup, take a VM snapshot.
 
 ![Windows](screenshots/windows.png)
