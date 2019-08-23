@@ -1,10 +1,12 @@
 # GitHub Merge Script
 
-[`github-merge.py`](https://github.com/bitcoin/bitcoin/blob/master/contrib/devtools/github-merge.py) is a script for merging PRs from [`bitcoin/bitcoin`](https://github.com/bitcoin/bitcoin) into a local repo. 
+[`github-merge.py`](https://github.com/bitcoin-core/bitcoin-maintainer-tools/blob/master/github-merge.py) is the script used for merging PRs into [`bitcoin/bitcoin`](https://github.com/bitcoin/bitcoin).
 
-It can be useful to run the script from somewhere you don't have a `git` user configured and don't want to auth to GitHub (i.e in a Docker container).
+If you want to run the script and don't have a `git` user configured:
 
-```shell
+```bash
+
+git clone https://github.com/bitcoin-core/bitcoin-maintainer-tools
 
 pushd bitcoin
 
@@ -15,14 +17,16 @@ git config user.signingkey 000000
 git config user.email "test@example.com"
 git config user.name "Test"
 
-contrib/devtools/github-merge.py 12345
+../bitcoin-maintainer-tools/github-merge.py 123
 ```
 # Checking out GitHub PRs
+
+Pull requests can also be checked out from GitHub directly using:
 
 ```bash
 git clone https://github.com/bitcoin/bitcoin
 
-git fetch origin pull/PR/head:PR-testing
+git fetch origin pull/pr_number/head:pr_number
 
-git checkout PR-testing
+git checkout pr_number
 ```
