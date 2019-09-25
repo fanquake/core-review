@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "debian/contrib-buster64"
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.post_up_message = "git fetch origin pull/PR/head:test-PR"
+  config.vm.post_up_message = "git fetch origin pull/PR/head:PR"
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
@@ -24,16 +24,15 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update && 
     apt-get upgrade -y &&
-    apt-get install --no-install-recommends -y build-essential \
+    apt-get install --no-install-recommends -y \
+    automake \
+    autotools-dev \
+    bsdmainutils \
+    build-essential \
     cmake \
     curl \
     git \
     libtool \
-    autotools-dev \
-    automake \
-    pkg-config \
-    bsdmainutils \
-    python3 \
     libdb-dev \
     libdb++-dev \
     libssl-dev \
@@ -44,15 +43,15 @@ Vagrant.configure("2") do |config|
     libboost-test-dev \
     libboost-thread-dev \
     libminiupnpc-dev \
-    libzmq3-dev \
+    libqrencode-dev \
     libqt5gui5 \
     libqt5core5a \
     libqt5dbus5 \
+    libzmq3-dev \
+    pkg-config \
+    python3 \
     qttools5-dev \
     qttools5-dev-tools \
-    libprotobuf-dev \
-    protobuf-compiler \
-    libqrencode-dev \
     task-gnome-desktop
   SHELL
 end

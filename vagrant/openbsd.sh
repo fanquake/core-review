@@ -11,7 +11,7 @@ provision() {
     gmake \
     libevent \
     libtool \
-    python-3.6.6p1 \
+    python-3.6.8p0 \
     zeromq
 
     git clone https://github.com/bitcoin/bitcoin
@@ -39,9 +39,8 @@ setup() {
 
     if [ -z "$2" ]
     then
-        git fetch origin pull/$1/head:$1-testing
-        git checkout $1-testing
-        # contrib/devtools/github-merge.py $1
+        git fetch origin pull/$1/head:$1
+        git checkout $1
     fi
 
     # Install BerkeleyDB

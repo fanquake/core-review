@@ -40,8 +40,8 @@ setup() {
 
     if [ -z "$2" ]
     then
-        git fetch origin pull/$1/head:$1-testing
-        git checkout $1-testing
+        git fetch origin pull/$1/head:$1
+        git checkout $1
     fi
 
     # Install BerkeleyDB
