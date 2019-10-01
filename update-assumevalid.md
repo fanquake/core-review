@@ -65,7 +65,8 @@ bitcoin-cli getblock 0000000000000000000f1c54590ee18d15ec70e68c8cd4cfbadb1b4f116
 
 ```
 
-### Previous assumevalid Updates (block height)
+### Previous assumevalid updates (block height)
+ - [597379](https://github.com/bitcoin/bitcoin/pull/17002)
  - [563378](https://github.com/bitcoin/bitcoin/pull/15429)
  - [534292](https://github.com/bitcoin/bitcoin/pull/13794)
  - [506067](https://github.com/bitcoin/bitcoin/pull/12269)
