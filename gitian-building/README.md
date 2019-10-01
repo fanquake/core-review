@@ -145,3 +145,11 @@ tail -f var/build.log # Building dependencies and Core
 The first time `depends` is built for a new version, it can take a *long* time, 
 as [dependencies](https://github.com/bitcoin/bitcoin/tree/master/depends/packages) are being built for all architectures and operating systems.  
 Subsequent builds (0.18.0rc2) will be much faster, as only Bitcoin Core is being compiled.
+
+You can invoke once off builds (useful for testing i.e [#16667](https://github.com/bitcoin/bitcoin/pull/16667)) using something like:
+```bash
+env USE_DOCKER=1 ./bin/gbuild -j6 -m 6000 \
+--commit bitcoin=bd3f5a90ecd6de40516141b23b0861dbba0b31b6 \
+--url bitcoin=https://github.com/fanquake/bitcoin.git \
+path/to/bitcoin/contrib/gitian-descriptors/gitian-win.yml
+```
