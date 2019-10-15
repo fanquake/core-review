@@ -8,11 +8,13 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     cmake \
     curl \
     diffoscope \
+    doxygen \
     g++-multilib \
     git \
     libtool \
     lbzip2 \
     make \
+    nsis \
     patch \
     pkg-config \
     python3 \
