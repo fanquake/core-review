@@ -1,5 +1,6 @@
 FROM alpine:3.10
 
+# linux-headers for futex.h in Qt depends build
 RUN apk --no-cache --update add \
     autoconf \
     automake \
@@ -9,6 +10,7 @@ RUN apk --no-cache --update add \
     gcc \
     git \
     libtool \
+    linux-headers \
     make \
     perl \
     pkgconfig \

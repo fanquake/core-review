@@ -18,7 +18,7 @@ docker run -it --name debian-depends --workdir /bitcoin debian-depends /bin/bash
 make HOST=riscv64-linux-gnu NO_QT=1 -C depends/ -j5
 ./autogen.sh
 ./configure --prefix=/bitcoin/depends/riscv64-linux-gnu
-make check -j5
+make -j5
 ```
 
 ### macOS SDK
