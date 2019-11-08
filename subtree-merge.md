@@ -60,6 +60,7 @@ GOOD
 
 ### [univalue](https://github.com/bitcoin-core/univalue)
 
+- https://github.com/bitcoin/bitcoin/pull/17324
 - https://github.com/bitcoin/bitcoin/pull/14164
 - https://github.com/bitcoin/bitcoin/pull/11952
 - https://github.com/bitcoin/bitcoin/pull/11420
