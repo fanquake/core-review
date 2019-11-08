@@ -21,5 +21,4 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Subtree Merges](subtree-merge.md) - How to verify subtree merges are done correctly.
 - [Vagrant](/vagrant) - Box definitions for PR review/testing.
 - [Valgrind](valgrind.md) - Installing Valgrind on macOS.
-- [Visual Studio Code](/visual-studio/) - Config files for Visual Studio Code.
 - [Windows](windows.md) - Windows 10 VM setup for native builds.
