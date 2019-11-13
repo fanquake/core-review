@@ -11,12 +11,10 @@ provision() {
     gmake \
     libevent \
     libtool \
-    python-3.6.8p0 \
+    python-3.7.4 \
     zeromq
 
     git clone https://github.com/bitcoin/bitcoin
-
-    chmod -R 777 bitcoin/
 }
 
 setup() {
