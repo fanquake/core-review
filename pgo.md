@@ -25,12 +25,57 @@ gmake src/bitcoind -j8
 src/bitcoind
 ```
 
-### Merge profiling data
+### Inspect profiling data
 
 ```bash
 # After multiple runs you'll have raw profiling data.
+# Inspect the contents of the raw data using show
+/usr/local/opt/llvm/bin/llvm-profdata show bitcoind-86267.profraw --detailed-summary
+
+Instrumentation level: Front-end
+Total functions: 67454
+Maximum function count: 442997952222
+Maximum internal block count: 413456186977
+Detailed summary:
+Total number of blocks: 92925
+Total count: 24437392719763
+421 blocks with count >= 9366520400 account for 80 percentage of the total counts.
+874 blocks with count >= 3176583698 account for 90 percentage of the total counts.
+1412 blocks with count >= 1515876321 account for 95 percentage of the total counts.
+2842 blocks with count >= 300666001 account for 99 percentage of the total counts.
+4194 blocks with count >= 31717404 account for 99.9 percentage of the total counts.
+6951 blocks with count >= 1384881 account for 99.99 percentage of the total counts.
+10372 blocks with count >= 256454 account for 99.999 percentage of the total counts.
+
+# Filter functions with --value-cutoff=x
+Number of functions with maximum count (< 1000000000): 66014
+Number of functions with maximum count (>= 1000000000): 1440
+
+# Dump the functions themselves with --all-functions
+Functions shown: 681
+Total functions: 67454
+...
+  sha256_avx2.cpp:_ZN14sha256d64_avx212_GLOBAL__N_11KEj:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 8369362820
+  sha256_avx2.cpp:_ZN14sha256d64_avx212_GLOBAL__N_15RoundEDv4_xS1_S1_RS1_S1_S1_S1_S2_S1_:
+    Hash: 0x0000000000000000
+    Counters: 1
+    Function count: 6986598528
+  sha256_avx2.cpp:_ZN14sha256d64_avx212_GLOBAL__N_13AddEDv4_xS1_:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 56948055710
+  sha256_avx2.cpp:_ZN14sha256d64_avx212_GLOBAL__N_13AddEDv4_xS1_S1_S1_:
+    Hash: 0x0000000000000018
+    Counters: 1
+    Function count: 9934069782
+```
+
+### Merge profiling data
+```bash
 # Combine the raw data into a single file using llvm-profdata
-#
 # This is required even with a single raw file as llvm-profdata alters the data format
 /usr/local/opt/llvm/bin/llvm-profdata merge -output=bitcoind.profdata bitcoind-*.profraw
 
