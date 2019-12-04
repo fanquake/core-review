@@ -17,6 +17,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [IRC](irc.md) - Where to find Bitcoin Core related discussion on IRC.
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
+- [Link Time Optimization](lto.md)
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Profile Guided Optimization](pgo.md)
 - [Subtree Merges](subtree-merge.md) - How to verify subtree merges are done correctly.
