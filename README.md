@@ -20,6 +20,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Link Time Optimization](lto.md)
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Profile Guided Optimization](pgo.md)
+- [rtld-audit - Dynamic Linker Auditing](/rtld/)
 - [Subtree Merges](subtree-merge.md) - How to verify subtree merges are done correctly.
 - [Vagrant](/vagrant) - Box definitions for PR review/testing.
 - [Valgrind](valgrind.md) - Installing Valgrind on macOS.
