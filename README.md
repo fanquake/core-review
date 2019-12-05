@@ -18,6 +18,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
 - [Link Time Optimization](lto.md)
+- [MacOS dylib checker](macos_dylib_check.py)
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Profile Guided Optimization](pgo.md)
 - [rtld-audit - Dynamic Linker Auditing](/rtld/)
