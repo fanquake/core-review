@@ -8,12 +8,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "debian/contrib-buster64"
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.post_up_message = "git fetch origin pull/PR/head:PR"
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
     vb.memory = "6144"
-    vb.cpus = 6
+    vb.cpus = 8
     vb.customize ["modifyvm", :id, "--vram", "128"]
     vb.customize ["modifyvm", :id, "--audio", "none"]
     vb.customize ["modifyvm", :id, "--clipboard", "disabled"]
@@ -35,7 +34,6 @@ Vagrant.configure("2") do |config|
     libtool \
     libdb-dev \
     libdb++-dev \
-    libssl-dev \
     libevent-dev \
     libboost-system-dev \
     libboost-filesystem-dev \
