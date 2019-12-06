@@ -15,6 +15,8 @@ provision() {
     zeromq
 
     git clone https://github.com/bitcoin/bitcoin
+
+    ./bitcoin/contrib/install_db4.sh `pwd` CC=cc CXX=c++
 }
 
 setup() {
@@ -31,20 +33,13 @@ setup() {
 
     cd bitcoin
 
-    git clean -fxd
-
-    git stash && git checkout master
+    git clean -fxd && git stash && git checkout master
 
     if [ -z "$2" ]
     then
         git fetch origin pull/$1/head:$1
         git checkout $1
     fi
-
-    # Install BerkeleyDB
-    ./contrib/install_db4.sh `pwd` CC=cc CXX=c++
-
-    git log --name-status HEAD^..HEAD
 }
 
 case $1 in
