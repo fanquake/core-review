@@ -3,19 +3,16 @@
 # python3 macos_dylib_check.py src/qt/bitcoin-qt
 
 import subprocess
-import re
 import sys
 import os
 from typing import List
 
 OTOOL_CMD = os.getenv('OTOOL', '/usr/bin/otool')
 
-# Current as of 0.19.0.1
-# OpenGL / AGL will be removed shortly
-# SystemConfiguration and CFNetwork should also go.
-# Security and DiskArbitration removed with dead_strip_dylibs
+# Current for master bb03765e2d554da9dad5b9b314844a2ecb5c62e2
+# OpenGL will be removed with #17676
+# SystemConfiguration and CFNetwork required by wallet (payment server)
 ALLOWED_LIBRARIES = {
-	'AGL', # objc OpenGL rendering contexts
 	'AppKit', # user interface
 	'ApplicationServices', # common application tasks.
 	'Carbon', # deprecated c back-compat API
@@ -24,7 +21,6 @@ ALLOWED_LIBRARIES = {
 	'CoreGraphics', # 2D rendering
 	'CoreServices', # operating system services
 	'CoreText', # interface for laying out text and handling fonts.
-	'DiskArbitration', # mount/unmount events
 	'Foundation', # base layer functionality for apps/frameworks
 	'ImageIO', # read and write image file formats.
 	'IOKit', # user-space access to hardware devices and drivers.
@@ -32,7 +28,6 @@ ALLOWED_LIBRARIES = {
 	'libobjc.A.dylib', # Objective-C runtime library
 	'libSystem.B.dylib', # libc, libm, libpthread, libinfo
 	'OpenGL', # 3D and 2D graphics effects
-	'Security', # low level security framework
 	'SystemConfiguration', # network configuration
 }
 
