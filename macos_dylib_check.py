@@ -9,8 +9,7 @@ from typing import List
 
 OTOOL_CMD = os.getenv('OTOOL', '/usr/bin/otool')
 
-# Current for master bb03765e2d554da9dad5b9b314844a2ecb5c62e2
-# OpenGL will be removed with #17676
+# Current for master 05c23488c2ce6f415ced607dca7e74a27e0200b5
 # SystemConfiguration and CFNetwork required by wallet (payment server)
 ALLOWED_LIBRARIES = {
 	'AppKit', # user interface
@@ -27,7 +26,6 @@ ALLOWED_LIBRARIES = {
 	'libc++.1.dylib', # C++ Standard Library
 	'libobjc.A.dylib', # Objective-C runtime library
 	'libSystem.B.dylib', # libc, libm, libpthread, libinfo
-	'OpenGL', # 3D and 2D graphics effects
 	'SystemConfiguration', # network configuration
 }
 
