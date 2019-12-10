@@ -85,7 +85,7 @@ pushd bitcoin
 ./autogen.sh && ./configure
 
 # When calling make use compiledb
-compiledb make -j6
+compiledb make -j8
 ```
 
 This should generate a `compile_commands.json` file, which will contain output like this:
@@ -109,8 +109,6 @@ This should generate a `compile_commands.json` file, which will contain output l
    "-I/usr/local/include",
    "-I./leveldb/include",
    "-I./leveldb/helpers/memenv",
-   "-I/usr/local/Cellar/openssl/1.0.2s/include",
-   "-I/usr/local/Cellar/openssl/1.0.2s/include",
    "-I./secp256k1/include",
    "-I./univalue/include",
    "-Qunused-arguments",
@@ -118,6 +116,7 @@ This should generate a `compile_commands.json` file, which will contain output l
    "-D__STDC_FORMAT_MACROS",
    "-I/usr/local/opt/berkeley-db@4/include",
    "-DMAC_OSX",
+   "-DOBJC_OLD_DISPATCH_PROTOTYPES=0",
    "-Wstack-protector",
    "-fstack-protector-all",
    "-Wall",
@@ -129,6 +128,7 @@ This should generate a `compile_commands.json` file, which will contain output l
    "-Wthread-safety-analysis",
    "-Wrange-loop-analysis",
    "-Wredundant-decls",
+   "-Wunused-variable",
    "-Wno-unused-parameter",
    "-Wno-self-assign",
    "-Wno-unused-local-typedef",
