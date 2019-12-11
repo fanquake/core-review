@@ -17,12 +17,13 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [IRC](irc.md) - Where to find Bitcoin Core related discussion on IRC.
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
-- [Link Time Optimization](lto.md)
-- [MacOS dylib checker](macos_dylib_check.py)
+- [Link Time Optimization](lto.md) - Notes on using LTO.
+- [MacOS dylib checker](macos_dylib_check.py) - macOS dylib and dynamic linker flag auditing.
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
-- [Profile Guided Optimization](pgo.md)
-- [rtld-audit - Dynamic Linker Auditing](/rtld/)
+- [Profile Guided Optimization](pgo.md) - Notes on using PGO.
+- [rtld-audit - Dynamic Linker Auditing](/rtld/) - linux dynamic linker auditing
 - [Subtree Merges](subtree-merge.md) - How to verify subtree merges are done correctly.
-- [Vagrant](/vagrant) - Box definitions for PR review/testing.
+- [URIs](/uri/) - URIs for testing `bitcoin:` uri handling.
+- [Vagrant](/vagrant/) - Box definitions for PR review/testing.
 - [Valgrind](valgrind.md) - Installing Valgrind on macOS.
 - [Windows](windows.md) - Windows 10 VM setup for native builds.
