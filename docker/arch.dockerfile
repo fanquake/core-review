@@ -12,6 +12,7 @@ RUN pacman --noconfirm -Syu autoconf \
     patch \
     pkg-config \
     python3 \
+    ripgrep \
     which
 
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs

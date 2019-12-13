@@ -18,7 +18,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     patch \
     pkg-config \
     python3 \
-    rsync \
+    ripgrep \
     xz-utils
 # Split cross compile dependencies out.
 # apt cant seem to install everything at once

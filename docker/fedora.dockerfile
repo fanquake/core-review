@@ -11,6 +11,7 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     make \
     patch \
     python3 \
+    ripgrep \
     which \
     xz
 
