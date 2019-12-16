@@ -9,13 +9,10 @@ from typing import List
 
 OTOOL_CMD = os.getenv('OTOOL', '/usr/bin/otool')
 
-# Current for master 05c23488c2ce6f415ced607dca7e74a27e0200b5
-# SystemConfiguration and CFNetwork required by wallet (payment server)
 ALLOWED_LIBRARIES = {
 	'AppKit', # user interface
 	'ApplicationServices', # common application tasks.
 	'Carbon', # deprecated c back-compat API
-	'CFNetwork', # network services
 	'CoreFoundation', # low level func, data types
 	'CoreGraphics', # 2D rendering
 	'CoreServices', # operating system services
@@ -26,7 +23,6 @@ ALLOWED_LIBRARIES = {
 	'libc++.1.dylib', # C++ Standard Library
 	'libobjc.A.dylib', # Objective-C runtime library
 	'libSystem.B.dylib', # libc, libm, libpthread, libinfo
-	'SystemConfiguration', # network configuration
 }
 
 ALLOWED_DYLOAD_FLAGS = {
