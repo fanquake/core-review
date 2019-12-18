@@ -1,0 +1,34 @@
+FROM debian:stretch-slim
+
+RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
+    automake \
+    binutils \
+    bsdmainutils \
+    ca-certificates \
+    cmake \
+    curl \
+    diffoscope \
+    g++-multilib \
+    git \
+    imagemagick \
+    libbz2-dev \
+    libcap-dev \
+    librsvg2-bin \
+    libtiff-tools \
+    libtinfo5 \
+    libtool \
+    libz-dev \
+    lbzip2 \
+    make \
+    nsis \
+    patch \
+    pkg-config \
+    python3 \
+    python3-setuptools \
+    xz-utils
+
+RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
+
+RUN make download -C bitcoin/depends
+
+RUN git clone https://github.com/bitcoin-core/bitcoin-maintainer-tools

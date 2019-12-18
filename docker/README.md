@@ -9,7 +9,7 @@ For example, to build the Debian image and use it for a build targeting the `RIS
 
 ```bash
 # Build container
-DOCKER_BUILDKIT=1 docker build -f debian.dockerfile -t debian-depends .
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -f debian.dockerfile -t debian-depends .
 
 # Run with a Bash shell
 docker run -it --name debian-depends --workdir /bitcoin debian-depends /bin/bash
@@ -22,8 +22,8 @@ make -j5
 ```
 
 ### macOS SDK
-Cross compiling for macOS requires the macOSX10.11 SDK. 
-There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md#deterministic-macos-dmg-notes) about how to create it.
+Cross compiling for macOS requires the macOSX10.11 SDK and using the `debian9.dockerfile`.
+There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md#deterministic-macos-dmg-notes) about how to create the SDK.
 
 You can copy it into a container with:
 ```bash
