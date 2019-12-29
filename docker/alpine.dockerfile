@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 # linux-headers for futex.h in Qt depends build
 RUN apk --no-cache --update add \
@@ -12,6 +12,7 @@ RUN apk --no-cache --update add \
     libtool \
     linux-headers \
     make \
+    mingw-w64-gcc \
     perl \
     pkgconfig \
     python3

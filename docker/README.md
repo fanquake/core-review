@@ -34,10 +34,12 @@ docker cp path/to/MacOSX10.11.sdk.tar.gz container_id:bitcoin/depends/SDKs
 Common `host-platform-triplets` for cross compilation are:
 
 - `x86_64-w64-mingw32` for Win64
-- `x86_64-apple-darwin14` for macOS
-- `x86_64-pc-linux-gnu` for generic Linux
+- `x86_64-apple-darwin16` for macOS
+- `i686-pc-linux-gnu` for Linux 32 bit
+- `x86_64-pc-linux-gnu` for Linux 64 bit
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
 - `aarch64-linux-gnu` for Linux ARM 64 bit
+- `riscv32-linux-gnu` for Linux RISC-V 32 bit
 - `riscv64-linux-gnu` for Linux RISC-V 64 bit
 
 You can read more about host target triplets in `autoconf` [here](https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/Specifying-Target-Triplets.html).
