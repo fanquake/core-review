@@ -9,6 +9,8 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     git \
     libtool \
     make \
+    mingw64-gcc-c++.x86_64 \
+    mingw64-winpthreads-static.noarch \
     patch \
     python3 \
     ripgrep \
