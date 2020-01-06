@@ -1,10 +1,10 @@
 # Windows 10 Development Setup
 
 ## Download
-Download the [`Virtualbox`](https://www.virtualbox.org/) version of the `MSEdge on Win10 Stable` VM from [here](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/). There are [Development Environment](https://developer.microsoft.com/en-us/windows/downloads/virtual-machines) VMs available from Microsoft, but they are ~4 times the size (~16GB), and contain lots we don't need.
+Download a [Windows 10 Development Environment](https://developer.microsoft.com/en-us/windows/downloads/virtual-machines) VM.
 
 ## Import & Settings
-Import `MSEdge - Win10.ovf` into Virtualbox, this may take some time.
+Import `WinDev1912Eval.ovf` into Virtualbox.
 
 Open Settings:
 - System
@@ -12,62 +12,26 @@ Open Settings:
     - Increase processor count.
 
 - Display:
-    - Increase video memory. 
-    - Turn off Remote Display.
-
-- Storage:
-    - Add an Optical Drive attachment (for Virtualbox addition updates)
+    - Increase video memory.
 
 - Audio
     - Disable Audio.
 
 ## Boot
-Login using the password `Passw0rd!`.
 
-From the Virtulbox menu, choose `Devices`, `Insert Guest Additions..`.
+Update Virtualbox Gust Additions if required.
 
-Run the installer, when finished, choose to manually reboot later.
+Go to `Updates & Security`, install all updates.
 
-Go to `Updates & Security`, install all updates. While this is happening:
+Clear the desktop and the taskbar.
 
-Turn on `Developer Mode`.
+Open `Apps & Features`. Uninstall pretty much everything.
 
-On the task bar, hide `Cortana`, `People` and `Task View`.
+Update Visual Studio. Remove everything except the C++ dev workload, git and Python3.
 
-Unpin `Windows Store`, `Mail` etc.
+If you want to use WSL, open Ubuntu and update packages. Clone the bitcoin repo etc.
 
-Open `Apps & Features`. Uninstall:
-- Microsoft OneDrive, News, Solitare, Mobile Plans, My Office, 
-- CodeWriter
-- Duolingo
-- Eclispe Manager
-- Feedback Hub
-- Adobe *
-- Network Speed Test
-- OneNote
-- Skype
-- Sway
-- Tips
-- Translator
-- Web Media Extensions
-- Weather
-- Xbox Live
-
-When the updates finish, reboot the VM.
-
-## Install Visual Studio
-
-Download the latest `Community` version of [Visual Studio](https://visualstudio.microsoft.com/vs/community/).
-
-Run the Installer, when prompted choose the `Desktop development with CPP` workload. 
-
-Choose `Git for Windows` and `Python 3` from the Individual Components menu.
-
-You can uncheck the `NuGet package manager` and related components.
-
-Start the installation.
-
-When promted to connect anything, `deny`, `not now`, `never` etc.
+Reboot.
 
 ## Install dependencies and generate project files
 [Vcpkg](https://github.com/Microsoft/vcpkg.git) is used to install build dependencies.
@@ -79,13 +43,13 @@ git clone https://github.com/bitcoin/bitcoin.git
 git clone https://github.com/Microsoft/vcpkg.git
 
 cd vcpkg
-.\bootstrap-vcpkg.bat
+.\bootstrap-vcpkg.bat -disableMetrics
 
 # hook up user-wide integration
 .\vcpkg.exe integrate install
 
 # Install Bitcoin Core dependencies
-.\vcpkg.exe install --triplet x64-windows-static boost-filesystem boost-signals2 boost-test libevent openssl zeromq berkeleydb secp256k1 leveldb rapidcheck
+.\vcpkg.exe install --triplet x64-windows-static $(Get-Content -Path ..\bitcoin\build_msvc\vcpkg-packages.txt).split()
 cd ..
 
 # Generate Project Files
@@ -93,13 +57,17 @@ cd bitcoin\build_msvc
 py -3 msvc-autogen.py
 ```
 
-## Build in Visual Studio
+## Build
 
-Open `bitcoin\build_msvc\bitcoin.sln` in Visual Studio.
+```powershell
+msbuild /m bitcoin.sln /p:Platform=x64 /p:Configuration=Release /t:build
+```
+
+Alternatively, open `bitcoin\build_msvc\bitcoin.sln` in Visual Studio.
 
 If you are asked to `Retarget Projects`, choose `Yes`.
 
-Choose `Release` and `x86`, then `Build -> Build Solution`.
+Choose `Release` and `x64`, then `Build -> Build Solution`.
 
 ## Create a VM Snapshot
 
