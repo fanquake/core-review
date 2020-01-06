@@ -1,5 +1,5 @@
-## Core Review
-Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoin) development, code review and gitian building. Based on using a macOS 10.14.x system.
+# Core Review
+Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoin) development and code review. Based on using a macOS 10.14 system.
 
 - [AppleScript](/applescript/README.md) - Scripts for UI & test automation
 - [`apple-os.py`](apple-os.py) - Build `git` histories for [Apple Open Source](https://opensource.apple.com/) libraries.
@@ -30,3 +30,11 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Valgrind](valgrind.md) - Installing Valgrind on macOS.
 - [Windows](windows.md) - Windows 10 VM setup for native builds.
 - [Windows Cross Compile](/win-cross-compile.md) - Building Windows binaries on macOS
+
+## TODO
+
+- [Coz](https://github.com/plasma-umass/coz) usage and profiling notes.
+- [Mesh](https://github.com/plasma-umass/Mesh) usage and profiling notes.
+- Add some notes LD notes for `why_live`, `dead_strip_dyibs`, `DYLD_` etc.
+- glibc function usage
+- CVE history
