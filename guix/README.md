@@ -52,3 +52,12 @@ guix pull --url=https://github.com/dongcarl/guix.git \
           --branch=2019-05-bitcoin-staging
 env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" ./contrib/guix/guix-build.sh
 ```
+
+### Build output
+```
+env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" guix describe
+
+git rev-parse HEAD
+
+find output/ -type f -print0 | sort -z | xargs -r0 sha256sum
+```
