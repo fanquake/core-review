@@ -19,6 +19,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     pkg-config \
     python3 \
     ripgrep \
+    vim \
     xz-utils
 # Split cross compile dependencies out.
 # apt cant seem to install everything at once
