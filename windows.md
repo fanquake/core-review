@@ -1,9 +1,11 @@
-# Windows 10 Development Setup
+# Windows 10 Notes
 
-## Download
+## Development Setup
+
+### Download
 Download a [Windows 10 Development Environment](https://developer.microsoft.com/en-us/windows/downloads/virtual-machines) VM.
 
-## Import & Settings
+### Import & Settings
 Import `WinDev1912Eval.ovf` into Virtualbox.
 
 Open Settings:
@@ -17,7 +19,7 @@ Open Settings:
 - Audio
     - Disable Audio.
 
-## Boot
+### Boot
 
 Update Virtualbox Gust Additions if required.
 
@@ -33,7 +35,7 @@ If you want to use WSL, open Ubuntu and update packages. Clone the bitcoin repo 
 
 Reboot.
 
-## Install dependencies and generate project files
+### Install dependencies and generate project files
 [Vcpkg](https://github.com/Microsoft/vcpkg.git) is used to install build dependencies.
 See the Bitcoin Core [MSVC build docs](https://github.com/bitcoin/bitcoin/tree/master/build_msvc) for more info.
 
@@ -57,7 +59,7 @@ cd bitcoin\build_msvc
 py -3 msvc-autogen.py
 ```
 
-## Build
+### Build
 
 ```powershell
 msbuild /m bitcoin.sln /p:Platform=x64 /p:Configuration=Release /t:build
@@ -69,10 +71,33 @@ If you are asked to `Retarget Projects`, choose `Yes`.
 
 Choose `Release` and `x64`, then `Build -> Build Solution`.
 
-## Create a VM Snapshot
+### Create a VM Snapshot
 
 The Microsoft VMs expire after 90 days.
 
 Once everything is setup, take a VM snapshot.
 
 ![Windows](screenshots/windows.png)
+
+## Tools
+
+### dumpbin
+
+Installed alongside MSVC. More info [here](https://docs.microsoft.com/en-us/cpp/build/reference/dumpbin-command-line?view=vs-2019).
+
+```powershell
+<# used for inspecting binaries #>
+dumpbin /headers src/bitcoind.exe
+...
+	 160 DLL characteristics
+	       High Entropy Virtual Addresses
+	       Dynamic base
+	       NX compatible
+
+```
+
+### Process Explorer
+
+Inspect a running process, more in-depth than Task Manager.
+
+Download from Microsoft [here](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer).
