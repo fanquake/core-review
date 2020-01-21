@@ -12,6 +12,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Determinism](determinism.md) - Notes on determinism.
 - [`diffoscope`](diffoscope.md) - A tool for generating diffs.
 - [Flame Graphs](/flamegraph/README.md) - Notes on producing [Flame Graphs](https://github.com/brendangregg/FlameGraph).
+- [Fuzzing with Clang & libFuzzer](/fuzzing/) - Fuzzing using [libFuzzer](https://llvm.org/docs/LibFuzzer.html).
 - [`github-merge.py`](github-merge.md) - Script for merging PRs from GitHub.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
 - [gnuplot](gnuplot/README.md) - `gnuplot` usage for benchmarking and analysis.
