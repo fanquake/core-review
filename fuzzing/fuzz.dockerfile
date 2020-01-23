@@ -3,9 +3,11 @@ FROM debian:bullseye-slim
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
 	automake \
 	bsdmainutils \
+	bzip2 \
 	ca-certificates \
 	clang-9 \
 	curl \
+	gcc \
 	g++ \
 	git \
 	lbzip2 \

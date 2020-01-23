@@ -4,10 +4,12 @@ Build and run the container provided by [fuzz.dockerfile](fuzz.dockerfile).
 
 ```bash
 DOCKER_BUILDKIT=1 docker build --pull --no-cache -f fuzz.dockerfile -t fuzz-bitcoin .
-docker exec -it fuzz-bitcoin /bin/bash
+docker run -it --name fuzz-bitcoin --workdir /bitcoin fuzz-bitcoin /bin/bash
 ```
 
 ### Checkout #17860 and build depends
+
+We want to test the changes in PR [#17860](https://github.com/bitcoin/bitcoin/pull/17860):
 
 ```bash
 # checkout the PR to fuzz #17860
@@ -41,7 +43,9 @@ diff --git a/src/consensus/tx_check.cpp b/src/consensus/tx_check.cpp
 
 ```bash
 ./autogen.sh
-./configure --enable-fuzz --with-sanitizers=fuzzer,address,undefined CC=clang-9 CXX=clang++-9
+./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu \
+    --enable-fuzz --with-sanitizers=fuzzer,address,undefined \
+    CC=clang-9 CXX=clang++-9
 make -j6
 ```
 
@@ -150,9 +154,8 @@ and using the same crash input does *not* result in a crash.
 When fuzzing you will normally want to reduce any crash inputs to be as small as
 possible. This can be done using the `minimize_crash` flag.
 
-For example, re-running the fuzzer using this flag, and the 172 byte crash input
-(crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b), with a small amount of time,
-the 172 byte crash input can be reduced to < 110 bytes.
+For example, re-running the fuzzer using this flag, the 172 byte crash input,
+crash-9c947..., can be reduced to < 110 bytes:
 
 ```bash
 src/test/fuzz/utxo_total_supply \
@@ -175,4 +178,31 @@ CRASH_MIN: 'minimized-from-6db724bc2201eb512f7397e0b8d06a5b3b6acf17' (108 bytes)
 ...
 INFO: Done MinimizeCrashInputInternalStep, no crashes found
 CRASH_MIN: failed to minimize beyond minimized-from-6db724bc2201eb512f7397e0b8d06a5b3b6acf17 (108 bytes), exiting
+```
+
+#### Faster fuzzing using /dev/shm as TMPDIR
+
+`/dev/shm` can be used to speed up the fuzzing process. This requires passing
+`--shm-size=Nm` to `docker` when starting the container. By default `/dev/shm` is
+only 64mb, which is not large enough to hold the seeds and data directories.
+
+```bash
+docker run -it --name fuzz-bitcoin --shm-size=600m ...
+```
+
+Then, run the fuzzers, using the following:
+
+```bash
+mkdir /dev/shm/fuzz_temp_seeds
+
+# copy the seed from qa-assets/fuzz_seed_corpus/utxo_total_supply/ into fuzz_temp_seeds
+cp ../qa-assets/fuzz_seed_corpus/utxo_total_supply/f66a2... /dev/shm/fuzz_temp_seeds/f66a2..
+
+# run the fuzzer
+export TMPDIR=/dev/shm;
+time src/test/fuzz/utxo_total_supply \
+-print_final_stats=1 \
+-jobs=6 \
+-workers=6 \
+/dev/shm/fuzz_temp_seeds
 ```
