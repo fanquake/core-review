@@ -7,7 +7,7 @@ DOCKER_BUILDKIT=1 docker build --pull --no-cache -f fuzz.dockerfile -t fuzz-bitc
 docker exec -it fuzz-bitcoin /bin/bash
 ```
 
-### Checkout a #17860 and build depends
+### Checkout #17860 and build depends
 
 ```bash
 # checkout the PR to fuzz #17860
@@ -20,7 +20,8 @@ make -C depends NO_QT=1 NO_WALLET=1 NO_UPNP=1 NO_ZMQ=1
 
 ### Patch Bitcoin Core
 
-`vim src/consensus/tx_check.cpp` and apply the diff below, so the fuzzer has something to find.
+Apply the diff below to `src/consensus/tx_check.cpp`, so the fuzzer has
+something to find.
 
 See [#17080](https://github.com/bitcoin/bitcoin/pull/17080) and [`CVE-2018-17144`](https://bitcoincore.org/en/2018/09/20/notice/) for more details.
 
@@ -50,7 +51,7 @@ PR #17860 adds the `utxo_total_supply` target, which we'll fuzz:
 
 ```bash
 time src/test/fuzz/utxo_total_supply \
--jobs=12 \
+-jobs=6 \
 -print_final_stats=1 \
 -workers=6 \
 /qa-assets/fuzz_seed_corpus/utxo_total_supply
@@ -130,14 +131,48 @@ stat::peak_rss_mb:              683
 
 I've included two of the crashers in this directory.
 
-You can run your instance of libFuzzer, using them as input, to recreate the same crash. i.e:
+You can run your instance of libFuzzer, using them as input, to recreate the same
+crash. i.e:
 
 ```bash
 time src/test/fuzz/utxo_total_supply \
 -print_final_stats=1 \
--jobs=12 \
+-jobs=6 \
 -workers=6 \
 crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b
 ```
 
-You could also check that removing the patch from `src/consensus/tx_check.cpp` and using the same crash input does *not* result in a crash.
+You should also check that removing the patch from `src/consensus/tx_check.cpp`
+and using the same crash input does *not* result in a crash.
+
+### Minimize crash input
+
+When fuzzing you will normally want to reduce any crash inputs to be as small as
+possible. This can be done using the `minimize_crash` flag.
+
+For example, re-running the fuzzer using this flag, and the 172 byte crash input
+(crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b), with a small amount of time,
+the 172 byte crash input can be reduced to < 110 bytes.
+
+```bash
+src/test/fuzz/utxo_total_supply \
+-print_final_stats=1 \
+-minimize_crash=1 \
+crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b
+...
+CRASH_MIN: minimizing crash input: 'crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b' (172 bytes)
+...
+CRASH_MIN: minimizing crash input: './minimized-from-9c947d9ff00fa36eca41ad27d337743fd5fee54b' (170 bytes)
+...
+CRASH_MIN: minimizing crash input: './minimized-from-91553b55b90d77a51c310844101bf6d31bb5d4cf' (150 bytes)
+...
+CRASH_MIN: minimizing crash input: './minimized-from-e3ac2a491fb8215065377867b8d6975ecf72df0e' (139 bytes)
+...
+CRASH_MIN: minimizing crash input: './minimized-from-faf5cd0c652b9e4f7ae087e0b24825f76e538dd9' (126 bytes)
+...
+CRASH_MIN: minimizing crash input: 'minimized-from-6db724bc2201eb512f7397e0b8d06a5b3b6acf17' (108 bytes)
+CRASH_MIN: 'minimized-from-6db724bc2201eb512f7397e0b8d06a5b3b6acf17' (108 bytes) caused a crash. Will try to minimize it further
+...
+INFO: Done MinimizeCrashInputInternalStep, no crashes found
+CRASH_MIN: failed to minimize beyond minimized-from-6db724bc2201eb512f7397e0b8d06a5b3b6acf17 (108 bytes), exiting
+```
