@@ -186,8 +186,11 @@ CRASH_MIN: failed to minimize beyond minimized-from-6db724bc2201eb512f7397e0b8d0
 `--shm-size=Nm` to `docker` when starting the container. By default `/dev/shm` is
 only 64mb, which is not large enough to hold the seeds and data directories.
 
+You need `~20mb` per datadir (worker) and overhead for the seeds directory. So
+we'll just use 200m.
+
 ```bash
-docker run -it --name fuzz-bitcoin --shm-size=600m ...
+docker run -it --name fuzz-bitcoin --shm-size=200m ...
 ```
 
 Then, run the fuzzers, using the following:
