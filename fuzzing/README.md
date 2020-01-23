@@ -180,7 +180,7 @@ INFO: Done MinimizeCrashInputInternalStep, no crashes found
 CRASH_MIN: failed to minimize beyond minimized-from-6db724bc2201eb512f7397e0b8d06a5b3b6acf17 (108 bytes), exiting
 ```
 
-#### Faster fuzzing using /dev/shm as TMPDIR
+### Faster fuzzing using /dev/shm as TMPDIR
 
 `/dev/shm` can be used to speed up the fuzzing process. This requires passing
 `--shm-size=Nm` to `docker` when starting the container. By default `/dev/shm` is
