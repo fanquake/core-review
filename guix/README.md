@@ -45,11 +45,10 @@ Exec into the container:
 docker exec -it alpine-guix /bin/bash
 ```
 
-Pull the right version of Guix and use it to build:
+Pull the latest version of Guix and build:
 
 ```bash
-guix pull --url=https://github.com/dongcarl/guix.git \
-          --branch=2019-05-bitcoin-staging
+guix pull --max-jobs=6 # change jobs as needed
 env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" ./contrib/guix/guix-build.sh
 ```
 
