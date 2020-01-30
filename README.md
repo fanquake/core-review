@@ -17,6 +17,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
 - [gnuplot](gnuplot/README.md) - `gnuplot` usage for benchmarking and analysis.
 - [Guix](guix/README.md) - Notes on setting up / using Guix.
+- [Hardening](hardening.md) - Hardening in Bitcoin Core.
 - [IRC](irc.md) - Where to find Bitcoin Core related discussion on IRC.
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
