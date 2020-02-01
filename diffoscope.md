@@ -2,6 +2,17 @@
 
 [`diffoscope`](https://diffoscope.org) is a tool for generating diffs of just about anything (files, archives or directories).
 
+## Creating diffs for GitHub
+
+```bash
+diffoscope first_file second_file --markdown diff.md # --exclude-directory-metadata
+gsed -i '/## /a ```diff' diff.md
+gsed -i '/## /i ```' diff.md
+gsed -i 's/    //g' diff.md
+```
+
+This may need some manual cleanup depending on the actual diff produced.
+
 ## Diffing the depends directory
 
 Diffing `depends` directories after changing the build process, i.e [#15844](https://github.com/bitcoin/bitcoin/pull/15844).
