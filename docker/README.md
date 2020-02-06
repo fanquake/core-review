@@ -22,12 +22,12 @@ make -j5
 ```
 
 ### macOS SDK
-Cross compiling for macOS requires the macOSX10.11 SDK and using the `debian9.dockerfile`.
+Cross compiling for macOS requires the macOSX10.14 SDK.
 There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md#deterministic-macos-dmg-notes) about how to create the SDK.
 
 You can copy it into a container with:
 ```bash
-docker cp path/to/MacOSX10.11.sdk.tar.gz container_id:bitcoin/depends/SDKs
+docker cp path/to/MacOSX10.14.sdk.tar.gz debian-depends:bitcoin/depends/SDKs
 ```
 
 ### Platform Triplets

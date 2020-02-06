@@ -18,6 +18,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     patch \
     pkg-config \
     python3 \
+    python3-setuptools \
     ripgrep \
     vim \
     xz-utils
