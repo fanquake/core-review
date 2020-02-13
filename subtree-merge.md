@@ -43,6 +43,7 @@ GOOD
 
 ### [leveldb](https://github.com/bitcoin-core/leveldb)
 
+- https://github.com/bitcoin/bitcoin/pull/17398
 - https://github.com/bitcoin/bitcoin/pull/15270
 - https://github.com/bitcoin/bitcoin/pull/13925
 - https://github.com/bitcoin/bitcoin/pull/12451
@@ -60,6 +61,7 @@ GOOD
 
 ### [univalue](https://github.com/bitcoin-core/univalue)
 
+- https://github.com/bitcoin/bitcoin/pull/18099
 - https://github.com/bitcoin/bitcoin/pull/17324
 - https://github.com/bitcoin/bitcoin/pull/14164
 - https://github.com/bitcoin/bitcoin/pull/11952
