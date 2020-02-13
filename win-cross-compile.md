@@ -15,14 +15,14 @@ pushd bitcoin
 make -C depends/ HOST=x86_64-w64-mingw32 -j8 NO_QT=1
 ./autogen.sh
 
-# building libconsensus doesn't work, see below
-./configure --prefix=/Users/michael/github/bitcoin/depends/x86_64-w64-mingw32 --with-libs=no
+./configure --prefix=/Users/michael/github/bitcoin/depends/x86_64-w64-mingw32
 
 make -j8
 
-# post compilation
 file src/bitcoind.exe
 src/bitcoind.exe: PE32+ executable (console) x86-64, for MS Windows
 ```
 
 Take `src/bitcoind.exe` into a Windows VM and run.
+
+Mouting `src/` as a Shared Folder is an easy way to do this.
