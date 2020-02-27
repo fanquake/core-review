@@ -1,4 +1,4 @@
-FROM fedora:31
+FROM fedora:32
 
 RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     autoconf \
@@ -13,7 +13,6 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     mingw64-winpthreads-static.noarch \
     patch \
     python3 \
-    ripgrep \
     which \
     xz
 
