@@ -69,6 +69,7 @@ Submitting an update requires [`guix hash`](https://guix.gnu.org/manual/en/html_
 
 Recent Updates:
 
+* [0.19.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=90799c35bd9cadaf7c28be5ea6e41ec692d5b4a4)
 * [0.19.0.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=4730878b81a84e54408917c17f4b80e354423d61)
 * [0.18.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=1219a7cc0521e4916287acd265e50b0af2bfb336)
 * [0.18.0](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=bcfc54fff80ef6a11fc53c61db333a8065bbfeef)
