@@ -29,7 +29,7 @@ RUN guix archive --authorize < ~root/.guix-profile/share/guix/ci.guix.info.pub
 RUN wget -qO- "https://guix.carldong.io/signing-key.pub" | guix archive --authorize
 
 # Build Environment Setup
-# https://www.gnu.org/software/guix/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
+# https://guix.gnu.org/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
 
 RUN addgroup guixbuild
 RUN for i in $(seq -w 1 10);                    \

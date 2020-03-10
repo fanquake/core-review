@@ -60,3 +60,18 @@ git rev-parse HEAD
 
 find output/ -type f -print0 | sort -z | xargs -r0 sha256sum
 ```
+
+## Bitcoin Core Guix Package
+
+Bitcoin Core is also available via the Guix package manager.
+
+Submitting an update requires [`guix hash`](https://guix.gnu.org/manual/en/html_node/Invoking-guix-hash.html#Invoking-guix-hash) and fixing any build issues. 
+
+Recent Updates:
+
+* [0.19.0.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=4730878b81a84e54408917c17f4b80e354423d61)
+* [0.18.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=1219a7cc0521e4916287acd265e50b0af2bfb336)
+* [0.18.0](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=bcfc54fff80ef6a11fc53c61db333a8065bbfeef)
+* [0.17.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=0a59cc6e8590fc6c2c56dc35aca5c4b558d67901)
+* [0.16.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=6f88285ab1b3a3df8fe8247db5fd92801ec477cf)
+* [0.15.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=0632c6a84d61c85e9e75a84b345853f52252f234)
