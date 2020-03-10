@@ -30,4 +30,6 @@ If it's working you should see `Using cache` in the gitian build output:
 Step 3/8 : RUN echo 'Acquire::http { Proxy "http://172.17.0.1:3142"; };' > /etc/apt/apt.conf.d/50cacher
  ---> Using cache
  ---> cb369fae21aa
- ```
+```
+
+ You can view the maintenance page [here](http://localhost:3142/acng-report.html).
