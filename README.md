@@ -20,9 +20,10 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Guix](guix/README.md) - Notes on setting up / using Guix.
 - [Hardening](hardening.md) - Hardening in Bitcoin Core.
 - [IRC](irc.md) - Where to find Bitcoin Core related discussion on IRC.
+- [Link Time Optimization](lto.md) - Notes on using LTO.
+- [Links](links.md) - Useful links that I would otherwise forget about.
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
-- [Link Time Optimization](lto.md) - Notes on using LTO.
 - [MacOS dylib checker](macos_dylib_check.py) - macOS dylib and dynamic linker flag auditing.
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Profile Guided Optimization](pgo.md) - Notes on using PGO.
