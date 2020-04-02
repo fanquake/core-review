@@ -31,7 +31,7 @@ bitcoin-cli getchaintxstats 4096 0000000000000000000f1c54590ee18d15ec70e68c8cd4c
 }
 ```
 
-Run `bitcoin-cli getblock` passing the blockhash of the new assumevalid block.
+Run `bitcoin-cli getblockheader` passing the blockhash of the new assumevalid block.
 
 From the output, check that the following values match those in the PR:
 
@@ -40,7 +40,7 @@ From the output, check that the following values match those in the PR:
 - `height` -> consensus.defaultAssumeValid comment
 
 ```bash
-bitcoin-cli getblock 0000000000000000000f1c54590ee18d15ec70e68c8cd4cfbadb1b4f11697eee
+bitcoin-cli getblockheader 0000000000000000000f1c54590ee18d15ec70e68c8cd4cfbadb1b4f11697eee
 
 {
   "hash": "0000000000000000000f1c54590ee18d15ec70e68c8cd4cfbadb1b4f11697eee", 👍
@@ -66,6 +66,7 @@ bitcoin-cli getblock 0000000000000000000f1c54590ee18d15ec70e68c8cd4cfbadb1b4f116
 ```
 
 ### Previous assumevalid updates (block height)
+ - [623950](https://github.com/bitcoin/bitcoin/pull/18500)
  - [597379](https://github.com/bitcoin/bitcoin/pull/17002)
  - [563378](https://github.com/bitcoin/bitcoin/pull/15429)
  - [534292](https://github.com/bitcoin/bitcoin/pull/13794)
