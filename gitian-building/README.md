@@ -43,10 +43,9 @@ bin/make-base-vm --suite trusty --arch amd64 --docker // For building 0.15 & 0.1
 popd
 ```
 
-
 ## Fetch Gitian Inputs
 ```bash
-export VERSION=0.19.0.1
+export VERSION=0.20.0rc1
 export SIGNER=your_username
 export USE_DOCKER=1
 
@@ -61,13 +60,12 @@ popd
 pushd gitian-builder
 make -C ../bitcoin/depends download SOURCES_PATH=`pwd`/cache/common
 mkdir -p inputs
-wget -P inputs https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
-wget -P inputs https://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
+wget -P inputs https://github.com/mtrojnar/osslsigncode/archive/2.0.tar.gz
 ```
 
-If you want to gitian build for macOS, you'll need to get hold of the macOS 10.11 SDK.  
-You can read the documentation [here](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md#deterministic-macos-dmg-notes) about how to create it.  
-Once you have `MacOSX10.11.sdk.tar.gz`, place it in `gitian-builder/inputs/`.
+If you want to gitian build for macOS, you'll need to get hold of the macOS 10.14 SDK.  
+You can read the documentation [here](https://github.com/bitcoin/bitcoin/tree/master/contrib/macdeploy) about how to create it.  
+Once you have `MacOSX10.14.sdk.tar.gz`, place it in `gitian-builder/inputs/`.
 
 ## Build Unsigned Sigs
 Adjust `num-make` and `memory` as needed.
@@ -153,7 +151,7 @@ pushd gitian-builder
 
 env USE_DOCKER=1 ./bin/gbuild -j8 -m 6000 \
 --commit bitcoin=79218eae27f62e246d52dc6cda4e8846293e1c8e \
---url bitcoin=https://github.com/fanquake/bitcoin.git \
+--url bitcoin=https://github.com/fanquake/bitcoin \
 path/to/bitcoin/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
