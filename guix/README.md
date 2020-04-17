@@ -58,7 +58,7 @@ env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" guix describe
 
 git rev-parse HEAD
 
-find output/ -type f -print0 | sort -z | xargs -r0 sha256sum
+find output/ -type f -print0 | env LC_ALL=C sort -z | xargs -r0 sha256sum
 ```
 
 ## Bitcoin Core Guix Package
