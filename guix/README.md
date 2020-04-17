@@ -45,10 +45,11 @@ Exec into the container:
 docker exec -it alpine-guix /bin/bash
 ```
 
-Pull the latest version of Guix and build:
+Build:
 
 ```bash
-guix pull --max-jobs=6 # change jobs as needed
+# you can set HOSTS to build for a specific target
+# i.e HOSTS=x86_64-w64-mingw32
 env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" ./contrib/guix/guix-build.sh
 ```
 
