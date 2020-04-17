@@ -7,7 +7,7 @@ brew install qemu
 
 Download and unpack the latest Guix system image:
 ```bash
-export GUIX_VERSION=1.0.1
+export GUIX_VERSION=1.1.0
 
 wget https://ftp.gnu.org/gnu/guix/guix-system-vm-image-${GUIX_VERSION}.x86_64-linux.xz
 unxz -d --threads=4 guix-system-vm-image-${GUIX_VERSION}.x86_64-linux.xz
@@ -20,7 +20,7 @@ qemu-system-x86_64 -smp cores=4 -net user -net nic,model=virtio -m 2048 guix-sys
 
 Update Guix and any installed packages:
 ```bash
-guix pull
+guix pull --max-jobs=4
 guix package -u
 guix --version
 ```
