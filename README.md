@@ -27,6 +27,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [MacOS dylib checker](macos_dylib_check.py) - macOS dylib and dynamic linker flag auditing.
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Profile Guided Optimization](pgo.md) - Notes on using PGO.
+- [reprotest](reprotest.md) - Using reprotest.
 - [rtld-audit - Dynamic Linker Auditing](/rtld/) - linux dynamic linker auditing
 - [Subtree Merges](subtree-merge.md) - How to verify subtree merges are done correctly.
 - [URIs](/uri/) - URIs for testing `bitcoin:` uri handling.
