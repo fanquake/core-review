@@ -12,8 +12,8 @@ COPY . /bitcoin
 WORKDIR /bitcoin
 
 ARG guix_download_path=ftp://ftp.gnu.org/gnu/guix/
-ARG guix_file_name=guix-binary-1.0.1.x86_64-linux.tar.xz
-ARG guix_checksum=0b254610209fab571d7f4db156324cb541af2be354e74bf5391bedc79908583b
+ARG guix_file_name=guix-binary-1.1.0.x86_64-linux.tar.xz
+ARG guix_checksum=eae0b8b4ee8ba97e7505dbb85d61ab2ce7f0195b824d3a660076248d96cdaece
 
 RUN cd /tmp \
   && wget -q -O "$guix_file_name" "${guix_download_path}/${guix_file_name}" \
