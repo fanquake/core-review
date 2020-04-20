@@ -19,6 +19,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     make \
     pkg-config \
     python3 \
+    unzip \
     vim \
     wget
 
