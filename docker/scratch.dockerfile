@@ -12,6 +12,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     curl \
     diffoscope \
     gcc \
+    gdb \
     g++ \
     git \
     libtool \
