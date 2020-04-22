@@ -13,6 +13,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Determinism](determinism.md) - Notes on determinism.
 - [`diffoscope`](diffoscope.md) - A tool for generating diffs.
 - [Flame Graphs](/flamegraph/README.md) - Notes on producing [Flame Graphs](https://github.com/brendangregg/FlameGraph).
+- [`fortify.py`](fortify.py) - Calculate _chk % replacement when using FORTIFY_SOURCE
 - [Fuzzing](/fuzzing/) - Fuzzing using Clang & [libFuzzer](https://llvm.org/docs/LibFuzzer.html).
 - [`github-merge.py`](github-merge.md) - Script for merging PRs from GitHub.
 - [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
