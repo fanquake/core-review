@@ -18,11 +18,13 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     libtool \
     man \
     make \
+    patch \
     pkg-config \
     python3 \
     unzip \
     vim \
-    wget
+    wget \
+    xz-utils
 
 RUN git clone https://github.com/bitcoin/bitcoin
 
