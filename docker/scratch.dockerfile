@@ -5,10 +5,10 @@ RUN echo 'Acquire::HTTP::Proxy "http://172.17.0.1:3142";' >> /etc/apt/apt.conf.d
 
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
     automake \
-	binutils \
+    binutils \
     bzip2 \
-	ca-certificates \
-	clang \
+    ca-certificates \
+    clang \
     curl \
     diffoscope \
     gcc \
