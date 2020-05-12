@@ -1,7 +1,7 @@
 FROM gentoo/stage3-amd64
 
 RUN emerge-webrsync && emerge --sync && emerge \
-	boost \
+    boost \
     dev-vcs/git \
     libevent \
     net-libs/miniupnpc \
