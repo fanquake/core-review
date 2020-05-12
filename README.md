@@ -39,7 +39,6 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 
 ## TODO
 
-- [Coz](https://github.com/plasma-umass/coz) usage and profiling notes.
 - [Mesh](https://github.com/plasma-umass/Mesh) usage and profiling notes.
 - Add some notes LD notes for `why_live`, `dead_strip_dyibs`, `DYLD_` etc.
 - glibc function usage
