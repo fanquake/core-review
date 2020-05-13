@@ -10,6 +10,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Clang Tools](clang-tools.md) - Setting up & using Clang Tools
 - [Compiler Explorer](compiler-explorer.md) - Example Compiler Explorer use case.
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
+- [Coz](coz.md) - Profiling bitcoind with Coz
 - [Determinism](determinism.md) - Notes on determinism.
 - [`diffoscope`](diffoscope.md) - A tool for generating diffs.
 - [Flame Graphs](/flamegraph/README.md) - Notes on producing [Flame Graphs](https://github.com/brendangregg/FlameGraph).
@@ -26,6 +27,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
 - [MacOS dylib checker](macos_dylib_check.py) - macOS dylib and dynamic linker flag auditing.
+- [Mesh](mesh.md) - Running bitcoind with Mesh
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Profile Guided Optimization](pgo.md) - Notes on using PGO.
 - [reprotest](reprotest.md) - Using reprotest.
@@ -39,7 +41,6 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 
 ## TODO
 
-- [Mesh](https://github.com/plasma-umass/Mesh) usage and profiling notes.
 - Add some notes LD notes for `why_live`, `dead_strip_dyibs`, `DYLD_` etc.
 - glibc function usage
 - CVE history
