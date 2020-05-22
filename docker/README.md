@@ -23,7 +23,7 @@ make -j5
 
 ### macOS SDK
 Cross compiling for macOS requires the macOSX10.14 SDK.
-There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin/blob/master/doc/build-osx.md#deterministic-macos-dmg-notes) about how to create the SDK.
+There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin/tree/master/contrib/macdeploy#sdk-extraction) about how to create it.
 
 You can copy it into a container with:
 ```bash
