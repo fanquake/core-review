@@ -9,6 +9,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     bzip2 \
     ca-certificates \
     clang \
+    cmake \
     curl \
     diffoscope \
     gcc \
