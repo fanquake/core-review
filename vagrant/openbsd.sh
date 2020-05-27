@@ -11,7 +11,7 @@ provision() {
     gmake \
     libevent \
     libtool \
-    python-3.7.4 \
+    python-3.8.2 \
     zeromq
 
     git clone https://github.com/bitcoin/bitcoin
