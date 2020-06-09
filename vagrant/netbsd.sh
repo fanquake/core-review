@@ -30,7 +30,6 @@ setup() {
     echo "cd bitcoin/" >> .bash_profile
     echo "export LC_CTYPE=en_US.UTF-8" >> .bash_profile
     echo "echo --with-boost-libdir=/usr/pkg/lib --with-gui=no CPPFLAGS=\"-I/usr/pkg/include\" LDFLAGS=\"-L/usr/pkg/lib\"" >> .bash_profile
-    echo "echo 'BDB_LIBS=\"-L/home/vagrant/bitcoin/db4/lib -ldb_cxx-4.8\" BDB_CFLAGS=\"-I/home/vagrant/bitcoin/db4/include\"' " >> .bash_profile
     fi
 
     cd bitcoin
