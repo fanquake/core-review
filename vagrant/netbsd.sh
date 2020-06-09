@@ -6,6 +6,7 @@ provision() {
     pkgin -y install autoconf \
         automake \
         boost \
+        clang \
         gdb \
         git \
         gmake \
