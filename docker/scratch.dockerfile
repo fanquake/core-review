@@ -8,13 +8,13 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     binutils \
     bzip2 \
     ca-certificates \
-    clang \
+    clang-10 \
     cmake \
     curl \
     diffoscope \
-    gcc \
+    g++-10 \
+    gcc-10 \
     gdb \
-    g++ \
     git \
     libtool \
     man \
@@ -26,6 +26,12 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     vim \
     wget \
     xz-utils
+
+RUN update-alternatives --install /usr/bin/clang clang $(which clang-10) 100
+RUN update-alternatives --install /usr/bin/clang++ clang++ $(which clang++-10) 100
+
+RUN update-alternatives --install /usr/bin/gcc gcc $(which gcc-10) 100
+RUN update-alternatives --install /usr/bin/g++ g++ $(which g++-10) 100
 
 RUN git clone https://github.com/bitcoin/bitcoin
 
