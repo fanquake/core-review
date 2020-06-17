@@ -23,6 +23,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     pkg-config \
     python3 \
     unzip \
+    valgrind \
     vim \
     wget \
     xz-utils
