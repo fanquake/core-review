@@ -33,6 +33,7 @@ git apply -v /random.patch
 ./autogen.sh
 ./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu \
     -with-sanitizers=memory \
+    --with-asm=no \
     CC=clang \
     CXX=clang++ \
     CFLAGS="${MSAN_FLAGS}" \
