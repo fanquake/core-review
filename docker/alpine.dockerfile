@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.12
 
 # linux-headers for futex.h in Qt depends build
 RUN apk --no-cache --update add \
@@ -13,10 +13,10 @@ RUN apk --no-cache --update add \
     linux-headers \
     make \
     mingw-w64-gcc \
+    patch \
     perl \
     pkgconfig \
     python3
-
 
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
 
