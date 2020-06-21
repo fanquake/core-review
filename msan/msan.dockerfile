@@ -1,6 +1,6 @@
 FROM base
 
-COPY random.patch .
+COPY exclude.txt .
 
 # llvm-symbolizer
 RUN apt-get update && apt-get upgrade -y \

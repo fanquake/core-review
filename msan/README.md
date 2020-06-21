@@ -18,24 +18,23 @@ make -C depends/ NO_WALLET=1 NO_QT=1 CC=clang CXX=clang++ \
     zeromq_cxxflags="-std=c++11 ${MSAN_AND_LIBCXX_FLAGS}"
 ```
 
-#### Apply patches
+#### Sanitizer special case list
 
-By design, MSAN does not have a way to suppress false positives. In some cases this means code must be modified to supress warnings.
-
-This patch has been taken from https://github.com/bitcoin/bitcoin/pull/18288.
-
-```bash
-git apply -v /random.patch
-```
+An exclude.txt is provided to be used as [sanitizer special case list](https://clang.llvm.org/docs/SanitizerSpecialCaseList.html). This can be passed to Clang when building bitcoind,
+and will instruct the sanitizer, via `-fsanitize-blacklist=exclude.txt"`, to suppress
+certain warnings.
 
 #### Build bitcoind
 ```bash
 ./autogen.sh
 ./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu \
-    -with-sanitizers=memory \
+    --disable-bench \
+    --with-sanitizers=memory \
     --with-asm=no \
+    --with-utils=no \
     CC=clang \
     CXX=clang++ \
-    CFLAGS="${MSAN_FLAGS}" \
-    CXXFLAGS="${MSAN_AND_LIBCXX_FLAGS}"
+    CFLAGS="${MSAN_FLAGS} -fsanitize-blacklist=/exclude.txt" \
+    CXXFLAGS="${MSAN_AND_LIBCXX_FLAGS} -fsanitize-blacklist=/exclude.txt"
+make -j6
 ```
