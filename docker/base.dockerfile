@@ -37,3 +37,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc $(which gcc-10) 100 && \
 RUN git clone https://github.com/bitcoin/bitcoin
 
 RUN make download -C bitcoin/depends
+
+RUN cd bitcoin && \
+    git config --global pull.rebase false && \
+    git remote add fanquake https://github.com/fanquake/bitcoin.git
