@@ -28,11 +28,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     wget \
     xz-utils
 
-RUN update-alternatives --install /usr/bin/clang clang $(which clang-10) 100
-RUN update-alternatives --install /usr/bin/clang++ clang++ $(which clang++-10) 100
+RUN update-alternatives --install /usr/bin/clang clang $(which clang-10) 100 && \
+    update-alternatives --install /usr/bin/clang++ clang++ $(which clang++-10) 100
 
-RUN update-alternatives --install /usr/bin/gcc gcc $(which gcc-10) 100
-RUN update-alternatives --install /usr/bin/g++ g++ $(which g++-10) 100
+RUN update-alternatives --install /usr/bin/gcc gcc $(which gcc-10) 100 && \
+    update-alternatives --install /usr/bin/g++ g++ $(which g++-10) 100
 
 RUN git clone https://github.com/bitcoin/bitcoin
 
