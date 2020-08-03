@@ -45,12 +45,12 @@ popd
 
 ## Fetch Gitian Inputs
 ```bash
-export VERSION=0.20.0rc1
+export VERSION=0.20.1
 export SIGNER=your_username
 export USE_DOCKER=1
 
 pushd gitian.sigs
-git checkout -b $SIGNER-$VERSION
+git checkout -b $SIGNER_$VERSION
 popd
 
 pushd bitcoin
@@ -94,7 +94,7 @@ popd
 pushd gitian.sigs
 git add .
 git commit -m "$SIGNER $VERSION unsigned sigs"
-git push
+git push origin $SIGNER_$VERSION
 popd
 ```
 
@@ -125,7 +125,7 @@ popd
 pushd gitian.sigs
 git add .
 git commit -m "$SIGNER $VERSION signed sigs"
-git push
+git push origin $SIGNER_$VERSION
 popd
 ```
 
@@ -151,7 +151,7 @@ pushd gitian-builder
 
 env USE_DOCKER=1 ./bin/gbuild -j8 -m 6000 \
 --commit bitcoin=79218eae27f62e246d52dc6cda4e8846293e1c8e \
---url bitcoin=https://github.com/fanquake/bitcoin \
+--url bitcoin=path/to/bitcoin \
 path/to/bitcoin/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
