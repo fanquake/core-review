@@ -33,6 +33,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [reprotest](reprotest.md) - Using reprotest.
 - [rtld-audit - Dynamic Linker Auditing](/rtld/) - linux dynamic linker auditing
 - [Subtree Merges](subtree-merge.md) - How to verify subtree merges are done correctly.
+- [.tbd stubs](tbd-stubs.md) - Using .tbd stubs.
 - [URIs](/uri/) - URIs for testing `bitcoin:` uri handling.
 - [Vagrant](/vagrant/) - Box definitions for PR review/testing.
 - [Valgrind](valgrind.md) - Installing Valgrind on macOS.
