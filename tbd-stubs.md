@@ -173,3 +173,78 @@ diffoscope --exclude-directory-metadata=yes tapi-1100.0.11 apple-libtapi/src/lib
 ```
 
 Example diff is available [here](https://gist.github.com/fanquake/1512109cc69d0a61f352e326f34bb90a).
+
+## -allowable_client ld
+
+One of the modifications to the libtapi tarball is the removal of the `-allowable_client ld`
+link flag.
+
+`man ld`
+
+> -allowable_client name
+> 
+> Restricts what can link against the dynamic library being created.  By default
+> any code can link against any dylib. But if a dylib is supposed to be private
+> to a small set of clients, you can formalize that by adding a `-allowable_client`
+> for each client.
+
+This seems to work as advertised, resulting in an inability to link against a .dylib
+usless you are building a binary (or anything?) with an allowed name. i.e
+
+`private_lib.cpp`
+```cpp
+int func_in_priv_lib(int a) {
+  return a * 2;
+}
+```
+
+`private_lib.h`
+```cpp
+int func_in_priv_lib(int);
+```
+
+`bin.cpp`
+```cpp
+#include <private_lib.h>
+
+#include <iostream>
+
+int main() {
+  std::cout << func_in_priv_lib(4) << "\n";
+  return 0;
+}
+```
+
+Build libprivate with `-allowable_client ld`:
+```bash
+clang++ private_lib.cpp -Wl,-dylib -o libprivate.dylib -Wl,-allowable_client,ld
+```
+
+Note the addition of a `LC_SUB_CLIENT` load command:
+```bash
+Load command 11
+          cmd LC_SUB_CLIENT
+      cmdsize 16
+       client ld (offset 12)
+```
+
+Try and link to libprivate when building `bin.cpp`:
+```bash
+clang++ bin.cpp -I/path/to/dir -L/path/to/dir -o bin -lprivate
+ld: cannot link directly with dylib/framework, your binary is not an allowed client of /Users/michael/Desktop/allowable_client/libprivate.dylib for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+
+Build but name the output `ld`:
+```bash
+clang++ bin.cpp -I/path/to/dir -L/path/to/dir -o ld -lprivate
+./ld
+8
+```
+
+You can acheive the same result using `-client_name,ld`:
+```bash
+clang++ bin.cpp -I/path/to/dir -L/path/to/dir -o ld -lprivate -Wl,-client_name,ld
+./bin
+8
+```
