@@ -137,3 +137,39 @@ ld: symbol(s) not found for architecture x86_64
 
 If you then delete the .tbd stub entirely, and try and recompile, it will succed,
 as it's now linking directly against the .dylib.
+
+# Diffing libtapi against upstream
+
+## Apple LLVM Project (Clang)
+
+```bash
+git clone https://github.com/apple/llvm-project
+git clone https://github.com/tpoechtrager/apple-libtapi
+
+cd llvm-project
+git checkout 729748d085a90bd2a4af36efbfb2dc33b4704de3
+
+rm -rf clang/test
+rm -rf clang/unittests/
+rm -rf clang/www
+cd ..
+
+# compare clang
+diffoscope --exclude-directory-metadata=yes llvm-project/clang apple-libtapi/src/llvm/projects/clang/
+```
+
+## libtapi tarball
+
+```
+wget https://opensource.apple.com/tarballs/tapi/tapi-1100.0.11.tar.gz
+tar xf tapi-1100.0.11.tar.gz
+cd tapi-1100.0.11.tar.gz
+rm -rf test/
+rm -rf unittests/
+cd ..
+
+# compare libtapi
+diffoscope --exclude-directory-metadata=yes tapi-1100.0.11 apple-libtapi/src/libtapi
+```
+
+Example diff is available [here](https://gist.github.com/fanquake/1512109cc69d0a61f352e326f34bb90a).
