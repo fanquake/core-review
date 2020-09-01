@@ -7,6 +7,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [`assumevalid` Updates](update-assumevalid.md) - How to review pull requests that update `assumevalid`.
 - [`big-wallet.py`](big-wallet.py) - Create a wallet with lots of transactions.
 - [Binary Compare](binary-compare.md) - Notes on doing binary comparisons of Bitcoin Core
+- [Clang Build Analyser](clang-build-analyzer.md) - Clangs `-ftime-trace` & ClangBuildAnalyzer
 - [Clang Tools](clang-tools.md) - Setting up & using Clang Tools
 - [Compiler Explorer](compiler-explorer.md) - Example Compiler Explorer use case.
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
