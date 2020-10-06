@@ -9,6 +9,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Binary Compare](binary-compare.md) - Notes on doing binary comparisons of Bitcoin Core
 - [Clang Build Analyser](clang-build-analyzer.md) - Clangs `-ftime-trace` & ClangBuildAnalyzer
 - [Clang Tools](clang-tools.md) - Setting up & using Clang Tools
+- [Compiler Bugs](compiler-bugs.md)
 - [Compiler Explorer](compiler-explorer.md) - Example Compiler Explorer use case.
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Coz](coz.md) - Profiling bitcoind with Coz
