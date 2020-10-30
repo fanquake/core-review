@@ -2,8 +2,8 @@
 
 provision() {
 
-    # Using automake 1.15 due to
-    # https://github.com/bitcoin/bitcoin/issues/14404
+    # https://ftp.openbsd.org/pub/OpenBSD/6.7/packages/amd64/
+    # automake 1.15 due to https://github.com/bitcoin/bitcoin/issues/14404
     pkg_add automake-1.15.1 \
     autoconf-2.69p2 \
     boost \
@@ -11,7 +11,8 @@ provision() {
     gmake \
     libevent \
     libtool \
-    python-3.8.2 \
+    python%3.8 \
+    sqlite3 \
     zeromq
 
     git clone https://github.com/bitcoin/bitcoin
