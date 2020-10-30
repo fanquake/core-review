@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "freebsd12" do |box|
-    box.vm.box = "freebsd/FreeBSD-12.1-RELEASE"
+    box.vm.box = "freebsd/FreeBSD-12.2-RELEASE"
     box.ssh.shell = "sh"
     box.vm.synced_folder ".", "/vagrant", disabled: true
 

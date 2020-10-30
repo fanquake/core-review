@@ -11,7 +11,8 @@ provision() {
         libtool \
         libzmq4 \
         pkgconf \
-        python37 # 3.7 for 11 & 12
+        python37 \
+        sqlite3
 
     git clone https://github.com/bitcoin/bitcoin
 
