@@ -45,16 +45,16 @@ popd
 
 ## Fetch Gitian Inputs
 ```bash
-export VERSION=0.20.1
+export VERSION=0.21.0rc2
 export SIGNER=your_username
 export USE_DOCKER=1
 
 pushd gitian.sigs
-git checkout -b $SIGNER_$VERSION
+git checkout -b ${SIGNER}_${VERSION}
 popd
 
 pushd bitcoin
-git checkout v$VERSION
+git checkout v${VERSION}
 popd
 
 pushd gitian-builder
@@ -94,7 +94,7 @@ popd
 pushd gitian.sigs
 git add .
 git commit -m "$SIGNER $VERSION unsigned sigs"
-git push origin $SIGNER_$VERSION
+git push origin ${SIGNER}_${VERSION}
 popd
 ```
 
@@ -125,7 +125,7 @@ popd
 pushd gitian.sigs
 git add .
 git commit -m "$SIGNER $VERSION signed sigs"
-git push origin $SIGNER_$VERSION
+git push origin ${SIGNER}_${VERSION}
 popd
 ```
 
