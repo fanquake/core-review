@@ -34,7 +34,7 @@ docker cp path/to/MacOSX10.14.sdk.tar.gz debian-depends:bitcoin/depends/SDKs
 Common `host-platform-triplets` for cross compilation are:
 
 - `x86_64-w64-mingw32` for Win64
-- `x86_64-apple-darwin16` for macOS
+- `x86_64-apple-darwin18` for macOS
 - `i686-pc-linux-gnu` for Linux 32 bit
 - `x86_64-pc-linux-gnu` for Linux 64 bit
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
