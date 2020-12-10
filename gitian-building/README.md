@@ -156,3 +156,5 @@ path/to/bitcoin/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
 Useful for testing PRs like [#17787](https://github.com/bitcoin/bitcoin/pull/17787).
+
+Add `CI=1` if you want more verbosity.
