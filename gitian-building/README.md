@@ -63,9 +63,11 @@ mkdir -p inputs
 wget -P inputs https://github.com/mtrojnar/osslsigncode/archive/2.0.tar.gz
 ```
 
-If you want to gitian build for macOS, you'll need to get hold of the macOS 10.14 SDK.  
-You can read the documentation [here](https://github.com/bitcoin/bitcoin/tree/master/contrib/macdeploy) about how to create it.  
-Once you have `MacOSX10.14.sdk.tar.gz`, place it in `gitian-builder/inputs/`.
+If you want to gitian build for macOS, you'll need to get hold of the SDK.
+
+You can read the documentation [here](https://github.com/bitcoin/bitcoin/tree/master/contrib/macdeploy) about how to create it.
+
+Once you have `Xcode-11.3.1-11C505-extracted-SDK-with-libcxx-headers.tar.gz`, place it in `gitian-builder/inputs/`.
 
 ## Build Unsigned Sigs
 Adjust `num-make` and `memory` as needed.
