@@ -9,16 +9,14 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 ### Create the alpine-guix image:
 
 ```bash
-pushd bitcoin
-docker build -f ../core-review/guix/Dockerfile \
-             -t alpine-guix .
+docker build -f core-review/guix/Dockerfile -t alpine-guix .
 ```
 
 You can override where the docker image fetches the guix binary from with `--build-args`.
 
 ```bash
 pushd bitcoin
-docker build -f ../core-review/guix/Dockerfile \
+docker build -f core-review/guix/Dockerfile \
              --build-arg guix_download_path=https://guix.carldong.io \
              --build-arg guix_file_name=guix-binary.x86_64-linux.tar.xz \
              --build-arg guix_checksum=69378399753a74d8f107551430bec3923958f6cdd1cf956851dd6e186adc9605 \
@@ -70,6 +68,7 @@ Submitting an update requires [`guix hash`](https://guix.gnu.org/manual/en/html_
 
 Recent Updates:
 
+* [0.20.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=fa268b28e1ccc392c85846810d836034c96df3c0)
 * [0.19.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=90799c35bd9cadaf7c28be5ea6e41ec692d5b4a4)
 * [0.19.0.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=4730878b81a84e54408917c17f4b80e354423d61)
 * [0.18.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=1219a7cc0521e4916287acd265e50b0af2bfb336)
