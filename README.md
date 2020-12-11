@@ -13,6 +13,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Compiler Explorer](compiler-explorer.md) - Example Compiler Explorer use case.
 - [CoreRPC](https://github.com/fanquake/CoreRPC) - Swift RPC wrapper.
 - [Coz](coz.md) - Profiling bitcoind with Coz
+- [depends](depends.md) - notes on using the depends system
 - [Determinism](determinism.md) - Notes on determinism.
 - [`diffoscope`](diffoscope.md) - A tool for generating diffs.
 - [Flame Graphs](/flamegraph/README.md) - Notes on producing [Flame Graphs](https://github.com/brendangregg/FlameGraph).
