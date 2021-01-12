@@ -32,7 +32,7 @@ RUN wget -qO- "https://guix.carldong.io/signing-key.pub" | guix archive --author
 # https://guix.gnu.org/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
 
 RUN addgroup guixbuild
-RUN for i in $(seq -w 1 10);                    \
+RUN for i in $(seq -w 1 32);                    \
   do                                            \
     useradd -g guixbuild -G guixbuild           \
             -d /var/empty -s "$(which nologin)" \
