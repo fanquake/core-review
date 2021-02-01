@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.13
 
 # linux-headers for futex.h in Qt depends build
 RUN apk --no-cache --update add \
