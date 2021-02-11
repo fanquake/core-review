@@ -8,12 +8,13 @@ RUN apk --no-cache --update add \
   git \
   ca-certificates
 
-ARG guix_download_path=ftp://ftp.gnu.org/gnu/guix/
-ARG guix_file_name=guix-binary-1.2.0.x86_64-linux.tar.xz
+ARG guix_download_path=ftp://ftp.gnu.org/gnu/guix
+ARG guix_version=1.2.0
+ARG guix_arch=x86_64
+ARG guix_file_name=guix-binary-${guix_version}.${guix_arch}-linux.tar.xz
 ARG guix_checksum=58fecdbaa8bec3795930879fad4cf7c31d3291c363b6cced18e4f7008d7e0282
 
-RUN git clone https://github.com/bitcoin/bitcoin.git /bitcoin \
-  && cd /tmp \
+RUN cd /tmp \
   && wget -q -O "$guix_file_name" "${guix_download_path}/${guix_file_name}" \
   && echo "${guix_checksum}  ${guix_file_name}" | sha256sum -c \
   && tar xJf "$guix_file_name" \
@@ -42,3 +43,7 @@ RUN for i in $(seq -w 1 32);                    \
 
 CMD guix-daemon --build-users-group=guixbuild   \
                 --substitute-urls="https://guix.carldong.io https://ci.guix.gnu.org"
+
+RUN git clone https://github.com/bitcoin/bitcoin.git /bitcoin
+
+WORKDIR /bitcoin
