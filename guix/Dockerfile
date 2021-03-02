@@ -12,6 +12,7 @@ ARG guix_download_path=ftp://ftp.gnu.org/gnu/guix
 ARG guix_version=1.2.0
 ARG guix_checksum_aarch64=639cd9f4d55d59819a96eda966794be191378347cd857d2a47cbab6087a4b759
 ARG guix_checksum_x86_64=58fecdbaa8bec3795930879fad4cf7c31d3291c363b6cced18e4f7008d7e0282
+ARG builder_count=32
 
 RUN guix_file_name=guix-binary-${guix_version}.$(uname -m)-linux.tar.xz    && \
     eval "guix_checksum=\${guix_checksum_$(uname -m)}"                     && \
@@ -32,7 +33,7 @@ RUN wget -qO- "https://guix.carldong.io/signing-key.pub" | guix archive --author
 # https://guix.gnu.org/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
 
 RUN groupadd --system guixbuild
-RUN for i in $(seq -w 1 32); do                  \
+RUN for i in $(seq -w 1 ${builder_count}); do    \
       useradd -g guixbuild -G guixbuild          \
               -d /var/empty -s $(which nologin)  \
               -c "Guix build user ${i}" --system \
