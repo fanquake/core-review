@@ -9,14 +9,14 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 ### Create the alpine-guix image:
 
 ```bash
-docker build -f core-review/guix/Dockerfile -t alpine-guix .
+docker build -f Dockerfile -t alpine-guix .
 ```
 
 You can override where the docker image fetches the guix binary from with `--build-args`.
 
 ```bash
 pushd bitcoin
-docker build -f core-review/guix/Dockerfile \
+docker build -f Dockerfile \
              --build-arg guix_download_path=https://guix.carldong.io \
              --build-arg guix_file_name=guix-binary.x86_64-linux.tar.xz \
              --build-arg guix_checksum=69378399753a74d8f107551430bec3923958f6cdd1cf956851dd6e186adc9605 \
@@ -43,6 +43,11 @@ Exec into the container:
 docker exec -it alpine-guix /bin/bash
 ```
 
+Update Guix:
+```bash
+guix pull # supply --max-jobs=X to use more cores
+```
+
 Build:
 
 ```bash
@@ -51,9 +56,24 @@ Build:
 env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" ./contrib/guix/guix-build.sh
 ```
 
-### Build output
+## Debian Guix Dockerfile
+
+A Debian based Dockerfile is also available, which uses the Debian [Guix package](https://packages.debian.org/bullseye/guix).
+
+It can be created using:
+```bash
+docker build -f debian.Dockerfile -t debian-guix .
 ```
-env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" guix describe
+
+and run / used the same way as the Alpine container (see above).
+
+
+## Build output
+
+Providing the following information is useful after a successful build:
+
+```
+guix describe
 
 git rev-parse HEAD
 
