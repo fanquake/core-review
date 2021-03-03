@@ -46,14 +46,30 @@ docker exec -it alpine-guix /bin/bash
 Update Guix:
 ```bash
 guix pull # supply --max-jobs=X to use more cores
+
+# you may need to set GUIX_PROFILE afterwards
+GUIX_PROFILE="/root/.config/guix/current"
+. "$GUIX_PROFILE/etc/profile"
+```
+
+Default HOSTS:
+```bash
+x86_64-linux-gnu
+arm-linux-gnueabihf
+aarch64-linux-gnu
+riscv64-linux-gnu
+powerpc64-linux-gnu
+powerpc64le-linux-gnu
+x86_64-w64-mingw32
+x86_64-apple-darwin18
 ```
 
 Build:
 
 ```bash
-# you can set HOSTS to build for a specific target
-# i.e HOSTS=x86_64-w64-mingw32
-env PATH="/root/.config/guix/current/bin${PATH:+:}$PATH" ./contrib/guix/guix-build.sh
+# Set HOSTS to build for a specific target
+# i.e
+HOSTS="x86_64-w64-mingw32" ./contrib/guix/guix-build.sh
 ```
 
 ## Debian Guix Dockerfile
@@ -67,12 +83,10 @@ docker build -f debian.Dockerfile -t debian-guix .
 
 and run / used the same way as the Alpine container (see above).
 
-
 ## Build output
 
 Providing the following information is useful after a successful build:
-
-```
+```bash
 guix describe
 
 git rev-parse HEAD
