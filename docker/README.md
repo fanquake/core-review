@@ -27,7 +27,7 @@ There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin
 
 You can copy it into a container with:
 ```bash
-docker cp path/to/MacOSX10.14.sdk.tar.gz debian-depends:bitcoin/depends/SDKs
+docker cp path/to/Xcode-11.3.1-11C505-extracted-SDK-with-libcxx-headers.tar.gz debian-depends:bitcoin/depends/SDKs
 ```
 
 ### Platform Triplets
