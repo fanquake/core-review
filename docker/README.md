@@ -41,5 +41,8 @@ Common `host-platform-triplets` for cross compilation are:
 - `aarch64-linux-gnu` for Linux ARM 64 bit
 - `riscv32-linux-gnu` for Linux RISC-V 32 bit
 - `riscv64-linux-gnu` for Linux RISC-V 64 bit
+- `powerpc64-linux-gnu` for Linux POWER 64-bit
+- `powerpc64le-linux-gnu` for Linux POWER 64-bit (little endian)
+- `s390x-linux-gnu` for Linux S390X
 
 You can read more about host target triplets in `autoconf` [here](https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/Specifying-Target-Triplets.html).
