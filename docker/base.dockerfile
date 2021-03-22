@@ -6,14 +6,15 @@ RUN echo 'Acquire::HTTP::Proxy "http://172.17.0.1:3142";' >> /etc/apt/apt.conf.d
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
     automake \
     binutils \
+    bison \
     bzip2 \
     ca-certificates \
-    clang-10 \
+    clang \
     cmake \
     curl \
     diffoscope \
-    g++-10 \
-    gcc-10 \
+    g++ \
+    gcc \
     gdb \
     git \
     libtool \
@@ -28,16 +29,12 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     wget \
     xz-utils
 
-RUN update-alternatives --install /usr/bin/clang clang $(which clang-10) 100 && \
-    update-alternatives --install /usr/bin/clang++ clang++ $(which clang++-10) 100
-
-RUN update-alternatives --install /usr/bin/gcc gcc $(which gcc-10) 100 && \
-    update-alternatives --install /usr/bin/g++ g++ $(which g++-10) 100
-
 RUN git clone https://github.com/bitcoin/bitcoin
 
 RUN make download -C bitcoin/depends
 
 RUN cd bitcoin && \
     git config --global pull.rebase false && \
+    git config --global user.email "you@example.com" && \
+    git config --global user.name "Your Name" && \
     git remote add fanquake https://github.com/fanquake/bitcoin.git
