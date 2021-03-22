@@ -35,4 +35,9 @@ RUN make download -C bitcoin/depends
 
 RUN git clone https://github.com/bitcoin-core/bitcoin-maintainer-tools
 
+# avoid git complaints
+RUN git config --global pull.rebase false && \
+    git config --global user.email "you@example.com" && \
+    git config --global user.name "Your Name"
+
 WORKDIR /bitcoin
