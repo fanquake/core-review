@@ -9,7 +9,7 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 ### Create the alpine-guix image:
 
 ```bash
-docker build -f Dockerfile -t alpine-guix .
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -f Dockerfile -t alpine-guix .
 ```
 
 You can override where the docker image fetches the guix binary from with `--build-args`.
@@ -67,9 +67,8 @@ x86_64-apple-darwin18
 Build:
 
 ```bash
-# Set HOSTS to build for a specific target
-# i.e
-HOSTS="x86_64-w64-mingw32" ./contrib/guix/guix-build.sh
+# Set HOSTS to build for a specific target. i.e
+HOSTS="x86_64-w64-mingw32" ./contrib/guix/guix-build
 ```
 
 ## Debian Guix Dockerfile
@@ -78,10 +77,10 @@ A Debian based Dockerfile is also available, which uses the Debian [Guix package
 
 It can be created using:
 ```bash
-docker build -f debian.Dockerfile -t debian-guix .
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -f debian.Dockerfile -t debian-guix .
 ```
 
-and run / used the same way as the Alpine container (see above).
+and used the same way as the Alpine container (see above).
 
 ## Build output
 
@@ -89,9 +88,7 @@ Providing the following information is useful after a successful build:
 ```bash
 guix describe
 
-git rev-parse HEAD
-
-find output/ -type f -print0 | env LC_ALL=C sort -z | xargs -r0 sha256sum
+find guix-build-$(git rev-parse --short=12 HEAD)/output/ -type f -print0 | env LC_ALL=C sort -z | xargs -r0 sha256sum
 ```
 
 ## Bitcoin Core Guix Package
@@ -102,6 +99,7 @@ Submitting an update requires [`guix hash`](https://guix.gnu.org/manual/en/html_
 
 Recent Updates:
 
+* [0.21.0](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=d3c8aa3f8214434c8ba819984ed4513796a09e38)
 * [0.20.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=fa268b28e1ccc392c85846810d836034c96df3c0)
 * [0.19.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=90799c35bd9cadaf7c28be5ea6e41ec692d5b4a4)
 * [0.19.0.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=4730878b81a84e54408917c17f4b80e354423d61)
