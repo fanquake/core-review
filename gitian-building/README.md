@@ -38,14 +38,15 @@ git clone https://github.com/bitcoin/bitcoin.git
 Create the base VMs used for gitian-building:
 ```bash
 pushd gitian-builder
-bin/make-base-vm --suite bionic --arch amd64 --docker // For building 0.17 onwards
-bin/make-base-vm --suite trusty --arch amd64 --docker // For building 0.15 & 0.16
+bin/make-base-vm --suite focal --arch amd64 --docker # For building 22.0 (master)
+bin/make-base-vm --suite bionic --arch amd64 --docker # For building 0.17 - 0.21
+bin/make-base-vm --suite trusty --arch amd64 --docker # For building 0.15 & 0.16
 popd
 ```
 
 ## Fetch Gitian Inputs
 ```bash
-export VERSION=0.21.0rc2
+export VERSION=0.21.1
 export SIGNER=your_username
 export USE_DOCKER=1
 
@@ -63,7 +64,7 @@ mkdir -p inputs
 wget -P inputs https://github.com/mtrojnar/osslsigncode/archive/2.0.tar.gz
 ```
 
-If you want to gitian build for macOS, you'll need to get hold of the SDK.
+If you want to gitian build for macOS, you'll need to get hold of the macOS SDK.
 
 You can read the documentation [here](https://github.com/bitcoin/bitcoin/tree/master/contrib/macdeploy) about how to create it.
 
