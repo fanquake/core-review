@@ -45,7 +45,7 @@ docker exec -it alpine-guix /bin/bash
 
 Update Guix:
 ```bash
-guix pull # supply --max-jobs=X to use more cores
+guix pull # supply --max-jobs=N to use N cores
 
 # you may need to set GUIX_PROFILE afterwards
 GUIX_PROFILE="/root/.config/guix/current"
@@ -99,6 +99,7 @@ Submitting an update requires [`guix hash`](https://guix.gnu.org/manual/en/html_
 
 Recent Updates:
 
+* [0.21.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=2fc9d513811e4a737bd7337545732337641d2738)
 * [0.21.0](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=d3c8aa3f8214434c8ba819984ed4513796a09e38)
 * [0.20.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=fa268b28e1ccc392c85846810d836034c96df3c0)
 * [0.19.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=90799c35bd9cadaf7c28be5ea6e41ec692d5b4a4)

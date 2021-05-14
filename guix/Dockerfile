@@ -9,9 +9,9 @@ RUN apk --no-cache --update add \
       ca-certificates
 
 ARG guix_download_path=ftp://ftp.gnu.org/gnu/guix
-ARG guix_version=1.2.0
-ARG guix_checksum_aarch64=639cd9f4d55d59819a96eda966794be191378347cd857d2a47cbab6087a4b759
-ARG guix_checksum_x86_64=58fecdbaa8bec3795930879fad4cf7c31d3291c363b6cced18e4f7008d7e0282
+ARG guix_version=1.3.0
+ARG guix_checksum_aarch64=444f6536cf5959636123ac718db9b85071502e485555b2d801bf2936930810ce
+ARG guix_checksum_x86_64=c5f7efb48947545e49d2daf48d0f832f35d2a8d19f65daaf6079425ac327c050
 ARG builder_count=32
 
 RUN guix_file_name=guix-binary-${guix_version}.$(uname -m)-linux.tar.xz    && \
