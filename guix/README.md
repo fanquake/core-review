@@ -82,6 +82,22 @@ DOCKER_BUILDKIT=1 docker build --pull --no-cache -f debian.Dockerfile -t debian-
 
 and used the same way as the Alpine container (see above).
 
+
+## [docker copy](https://docs.docker.com/engine/reference/commandline/cp/):
+
+It is posssible to load the macOS SDK onto the \<linux\>-guix container.
+Follow the instructions for obtaining the macOS SDK in the [bitcoin/contrib/guix](https://github.com/bitcoin/bitcoin/blob/master/contrib/guix/README.md) and [bitcoin/contrib/macdeploy](https://github.com/bitcoin/bitcoin/tree/master/contrib/macdeploy) folders. Then use the appropriate command to copy the SDK into the \<linux\>-guix container.
+
+```
+ docker cp Xcode-<foo>-<bar>-extracted-SDK-with-libcxx-headers.tar.gz  <linux>-guix:bitcoin/depends/SDKs/
+```
+Then from with-in the container:
+
+```
+/bitcoin/depends/SDKs # tar -C . -xaf Xcode-<foo>-<bar>-extracted-SDK-with-libcxx-headers.tar.gz
+```
+
+
 ## Build output
 
 Providing the following information is useful after a successful build:
