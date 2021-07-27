@@ -10,10 +10,9 @@ make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 NO_UPNP=1
 
 ./autogen.sh
 
-# instrument using -fprofile-instr-generate
+# instrumentation using -fprofile-instr-generate
 # -%p is replaced with process ID during profiling
-CXXFLAGS="-fprofile-instr-generate=bitcoind-%p.profraw" ./configure \
---prefix=/Users/michael/github/bitcoin/depends/x86_64-apple-darwin18.7.0 \
+CXXFLAGS="-fprofile-instr-generate=bitcoind-%p.profraw" CONFIG_SITE="/Users/michael/github/bitcoin/depends/x86_64-apple-darwin18.7.0/share/config.site" ./configure \
 --disable-bench --disable-man --with-utils=no --with-libs=no
 
 gmake src/bitcoind -j8
@@ -93,8 +92,8 @@ Total functions: 67454
 gmake clean
 
 # reconfigure passing -fprofile-instr-use
-# not passing the full path to bitcoind.profdata may cause isses
-CXXFLAGS="-fprofile-instr-use=/Users/michael/github/bitcoin/bitcoind.profdata" ./configure --prefix=/Users/michael/github/bitcoin/depends/x86_64-apple-darwin18.7.0 --disable-bench --disable-man --with-utils=no --with-libs=no
+# not passing the full path to bitcoind.profdata may cause issues
+CXXFLAGS="-fprofile-instr-use=/Users/michael/github/bitcoin/bitcoind.profdata" CONFIG_SITE="/Users/michael/github/bitcoin/depends/x86_64-apple-darwin18.7.0/share/config.site" ./configure --disable-bench --disable-man --with-utils=no --with-libs=no
 
 # recompile using the profiling data you may see warnings like:
 # warning: no profile data available for file "node.cpp" [-Wprofile-instr-unprofiled]
