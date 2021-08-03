@@ -2,27 +2,27 @@
 
 [reprotest](https://tracker.debian.org/pkg/reprotest) can be used to check software reproducibility.
 
-Use the scratch docker image as a base:
+Use the base docker image:
 ```
-docker run -it --privileged scratch
+docker run -it --privileged base
 ```
 
 ```bash
 # install reprotest and additional packages
-apt reprotest install faketime sudo disorderfs
+apt install reprotest faketime sudo disorderfs
 
 # build depends
-make -C depends/ -j6 ...
+make -C depends/ -j9
 
 # configure
 ./autogen.sh
-./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu
+CONFIG_SITE=/bitcoin/depends/x86_64-pc-linux-gnu/share/config.site ./configure
 
 # may require running this first
 make dist
 
 # reprotest
-reprotest make src/bitcoind --min-cpus=6
+reprotest make src/bitcoind --min-cpus=9
 
 ....
 
