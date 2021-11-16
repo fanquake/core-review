@@ -21,17 +21,7 @@ brew install llvm
 
 ln -s /usr/local/opt/llvm/bin/clang-format /usr/local/bin/clang-format
 ln -s /usr/local/opt/llvm/bin/clang-tidy /usr/local/bin/clang-tidy
-
-clang-tidy -version
-
-LLVM (http://llvm.org/):
-  LLVM version 8.0.0
-  Optimized build.
-  Default target: x86_64-apple-darwin18.7.0
-  Host CPU: skylake
-
-clang-format -version
-clang-format version 8.0.0 (tags/RELEASE_800/final)
+ln -s /usr/local/opt/llvm/bin/run-clang-tidy /usr/local/bin/run-clang-tidy
 ```
 
 __Note:__ You may already have `clang-format` installed via `brew`, as it's available as a stand-alone formula.
@@ -40,55 +30,26 @@ __Note:__ You may already have `clang-format` installed via `brew`, as it's avai
 
 If you are going to use `clang-format` over any of the Bitcoin Core code, ensure that you use the [`clang-format`](https://github.com/bitcoin/bitcoin/blob/master/src/.clang-format) file provided under `/src`.
 
-## clang-tidy
-
-`clang-tidy` has been used to submit pull requests in the past, such as [#10735](https://github.com/bitcoin/bitcoin/pull/10735).
-
-While this usage can generally be __ok__, the project is not on a crusade to _silence every warning_.
-
-Naive usage of tools like `clang-tidy` will like result in 100's, if not 1000's of "warnings" generated for any particular file.
-
-The majority likely being things that dont need to be fixed, or which dont point to actual bugs. i.e:
-
-```bash
-pushd bitcoin
-clang-tidy -checks=* src/init.cpp
-5981 warnings and 3 errors generated.
-
-# some cherry-picked examples
-src/init.cpp:10:10: error: 'init.h' file not found with <angled> include; use "quotes" instead [clang-diagnostic-error]
-src/init.cpp:21:1: warning: #includes are not sorted properly [llvm-include-order]
-src/init.cpp:52:10: warning: inclusion of deprecated C++ header 'stdint.h'; consider using 'cstdint' instead [modernize-deprecated-headers]
-src/init.cpp:313:30: warning: all parameters should be named in a function [readability-named-parameter]
-src/init.cpp:592:61: warning: parameter 'pBlockIndex' is unused [misc-unused-parameters] # these certainly are used
-src/init.cpp:1106:5: warning: missing username/bug in TODO [google-readability-todo]
-src/util/system.h:17:10: error: 'attributes.h' file not found [clang-diagnostic-error]
-Suppressed 5947 warnings (5947 in non-user code).
-```
-
-## Generating a compilation database
-
-I'm using [`compiledb`](https://github.com/nickdiego/compiledb). There are similar tools like [Build EAR](https://github.com/rizsotto/Bear), however that didn't work for me (see [#232](https://github.com/rizsotto/Bear/issues/232) and [#215](https://github.com/rizsotto/Bear/issues/215)).
+## Generating a compilation database using Bear
 
 ### Install
 
-__Note:__ Python >= 3.6 is required.
-
 ```bash
-pip3 install compiledb
+brew install bear
 ```
 
 ### Usage
 
 ```bash
 pushd bitcoin
-./autogen.sh && ./configure
+./autogen.sh && ./configure  --disable-ccache
 
-# When calling make use compiledb
-compiledb make -j8
+bear -- make -j $(nproc)
 ```
 
-This should generate a `compile_commands.json` file, which will contain output like this:
+## Running
+
+This will generate a `compile_commands.json` file, which will contain output like this:
 
 ```json
 [
@@ -151,4 +112,36 @@ This should generate a `compile_commands.json` file, which will contain output l
  },
  ....
 ]
+```
+
+## clang-tidy
+
+`clang-tidy` has been used to submit pull requests in the past, such as [#10735](https://github.com/bitcoin/bitcoin/pull/10735).
+
+While this usage can generally be __ok__, the project is not on a crusade to _silence every warning_.
+
+Naive usage of tools like `clang-tidy` will like result in 100's, if not 1000's of "warnings" generated for any particular file.
+
+The majority likely being things that dont need to be fixed, or which dont point to actual bugs. i.e:
+
+```bash
+pushd bitcoin
+clang-tidy -checks=* src/init.cpp
+5981 warnings and 3 errors generated.
+
+# some cherry-picked examples
+src/init.cpp:10:10: error: 'init.h' file not found with <angled> include; use "quotes" instead [clang-diagnostic-error]
+src/init.cpp:21:1: warning: #includes are not sorted properly [llvm-include-order]
+src/init.cpp:52:10: warning: inclusion of deprecated C++ header 'stdint.h'; consider using 'cstdint' instead [modernize-deprecated-headers]
+src/init.cpp:313:30: warning: all parameters should be named in a function [readability-named-parameter]
+src/init.cpp:592:61: warning: parameter 'pBlockIndex' is unused [misc-unused-parameters] # these certainly are used
+src/init.cpp:1106:5: warning: missing username/bug in TODO [google-readability-todo]
+src/util/system.h:17:10: error: 'attributes.h' file not found [clang-diagnostic-error]
+Suppressed 5947 warnings (5947 in non-user code).
+```
+
+### run-clang-tidy
+
+```bash
+( cd ./src/ && run-clang-tidy  -j $(nproc) )
 ```
