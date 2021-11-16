@@ -2,24 +2,9 @@
 
 Build [Clang Build Analyser](https://github.com/aras-p/ClangBuildAnalyzer).
 
-```diff
-diff --git a/configure.ac b/configure.ac
-index 14ce47092..8c5d81939 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -428,6 +428,9 @@ fi
- dnl Don't allow extended (non-ASCII) symbols in identifiers. This is easier for code review.
- AX_CHECK_COMPILE_FLAG([-fno-extended-identifiers],[[CXXFLAGS="$CXXFLAGS -fno-extended-identifiers"]],,[[$CXXFLAG_WERROR]])
- 
-+dnl turn on Clangs time profiler
-+AX_CHECK_COMPILE_FLAG([-ftime-trace],[WARN_CXXFLAGS="$WARN_CXXFLAGS -ftime-trace"],,[[$CXXFLAG_WERROR]])
-+
- enable_sse42=no
-```
-
 ```bash
 ./autogen.sh
-./configure CC=/usr/local/opt/llvm/bin/clang CXX=/usr/local/opt/llvm/bin/clang++
+./configure CC=/usr/local/opt/llvm/bin/clang CXX=/usr/local/opt/llvm/bin/clang++ CXXFLAGS="-ftimetrace"
 
 # start analyzer
 ClangBuildAnalyzer --start .
