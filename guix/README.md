@@ -17,7 +17,7 @@ You can override where the docker image fetches the guix binary from with `--bui
 ```bash
 pushd bitcoin
 docker build -f Dockerfile \
-             --build-arg guix_download_path=https://guix.carldong.io \
+             --build-arg guix_download_path=https://ftp.gnu.org/gnu/guix \
              --build-arg guix_file_name=guix-binary.x86_64-linux.tar.xz \
              --build-arg guix_checksum=69378399753a74d8f107551430bec3923958f6cdd1cf956851dd6e186adc9605 \
              -t alpine-guix .
