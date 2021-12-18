@@ -43,7 +43,12 @@ GOOD
 - https://github.com/bitcoin/bitcoin/pull/2702
 - https://github.com/bitcoin/bitcoin/pull/2916
 
+### [minisketch](https://github.com/sipa/minisketch)
+
+- https://github.com/bitcoin/bitcoin/pull/23114
+
 ### python-bitcoinrpc (removed)
+
 - https://github.com/bitcoin/bitcoin/pull/6097
 
 ### [secp256k1](https://github.com/bitcoin-core/secp256k1)
