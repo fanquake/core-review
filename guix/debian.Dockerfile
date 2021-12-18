@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:experimental
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     ca-certificates \
