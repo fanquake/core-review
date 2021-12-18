@@ -27,7 +27,6 @@ RUN ln -sf /var/guix/profiles/per-user/root/current-guix /root/.guix-profile
 ENV PATH /root/.guix-profile/bin:$PATH
 
 RUN guix archive --authorize < ~root/.guix-profile/share/guix/ci.guix.info.pub
-RUN wget -qO- "https://guix.carldong.io/signing-key.pub" | guix archive --authorize
 
 # Build Environment Setup
 # https://guix.gnu.org/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
@@ -42,7 +41,7 @@ RUN for i in $(seq -w 1 ${builder_count}); do    \
 
 CMD guix-daemon \
       --build-users-group=guixbuild   \
-      --substitute-urls="https://guix.carldong.io https://ci.guix.gnu.org"
+      --substitute-urls="https://ci.guix.gnu.org"
 
 RUN git clone https://github.com/bitcoin/bitcoin.git /bitcoin
 
