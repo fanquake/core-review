@@ -61,7 +61,7 @@ riscv64-linux-gnu
 powerpc64-linux-gnu
 powerpc64le-linux-gnu
 x86_64-w64-mingw32
-x86_64-apple-darwin18
+x86_64-apple-darwin
 ```
 
 Build:

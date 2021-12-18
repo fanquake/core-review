@@ -34,7 +34,7 @@ docker cp path/to/Xcode-11.3.1-11C505-extracted-SDK-with-libcxx-headers.tar.gz d
 Common `host-platform-triplets` for cross compilation are:
 
 - `x86_64-w64-mingw32` for Win64
-- `x86_64-apple-darwin18` for macOS
+- `x86_64-apple-darwin` for macOS
 - `i686-pc-linux-gnu` for Linux 32 bit
 - `x86_64-pc-linux-gnu` for Linux 64 bit
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
