@@ -2,34 +2,28 @@
 
 provision() {
 
-    # https://ftp.openbsd.org/pub/OpenBSD/6.7/packages/amd64/
-    # automake 1.15 due to https://github.com/bitcoin/bitcoin/issues/14404
-    pkg_add automake-1.15.1 \
-    autoconf-2.69p2 \
+    pkg_add automake-1.16.3 \
+    autoconf-2.69p3 \
     boost \
     git \
     gmake \
     libevent \
     libtool \
-    python%3.8 \
+    python%3.9 \
     sqlite3 \
     zeromq
 
     git clone https://github.com/bitcoin/bitcoin
-
-    ./bitcoin/contrib/install_db4.sh `pwd` CC=cc CXX=c++
 }
 
 setup() {
 
-    if ! grep -q "export AUTOMAKE_VERSION=1.15" .bash_profile ; then
+    if ! grep -q "export AUTOMAKE_VERSION=1.16" .bash_profile ; then
     echo "cd bitcoin/" >> .bash_profile 
-    echo "export AUTOMAKE_VERSION=1.15" >> .bash_profile
+    echo "export AUTOMAKE_VERSION=1.16" >> .bash_profile
     echo "export AUTOCONF_VERSION=2.69" >> .bash_profile
-    echo "export BDB_PREFIX=/home/vagrant/bitcoin/db4" >> .bash_profile
     echo "export LC_CTYPE=en_US.UTF-8" >> .bash_profile
     echo "echo --with-gui=no CC=cc CXX=c++" >> .bash_profile
-    echo "echo 'BDB_LIBS=\"-L/home/vagrant/bitcoin/db4/lib -ldb_cxx-4.8\" BDB_CFLAGS=\"-I/home/vagrant/bitcoin/db4/include\"' " >> .bash_profile
     fi
 
     cd bitcoin

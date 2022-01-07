@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "openbsd" do |box|
-    box.vm.box = "generic/openbsd6"
+    box.vm.box = "generic/openbsd7"
 
     box.vm.provision "shell" do |s|
       s.path = "openbsd.sh"
