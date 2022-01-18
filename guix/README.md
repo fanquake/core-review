@@ -9,7 +9,7 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 ### Create the alpine-guix image:
 
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -f Dockerfile -t alpine-guix .
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -t alpine-guix - < Dockerfile
 ```
 
 You can override where the docker image fetches the guix binary from with `--build-args`.
@@ -77,7 +77,7 @@ A Debian based Dockerfile is also available, which uses the Debian [Guix package
 
 It can be created using:
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -f debian.Dockerfile -t debian-guix .
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian-guix - < debian.Dockerfile
 ```
 
 and used the same way as the Alpine container (see above).
