@@ -2,11 +2,12 @@ FROM alpine:3.15
 
 RUN apk --no-cache --update add \
       bash \
+      bzip2 \
+      ca-certificates \
       curl \
-      make \
-      shadow \
       git \
-      ca-certificates
+      make \
+      shadow
 
 ARG guix_download_path=ftp://ftp.gnu.org/gnu/guix
 ARG guix_version=1.3.0
