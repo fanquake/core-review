@@ -43,15 +43,6 @@ Exec into the container:
 docker exec -it alpine-guix /bin/bash
 ```
 
-Update Guix:
-```bash
-guix pull # supply --max-jobs=N to use N cores
-
-# you may need to set GUIX_PROFILE afterwards
-GUIX_PROFILE="/root/.config/guix/current"
-. "$GUIX_PROFILE/etc/profile"
-```
-
 Default HOSTS:
 ```bash
 x86_64-linux-gnu
