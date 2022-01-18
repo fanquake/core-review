@@ -15,6 +15,9 @@ ARG guix_checksum_aarch64=444f6536cf5959636123ac718db9b85071502e485555b2d801bf29
 ARG guix_checksum_x86_64=c5f7efb48947545e49d2daf48d0f832f35d2a8d19f65daaf6079425ac327c050
 ARG builder_count=32
 
+ENV PATH /root/.config/guix/current/bin:$PATH
+ENV LOCPATH /root/.config/guix/current/lib/locale
+
 RUN guix_file_name=guix-binary-${guix_version}.$(uname -m)-linux.tar.xz    && \
     eval "guix_checksum=\${guix_checksum_$(uname -m)}"                     && \
     cd /tmp                                                                && \
@@ -22,12 +25,15 @@ RUN guix_file_name=guix-binary-${guix_version}.$(uname -m)-linux.tar.xz    && \
     echo "${guix_checksum}  ${guix_file_name}" | sha256sum -c              && \
     tar xJf "$guix_file_name"                                              && \
     mv var/guix /var/                                                      && \
-    mv gnu /
+    mv gnu /                                                               && \
+    mkdir -p ~root/.config/guix                                            && \
+    ln -sf /var/guix/profiles/per-user/root/current-guix ~root/.config/guix/current && \
+    source ~root/.config/guix/current/etc/profile
 
-RUN ln -sf /var/guix/profiles/per-user/root/current-guix /root/.guix-profile
-ENV PATH /root/.guix-profile/bin:$PATH
+# Guix expects this file to exist
+RUN touch /etc/nsswitch.conf
 
-RUN guix archive --authorize < ~root/.guix-profile/share/guix/ci.guix.info.pub
+RUN guix archive --authorize < ~root/.config/guix/current/share/guix/ci.guix.gnu.org.pub
 
 # Build Environment Setup
 # https://guix.gnu.org/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
