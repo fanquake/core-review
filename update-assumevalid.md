@@ -66,6 +66,7 @@ bitcoin-cli getblockheader 0000000000000000000f1c54590ee18d15ec70e68c8cd4cfbadb1
 ```
 
 ### Previous assumevalid updates (block height)
+ - [691719](https://github.com/bitcoin/bitcoin/pull/22499)
  - [654683](https://github.com/bitcoin/bitcoin/pull/20263)
  - [623950](https://github.com/bitcoin/bitcoin/pull/18500)
  - [597379](https://github.com/bitcoin/bitcoin/pull/17002)
