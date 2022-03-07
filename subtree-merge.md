@@ -36,6 +36,7 @@ GOOD
 
 ### [leveldb](https://github.com/bitcoin-core/leveldb)
 
+- https://github.com/bitcoin/bitcoin/pull/24461
 - https://github.com/bitcoin/bitcoin/pull/17398
 - https://github.com/bitcoin/bitcoin/pull/15270
 - https://github.com/bitcoin/bitcoin/pull/13925
