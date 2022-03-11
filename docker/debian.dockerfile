@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bookworm-slim
 
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
     automake \
@@ -11,8 +11,12 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     doxygen \
     g++-multilib \
     git \
+    libbz2-dev \
+    libcap-dev \
+    libtinfo5 \
     libtool \
     lbzip2 \
+    libz-dev \
     make \
     nsis \
     patch \
@@ -22,24 +26,16 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     ripgrep \
     vim \
     xz-utils
-# Split cross compile dependencies out.
-# apt cant seem to install everything at once
+# Split cross-compilers out.
+# apt cant install everything at once
 RUN apt-get install --no-install-recommends -y \
-    imagemagick \
-    libbz2-dev \
-    libcap-dev \
-    librsvg2-bin \
-    libtiff-tools \
-    libtinfo5 \
-    libz-dev \
-    python3-setuptools \
     g++-aarch64-linux-gnu \
     binutils-aarch64-linux-gnu \
     g++-arm-linux-gnueabihf \
     binutils-arm-linux-gnueabihf \
     binutils-riscv64-linux-gnu \
     g++-riscv64-linux-gnu \
-    g++-mingw-w64-x86-64
+    g++-mingw-w64-x86-64-posix
 
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
 
@@ -47,5 +43,4 @@ RUN make download -C bitcoin/depends
 
 RUN git clone https://github.com/bitcoin-core/bitcoin-maintainer-tools
 
-# https://github.com/bitcoin/bitcoin/blob/master/doc/build-windows.md#footnotes
-RUN update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+WORKDIR /bitcoin
