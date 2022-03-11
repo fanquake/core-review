@@ -1,4 +1,4 @@
-FROM gentoo/stage3-amd64
+FROM gentoo/stage3:amd64-musl-hardened
 
 RUN emerge-webrsync && emerge --sync && emerge \
     boost \
