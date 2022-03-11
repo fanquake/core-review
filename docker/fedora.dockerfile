@@ -1,4 +1,4 @@
-FROM fedora:34
+FROM fedora:35
 
 RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     autoconf \
