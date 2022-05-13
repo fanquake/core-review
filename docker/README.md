@@ -12,7 +12,7 @@ For example, to build the Debian image and use it for a build targeting the `RIS
 DOCKER_BUILDKIT=1 docker build --pull --no-cache -f debian.dockerfile -t debian-depends .
 
 # Run with a Bash shell
-docker run -it --name debian-depends --workdir /bitcoin debian-depends /bin/bash
+docker run -it --name debian-depends debian-depends
 
 # Inside the container: build depends for RISCV-64 bit, skipping Qt packages
 make HOST=riscv64-linux-gnu NO_QT=1 -C depends/ -j5
@@ -22,19 +22,20 @@ make -j5
 ```
 
 ### macOS SDK
-Cross compiling for macOS requires the macOSX10.14 SDK.
+Cross compiling for macOS requires the macOS SDK.
 There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin/tree/master/contrib/macdeploy#sdk-extraction) about how to create it.
 
 You can copy it into a container with:
 ```bash
-docker cp path/to/Xcode-11.3.1-11C505-extracted-SDK-with-libcxx-headers.tar.gz debian-depends:bitcoin/depends/SDKs
+docker cp path/to/Xcode-12.2-12B45b-extracted-SDK-with-libcxx-headers.tar.gz <container_name>:bitcoin/depends/SDKs
 ```
 
 ### Platform Triplets
 Common `host-platform-triplets` for cross compilation are:
 
 - `x86_64-w64-mingw32` for Win64
-- `x86_64-apple-darwin` for macOS
+- `x86_64-apple-darwin` for x86_64 macOS
+- `arm64-apple-darwin` for arm64 macOS
 - `i686-pc-linux-gnu` for Linux 32 bit
 - `x86_64-pc-linux-gnu` for Linux 64 bit
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
@@ -45,4 +46,4 @@ Common `host-platform-triplets` for cross compilation are:
 - `powerpc64le-linux-gnu` for Linux POWER 64-bit (little endian)
 - `s390x-linux-gnu` for Linux S390X
 
-You can read more about host target triplets in `autoconf` [here](https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/Specifying-Target-Triplets.html).
+You can read more about host target triplets in `autoconf` [here](https://www.gnu.org/software/autoconf/manual/html_node/Specifying-Target-Triplets.html).
