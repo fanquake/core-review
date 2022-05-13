@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# https://cdn.netbsd.org/pub/pkgsrc/packages/NetBSD/amd64/9.2/All/
 provision() {
     pkgin -y update && \
     pkgin -y upgrade && \
@@ -7,14 +8,14 @@ provision() {
         automake \
         boost \
         clang \
-        gdb \
         git \
         gmake \
         libevent \
         libtool \
         mozilla-rootcerts \
         pkg-config \
-        python37 \
+        python310 \
+        sqlite3 \
         zeromq
 
     touch /etc/openssl/openssl.cnf

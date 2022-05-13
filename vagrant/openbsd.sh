@@ -3,7 +3,7 @@
 provision() {
     # https://ftp.openbsd.org/pub/OpenBSD/7.0/packages/amd64/
     pkg_add automake-1.16.3 \
-    autoconf-2.69p3 \
+    autoconf-2.71 \
     bash \
     boost \
     ccache \
