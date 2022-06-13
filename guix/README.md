@@ -53,13 +53,14 @@ powerpc64-linux-gnu
 powerpc64le-linux-gnu
 x86_64-w64-mingw32
 x86_64-apple-darwin
+arm64-apple-darwin
 ```
 
 Build:
 
 ```bash
 # Set HOSTS to build for a specific target. i.e
-HOSTS="x86_64-w64-mingw32" ./contrib/guix/guix-build
+time BASE_CACHE="/base_cache" SOURCE_PATH="/sources" SDK_PATH="/SDKs" HOSTS="x86_64-w64-mingw32" ./contrib/guix/guix-build
 ```
 
 ## Debian Guix Dockerfile

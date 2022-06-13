@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.16
 
 RUN apk --no-cache --update add \
       bash \
@@ -16,7 +16,11 @@ ARG guix_checksum_x86_64=c5f7efb48947545e49d2daf48d0f832f35d2a8d19f65daaf6079425
 ARG builder_count=32
 
 ENV PATH /root/.config/guix/current/bin:$PATH
-ENV LOCPATH /root/.config/guix/current/lib/locale
+
+# Application Setup
+# https://guix.gnu.org/manual/en/html_node/Application-Setup.html
+ENV GUIX_LOCPATH /root/.guix-profile/lib/locale
+ENV LC_ALL en_US.UTF-8
 
 RUN guix_file_name=guix-binary-${guix_version}.$(uname -m)-linux.tar.xz    && \
     eval "guix_checksum=\${guix_checksum_$(uname -m)}"                     && \
@@ -36,7 +40,7 @@ RUN touch /etc/nsswitch.conf
 RUN guix archive --authorize < ~root/.config/guix/current/share/guix/ci.guix.gnu.org.pub
 
 # Build Environment Setup
-# https://guix.gnu.org/manual/en/html_node/Build-Environment-Setup.html#Build-Environment-Setup
+# https://guix.gnu.org/manual/en/html_node/Build-Environment-Setup.html
 
 RUN groupadd --system guixbuild
 RUN for i in $(seq -w 1 ${builder_count}); do    \
@@ -49,5 +53,7 @@ RUN for i in $(seq -w 1 ${builder_count}); do    \
 CMD ["/root/.config/guix/current/bin/guix-daemon","--build-users-group=guixbuild"]
 
 RUN git clone https://github.com/bitcoin/bitcoin.git /bitcoin
+
+RUN mkdir base_cache sources SDKs
 
 WORKDIR /bitcoin
