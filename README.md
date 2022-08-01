@@ -32,6 +32,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
 - [MacOS dylib checker](macos_dylib_check.py) - macOS dylib and dynamic linker flag auditing.
 - [Mesh](mesh.md) - Running bitcoind with Mesh
+- [NixOS](nixos.md) - Building on NixOS
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
 - [Profile Guided Optimization](pgo.md) - Notes on using PGO.
 - [reprotest](reprotest.md) - Using reprotest.
