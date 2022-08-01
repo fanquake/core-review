@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.16
 
 # linux-headers for futex.h in Qt depends build
 # qt5-qttools-dev for lrelease
