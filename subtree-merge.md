@@ -46,6 +46,7 @@ GOOD
 
 ### [minisketch](https://github.com/sipa/minisketch)
 
+- https://github.com/bitcoin/bitcoin/pull/25502
 - https://github.com/bitcoin/bitcoin/pull/23114
 
 ### python-bitcoinrpc (removed)
