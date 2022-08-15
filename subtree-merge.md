@@ -30,6 +30,13 @@ GOOD
 
 ## Historical Subtree Updates
 
+### [crc32c]
+
+- https://github.com/bitcoin/bitcoin/pull/25836
+- https://github.com/bitcoin/bitcoin/pull/23133
+- https://github.com/bitcoin/bitcoin/pull/20603
+- https://github.com/bitcoin/bitcoin/pull/17398
+
 ### [ctaes](https://github.com/bitcoin-core/ctaes)
 
 - https://github.com/bitcoin/bitcoin/pull/9303
