@@ -37,6 +37,7 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Profile Guided Optimization](pgo.md) - Notes on using PGO.
 - [reprotest](reprotest.md) - Using reprotest.
 - [rtld-audit - Dynamic Linker Auditing](/rtld/) - linux dynamic linker auditing
+- [Scripted Diff](scripted-diff.md)
 - [Subtree Merges](subtree-merge.md) - How to verify subtree merges are done correctly.
 - [.tbd stubs](tbd-stubs.md) - Using .tbd stubs.
 - [URIs](/uri/) - URIs for testing `bitcoin:` uri handling.
