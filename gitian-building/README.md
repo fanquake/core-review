@@ -1,6 +1,6 @@
 # Gitian Building
 
-Bitcoin Core releases are [reproducibly built](https://reproducible-builds.org) using [Gitian Builder](https://github.com/devrandom/gitian-builder).
+Bitcoin Core releases were previously [reproducibly built](https://reproducible-builds.org) using [Gitian Builder](https://github.com/devrandom/gitian-builder).
 
 ```bash
 brew install coreutils
