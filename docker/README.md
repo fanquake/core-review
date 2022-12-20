@@ -9,7 +9,7 @@ For example, to build the Debian image and use it for a build targeting the `RIS
 
 ```bash
 # Build container
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -f debian.dockerfile -t debian-depends .
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian-depends - < debian.dockerfile
 
 # Run with a Bash shell
 docker run -it --name debian-depends debian-depends
