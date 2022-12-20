@@ -9,7 +9,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     curl \
     diffoscope \
     doxygen \
-    g++-multilib \
     git \
     libbz2-dev \
     libcap-dev \
