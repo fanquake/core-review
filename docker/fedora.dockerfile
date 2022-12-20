@@ -1,4 +1,4 @@
-FROM fedora:36
+FROM fedora:37
 
 RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     autoconf \
@@ -13,7 +13,7 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     libnatpmp-devel \
     libtool \
     make \
-    mingw64-gcc-c++.x86_64 \
+    mingw64-gcc-c++ \
     mingw64-winpthreads-static.noarch \
     miniupnpc-devel \
     patch \
