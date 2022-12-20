@@ -10,9 +10,9 @@ RUN apk --no-cache --update add \
       shadow
 
 ARG guix_download_path=ftp://ftp.gnu.org/gnu/guix
-ARG guix_version=1.3.0
-ARG guix_checksum_aarch64=444f6536cf5959636123ac718db9b85071502e485555b2d801bf2936930810ce
-ARG guix_checksum_x86_64=c5f7efb48947545e49d2daf48d0f832f35d2a8d19f65daaf6079425ac327c050
+ARG guix_version=1.4.0
+ARG guix_checksum_aarch64=72d807392889919940b7ec9632c45a259555e6b0942ea7bfd131101e08ebfcf4
+ARG guix_checksum_x86_64=236ca7c9c5958b1f396c2924fcc5bc9d6fdebcb1b4cf3c7c6d46d4bf660ed9c9
 ARG builder_count=32
 
 ENV PATH /root/.config/guix/current/bin:$PATH

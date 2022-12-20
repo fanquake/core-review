@@ -7,7 +7,7 @@ brew install qemu
 
 Download the latest Guix system image:
 ```bash
-export GUIX_VERSION=1.3.0
+export GUIX_VERSION=1.4.0
 
 wget https://ftp.gnu.org/gnu/guix/guix-system-vm-image-${GUIX_VERSION}.x86_64-linux.qcow2
 ```

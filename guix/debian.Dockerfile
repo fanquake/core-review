@@ -1,4 +1,4 @@
-FROM debian:experimental
+FROM debian:unstable
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     bzip2 \
