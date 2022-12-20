@@ -2,7 +2,7 @@
 #	Use --build-arg PYTHON=3.11.0 etc to change installed versions
 # docker run --rm -v $(pwd):/bitcoin -w /bitcoin -it linter
 # lint
-FROM ubuntu:jammy as builder
+FROM ubuntu:jammy
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
@@ -24,10 +24,9 @@ RUN apt-get update && \
 	git \
 	jq
 
-RUN apt install --no-install-recommends -y build-essential gdb lcov pkg-config \
+RUN apt install --no-install-recommends -y g++ pkg-config \
       libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
-      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
-      lzma lzma-dev tk-dev uuid-dev zlib1g-dev
+      libsqlite3-dev libssl-dev lzma lzma-dev make patch uuid-dev xz-utils zlib1g-dev
 
 RUN curl https://pyenv.run | bash && \
 	export PATH="$HOME/.pyenv/bin:$PATH" && \
