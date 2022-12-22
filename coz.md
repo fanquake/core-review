@@ -7,36 +7,32 @@ Build and install Coz as per: https://github.com/plasma-umass/coz.
 Add some progress points. For example:
 
 ```diff
-diff --git a/src/validation.cpp b/src/validation.cpp
-index 8a454c8d1..21274f305 100644
 --- a/src/validation.cpp
 +++ b/src/validation.cpp
-@@ -52,6 +52,8 @@
- #include <boost/algorithm/string/replace.hpp>
- #include <boost/thread.hpp>
+@@ -5,6 +5,8 @@
  
-+#include <path/to/coz.h>
+ #include <validation.h>
+ 
++#include </usr/include/coz.h>
 +
- #if defined(NDEBUG)
- # error "Bitcoin cannot be compiled without assertions."
- #endif
-@@ -3814,6 +3816,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
+ #include <kernel/coinstats.h>
+ #include <kernel/mempool_persist.h>
  
- bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock)
+@@ -3881,6 +3883,7 @@ bool Chainstate::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, BlockV
+ 
+ bool ChainstateManager::ProcessNewBlock(const std::shared_ptr<const CBlock>& block, bool force_processing, bool min_pow_checked, bool* new_block)
  {
-+       COZ_PROGRESS_NAMED("Enter ProcessNewBlock")
++    COZ_PROGRESS_NAMED("Enter ProcessNewBlock")
      AssertLockNotHeld(cs_main);
  
      {
-@@ -3843,7 +3846,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
-     BlockValidationState state; // Only used to report errors, not invalidity - ignore it
-     if (!::ChainstateActive().ActivateBestChain(state, chainparams, pblock))
+@@ -3915,6 +3918,7 @@ bool ChainstateManager::ProcessNewBlock(const std::shared_ptr<const CBlock>& blo
          return error("%s: ActivateBestChain failed (%s)", __func__, state.ToString());
--
-+       COZ_PROGRESS_NAMED("Exit ProcessNewBlock")
+     }
+ 
++    COZ_PROGRESS_NAMED("Exit ProcessNewBlock")
      return true;
  }
-
 ```
 
 #### Compile and Run
@@ -44,21 +40,29 @@ index 8a454c8d1..21274f305 100644
 Configure for debugging and add `-ldl` to LDFLAGS.
 
 ```bash
-make -C depends/ NO_QT=1 NO_WALLET=1 NO_UPNP=1 NO_ZMQ=1
+make -C depends/ NO_QT=1 NO_WALLET=1 NO_UPNP=1 NO_NATPMP=1 NO_ZMQ=1
 ./autogen.sh
-./configure --enable-debug --prefix=/home/bitcoin/depends/x86_64-pc-linux-gnu LDFLAGS="-ldl"
+CONFIG_SITE=/home/ubuntu/bitcoin/depends/x86_64-pc-linux-gnu/share/config.site ./configure --enable-debug LDFLAGS="-ldl"
 make -j8
 
 # run
 coz run --- src/bitcoind
+```
 
-# if you see any output like this, and have an empty profile.coz,
-# it's due to an issue with libelfin and DWARF 4 (which is used by GCC 9+),
-# so reconfigure and use DWARF 3 instead.
+If you see any output like this:
+```bash
 inspect.cpp:513] Ignoring DWARF format error when reading line table: 
 DW_FORM_sec_offset not expected for attribute (DW_AT)0x2137
-
-CXXFLAGS="-gdwarf-3" CFLAGS="-gdwarf-3"
+```
+or this:
+```bash
+terminate called after throwing an instance of 'dwarf::format_error'
+  what():  unknown compilation unit version 5
+```
+it's due to an issue with libelfin and DWARF 4+ (which is used by GCC 9+).
+Reconfigure to use DWARF 3 instead:
+```bash
+CFLAGS="-gdwarf-3" CXXFLAGS="-gdwarf-3"
 ```
 
 #### Results
