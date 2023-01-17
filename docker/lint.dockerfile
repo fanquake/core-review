@@ -22,13 +22,11 @@ RUN apt-get update && \
 	curl \
 	gawk \
 	git \
-	jq
-
-RUN apt install --no-install-recommends -y g++ pkg-config \
+	jq && \
+  apt install --no-install-recommends -y g++ pkg-config \
       libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
-      libsqlite3-dev libssl-dev lzma lzma-dev make patch uuid-dev xz-utils zlib1g-dev
-
-RUN curl https://pyenv.run | bash && \
+      libsqlite3-dev libssl-dev lzma lzma-dev make patch uuid-dev xz-utils zlib1g-dev && \
+  curl https://pyenv.run | bash && \
 	export PATH="$HOME/.pyenv/bin:$PATH" && \
 	eval "$(pyenv init -)" && \
 	pyenv install ${PYTHON} && pyenv global ${PYTHON} && \
@@ -37,12 +35,12 @@ RUN curl https://pyenv.run | bash && \
 				 flake8==${FLAKE} \
 				 mypy==${MYPY} \
 				 pyzmq==${PYZMQ} \
-				 vulture==${VULTURE}
-
-RUN curl -sL "https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK}/shellcheck-${SHELLCHECK}.linux.x86_64.tar.xz" | tar -Jx -C/usr/bin/ --strip-components=1 -f - shellcheck-${SHELLCHECK}/shellcheck
-
-RUN echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc && \
-	echo 'eval "$(pyenv init -)"' >> ~/.bashrc && \
-	echo 'alias lint="./ci/lint/06_script.sh"' >> ~/.bashrc
+				 vulture==${VULTURE} && \
+  curl -sL "https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK}/shellcheck-${SHELLCHECK}.linux.x86_64.tar.xz" | \
+  tar -Jx -C/usr/bin/ --strip-components=1 -f - shellcheck-${SHELLCHECK}/shellcheck && \
+  echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc && \
+  echo 'eval "$(pyenv init -)"' >> ~/.bashrc && \
+  echo 'alias lint="./ci/lint/06_script.sh"' >> ~/.bashrc && \
+  rm -rf /var/lib/apt/lists/*
 
 CMD ["bash", "-l"]
