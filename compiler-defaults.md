@@ -5,7 +5,8 @@
 
 | Version | C std | c++ std |
 | ------- | ----- | ------- |
-| 16.0.0  | gnu17 | [gnu++17](https://clang.llvm.org/docs/ReleaseNotes.html#id4) |
+| 17.0.0  |       |         |
+| 16.0.0  | gnu17 | [gnu++17](https://releases.llvm.org/16.0.0/tools/clang/docs/ReleaseNotes.html#id85) |
 | 15.0.0  | gnu17 | gnu++14 |
 | 14.0.0  | gnu17 | gnu++14 |
 | 13.0.0  | gnu17 | gnu++14 |
@@ -24,7 +25,8 @@
 
 | Version | C std | c++ std |
 | ------- | ----- | ------- |
-| 13      |       |         |
+| 14      |       |         |
+| 13      | gnu11 | gnu++17 |
 | 12      | gnu11 | gnu++17 |
 | 11      | gnu11 | [gnu++17](https://gcc.gnu.org/gcc-11/changes.html) |
 | 10      | gnu11 | gnu++14 |
