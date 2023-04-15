@@ -30,7 +30,7 @@ GOOD
 
 ## Historical Subtree Updates
 
-### [crc32c]
+### [crc32c](https://github.com/bitcoin-core/crc32c-subtree)
 
 - https://github.com/bitcoin/bitcoin/pull/25836
 - https://github.com/bitcoin/bitcoin/pull/23133
@@ -62,6 +62,7 @@ GOOD
 
 ### [secp256k1](https://github.com/bitcoin-core/secp256k1)
 
+- https://github.com/bitcoin/bitcoin/pull/27445
 - https://github.com/bitcoin/bitcoin/pull/27230
 - https://github.com/bitcoin/bitcoin/pull/24792
 - https://github.com/bitcoin/bitcoin/pull/23383
