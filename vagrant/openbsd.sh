@@ -1,8 +1,8 @@
 #!/bin/sh
 
 provision() {
-    # https://ftp.openbsd.org/pub/OpenBSD/7.0/packages/amd64/
-    pkg_add automake-1.16.3 \
+    # https://ftp.openbsd.org/pub/OpenBSD/7.3/packages/amd64/
+    pkg_add automake-1.16.5 \
     autoconf-2.71 \
     bash \
     boost \
@@ -12,7 +12,7 @@ provision() {
     gtar-1.34 \
     libevent \
     libtool \
-    python%3.9 \
+    python%3.11 \
     sqlite3 \
     zeromq
 }
