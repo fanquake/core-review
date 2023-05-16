@@ -6,9 +6,6 @@
 
 ```bash
 diffoscope first_file second_file --markdown diff.md # --exclude-directory-metadata
-gsed -i '/## /a ```diff' diff.md
-gsed -i '/## /i ```' diff.md
-gsed -i 's/    //g' diff.md
 ```
 
 This may need some manual cleanup depending on the actual diff produced.
