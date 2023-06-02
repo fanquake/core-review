@@ -91,14 +91,9 @@ Submitting an update requires [`guix hash`](https://guix.gnu.org/manual/en/html_
 
 Recent Updates:
 
+* [25.0]https://git.savannah.gnu.org/cgit/guix.git/commit/?id=b58fab5982eb45aae2a51c86093e6bbd472d8c9e
+* [24.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=0aab24855238cc7c7a31066ab39cd94e534b857f)
+* [23.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=3c8d0f9e71bbddfb5b1f098c713ff37553f0efcc)
 * [23.0](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=79e40b6ce8e4f5f499ea338aede75a0810a210c1)
 * [0.21.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=2fc9d513811e4a737bd7337545732337641d2738)
 * [0.21.0](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=d3c8aa3f8214434c8ba819984ed4513796a09e38)
-* [0.20.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=fa268b28e1ccc392c85846810d836034c96df3c0)
-* [0.19.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=90799c35bd9cadaf7c28be5ea6e41ec692d5b4a4)
-* [0.19.0.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=4730878b81a84e54408917c17f4b80e354423d61)
-* [0.18.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=1219a7cc0521e4916287acd265e50b0af2bfb336)
-* [0.18.0](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=bcfc54fff80ef6a11fc53c61db333a8065bbfeef)
-* [0.17.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=0a59cc6e8590fc6c2c56dc35aca5c4b558d67901)
-* [0.16.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=6f88285ab1b3a3df8fe8247db5fd92801ec477cf)
-* [0.15.1](https://git.savannah.gnu.org/cgit/guix.git/commit/?id=0632c6a84d61c85e9e75a84b345853f52252f234)
