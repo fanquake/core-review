@@ -62,6 +62,7 @@ GOOD
 
 ### [secp256k1](https://github.com/bitcoin-core/secp256k1)
 
+- https://github.com/bitcoin/bitcoin/pull/27479
 - https://github.com/bitcoin/bitcoin/pull/27445
 - https://github.com/bitcoin/bitcoin/pull/27230
 - https://github.com/bitcoin/bitcoin/pull/24792
