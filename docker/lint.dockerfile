@@ -7,11 +7,12 @@ FROM ubuntu:jammy
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
 
-ARG CODESPELL=2.2.1
-ARG FLAKE=5.0.4
-ARG MYPY=0.971
+ARG CODESPELL=2.2.5
+ARG FLAKE=6.0.0
+ARG LIEF=0.13.2
+ARG MYPY=1.4.1
 ARG PYTHON=3.7.16
-ARG PYZMQ=24.0.1
+ARG PYZMQ=25.0.1
 ARG SHELLCHECK=v0.8.0
 ARG VULTURE=2.6
 
@@ -33,6 +34,7 @@ RUN apt-get update && \
 	pip3 install -U packaging pip setuptools && pip3 install \
 				 codespell==${CODESPELL} \
 				 flake8==${FLAKE} \
+				 lief==${LIEF} \
 				 mypy==${MYPY} \
 				 pyzmq==${PYZMQ} \
 				 vulture==${VULTURE} && \
