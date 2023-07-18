@@ -1,4 +1,4 @@
-FROM fedora:37
+FROM fedora:38
 
 RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     autoconf \
@@ -14,7 +14,7 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     libtool \
     make \
     mingw64-gcc-c++ \
-    mingw64-winpthreads-static.noarch \
+    mingw64-winpthreads-static \
     miniupnpc-devel \
     patch \
     python3 \
