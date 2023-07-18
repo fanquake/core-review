@@ -1,10 +1,11 @@
-FROM alpine:3.17
+FROM alpine:3.18
 
 # linux-headers for futex.h in Qt depends build
 # qt5-qttools-dev for lrelease
 RUN apk --no-cache --update add \
     autoconf \
     automake \
+    bash \
     bison \
     boost-dev \
     cmake \
@@ -17,7 +18,6 @@ RUN apk --no-cache --update add \
     libtool \
     linux-headers \
     make \
-    mingw-w64-gcc \
     miniupnpc-dev \
     patch \
     perl \
