@@ -4,13 +4,13 @@ Build [Clang Build Analyser](https://github.com/aras-p/ClangBuildAnalyzer).
 
 ```bash
 ./autogen.sh
-./configure CC=/usr/local/opt/llvm/bin/clang CXX=/usr/local/opt/llvm/bin/clang++ CXXFLAGS="-ftimetrace"
+./configure CC=/opt/homebrew/opt/llvm/bin/clang CXX=/opt/homebrew/opt/llvm/bin/clang++ CXXFLAGS="-ftime-trace" --disable-ccache
 
 # start analyzer
 ClangBuildAnalyzer --start .
 
 # compile
-make -j8
+make -j$(nproc)
 
 # stop analyzer
 ClangBuildAnalyzer --stop . results
