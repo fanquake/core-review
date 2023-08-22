@@ -16,6 +16,7 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     mingw64-gcc-c++ \
     mingw64-winpthreads-static \
     miniupnpc-devel \
+    ncurses-compat-libs \
     patch \
     python3 \
     qrencode-devel \
