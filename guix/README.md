@@ -9,7 +9,7 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 ### Create the alpine-guix image:
 
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -t alpine-guix - < Dockerfile
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -t alpine_guix - < Dockerfile
 ```
 
 You can override where the docker image fetches the guix binary from with `--build-args`.
@@ -28,7 +28,7 @@ docker build -f Dockerfile \
 To `exec` a `guix-daemon` (a prerequisite for guix builds):
 
 ```bash
-docker run -it --name alpine-guix --privileged alpine-guix
+docker run -it --name alpine_guix --privileged alpine_guix
 ```
 
 The daemon will run in the foreground, so don't be alarmed if it hangs (you may see output like `accepted connection from pid 2828, user root`).
@@ -65,11 +65,11 @@ time BASE_CACHE="/base_cache" SOURCE_PATH="/sources" SDK_PATH="/SDKs" HOSTS="x86
 
 ## Debian Guix Dockerfile
 
-A Debian based Dockerfile is also available, which uses the Debian [Guix package](https://packages.debian.org/bullseye/guix).
+A Debian based Dockerfile is also available, which uses the Debian [Guix package](https://packages.debian.org/trixie/guix).
 
 It can be created using:
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian-guix - < debian.Dockerfile
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian_guix - < debian.Dockerfile
 ```
 
 and used the same way as the Alpine container (see above).
@@ -79,7 +79,7 @@ and used the same way as the Alpine container (see above).
 Providing the following information is useful after a successful build:
 ```bash
 guix describe
-
+uname -m
 find guix-build-$(git rev-parse --short=12 HEAD)/output/ -type f -print0 | env LC_ALL=C sort -z | xargs -r0 sha256sum
 ```
 
