@@ -3,7 +3,6 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 
 - [AppleScript](/applescript/README.md) - Scripts for UI & test automation
 - [`apple-os.py`](apple-os.py) - Build `git` histories for [Apple Open Source](https://opensource.apple.com/) libraries.
-- [Apt-Cacher NG](apt-cacher-ng.md) - Using Apt-Cacher NG for gitian builds.
 - [`assumevalid` Updates](update-assumevalid.md) - How to review pull requests that update `assumevalid`.
 - [`big-wallet.py`](big-wallet.py) - Create a wallet with lots of transactions.
 - [Binary Compare](binary-compare.md) - Notes on doing binary comparisons of Bitcoin Core
