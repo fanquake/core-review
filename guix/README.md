@@ -6,7 +6,7 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 
 ## Alpine Guix Dockerfile
 
-### Create the alpine-guix image:
+### Create the alpine_guix image:
 
 ```bash
 DOCKER_BUILDKIT=1 docker build --pull --no-cache -t alpine_guix - < Dockerfile
@@ -20,10 +20,10 @@ docker build -f Dockerfile \
              --build-arg guix_download_path=https://ftpmirror.gnu.org/gnu/guix/ \
              --build-arg guix_file_name=guix-binary-1.4.0.x86_64-linux.tar.xz \
              --build-arg guix_checksum=236ca7c9c5958b1f396c2924fcc5bc9d6fdebcb1b4cf3c7c6d46d4bf660ed9c9 \
-             -t alpine-guix .
+             -t alpine_guix .
 ```
 
-### Run the alpine-guix container
+### Run the alpine_guix container
 
 To `exec` a `guix-daemon` (a prerequisite for guix builds):
 
@@ -40,7 +40,7 @@ Note the use of `--privileged`. Read the Docker [capabilities documentation](htt
 Exec into the container:
 
 ```bash
-docker exec -it alpine-guix /bin/bash
+docker exec -it alpine_guix /bin/bash
 ```
 
 Default HOSTS:
