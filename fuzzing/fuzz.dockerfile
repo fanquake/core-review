@@ -1,11 +1,11 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
 	automake \
 	bsdmainutils \
 	bzip2 \
 	ca-certificates \
-	clang-9 \
+	clang-15 \
 	curl \
 	gcc \
 	g++ \
@@ -13,6 +13,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
 	lbzip2 \
 	libtool \
 	make \
+	patch \
 	pkg-config \
 	vim
 

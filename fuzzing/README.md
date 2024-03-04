@@ -3,21 +3,17 @@
 Build and run the container provided by [fuzz.dockerfile](fuzz.dockerfile).
 
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -f fuzz.dockerfile -t fuzz-bitcoin .
-docker run -it --name fuzz-bitcoin --workdir /bitcoin fuzz-bitcoin /bin/bash
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -f fuzz.dockerfile -t fuzz_bitcoin .
+docker run -it --name fuzz_bitcoin --workdir /bitcoin fuzz_bitcoin /bin/bash
 ```
 
-### Checkout #17860 and build depends
+### Build depends
 
-We want to test the changes in PR [#17860](https://github.com/bitcoin/bitcoin/pull/17860):
+We want to test the changes added in PR [#17860](https://github.com/bitcoin/bitcoin/pull/17860):
 
 ```bash
-# checkout the PR to fuzz #17860
-git fetch origin pull/17860/head:17860
-git checkout 17860
-
 # build depends
-make -C depends NO_QT=1 NO_WALLET=1 NO_UPNP=1 NO_ZMQ=1
+make -C depends NO_QT=1 NO_WALLET=1 NO_UPNP=1 NO_NATPMP=1 NO_ZMQ=1 CC=clang-15 CXX=clang++-15
 ```
 
 ### Patch Bitcoin Core
@@ -43,9 +39,8 @@ diff --git a/src/consensus/tx_check.cpp b/src/consensus/tx_check.cpp
 
 ```bash
 ./autogen.sh
-./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu \
-    --enable-fuzz --with-sanitizers=fuzzer,address,undefined \
-    CC=clang-9 CXX=clang++-9
+CONFIG_SITE=/bitcoin/depends/x86_64-pc-linux-gnu/share/config.site ./configure \
+    --enable-fuzz --with-sanitizers=fuzzer,address,undefined
 make -j6
 ```
 
@@ -54,16 +49,12 @@ make -j6
 PR #17860 adds the `utxo_total_supply` target, which we'll fuzz:
 
 ```bash
-time src/test/fuzz/utxo_total_supply \
--jobs=6 \
--print_final_stats=1 \
--workers=6 \
-/qa-assets/fuzz_seed_corpus/utxo_total_supply
+time FUZZ=utxo_total_supply src/test/fuzz/fuzz /qa-assets/fuzz_seed_corpus/utxo_total_supply
 ```
 
 In a new window you could enter the container and tail logs:
 ```bash
-docker exec -it fuzz-bitcoin /bin/bash
+docker exec -it fuzz_bitcoin /bin/bash
 tail -f fuzz-*.log
 ...
 ==> fuzz-4.log <==
@@ -96,41 +87,34 @@ Depending on your hardware, this could take many hours.
 #22638	NEW    cov: 48625 ft: 251339 corp: 2317/93Kb lim: 185 exec/s: 2 rss: 683Mb L: 121/192 MS: 2 ChangeByte-InsertByte-
 #23497	RELOAD cov: 48632 ft: 251363 corp: 2318/93Kb lim: 192 exec/s: 2 rss: 683Mb
 #23557	NEW    cov: 48632 ft: 251369 corp: 2319/94Kb lim: 192 exec/s: 2 rss: 683Mb L: 176/192 MS: 2 ShuffleBytes-CopyPart-
-utxo_total_supply: test/fuzz/utxo_total_supply.cpp:77: auto test_one_input(const std::vector<uint8_t> &)::(anonymous class)::operator()() const: Assertion "circulation == utxo_stats.nTotalAmount" failed.
-==16247== ERROR: libFuzzer: deadly signal
-    #0 0x561d1c715d91  (/bitcoin/src/test/fuzz/utxo_total_supply+0x208bd91)
-    #1 0x561d1c6603c8  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fd63c8)
-    #2 0x561d1c645b33  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fbbb33)
-    #3 0x7f510df1551f  (/lib/x86_64-linux-gnu/libpthread.so.0+0x1351f)
-    #4 0x7f510dc0b080  (/lib/x86_64-linux-gnu/libc.so.6+0x3a080)
-    #5 0x7f510dbf6534  (/lib/x86_64-linux-gnu/libc.so.6+0x25534)
-    #6 0x7f510dbf640e  (/lib/x86_64-linux-gnu/libc.so.6+0x2540e)
-    #7 0x7f510dc03b91  (/lib/x86_64-linux-gnu/libc.so.6+0x32b91)
-    #8 0x561d1c7497c9  (/bitcoin/src/test/fuzz/utxo_total_supply+0x20bf7c9)
-    #9 0x561d1c746e2d  (/bitcoin/src/test/fuzz/utxo_total_supply+0x20bce2d)
-    #10 0x561d1c73f8ca  (/bitcoin/src/test/fuzz/utxo_total_supply+0x20b58ca)
-    #11 0x561d1c6470c1  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fbd0c1)
-    #12 0x561d1c646905  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fbc905)
-    #13 0x561d1c648ba7  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fbeba7)
-    #14 0x561d1c6498c5  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fbf8c5)
-    #15 0x561d1c6376a8  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fad6a8)
-    #16 0x561d1c660af2  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1fd6af2)
-    #17 0x7f510dbf7bba  (/lib/x86_64-linux-gnu/libc.so.6+0x26bba)
-    #18 0x561d1c60af49  (/bitcoin/src/test/fuzz/utxo_total_supply+0x1f80f49)
+fuzz: test/fuzz/utxo_total_supply.cpp:86: auto utxo_total_supply_fuzz_target(FuzzBufferType)::(anonymous class)::operator()() const: Assertion 'circulation == utxo_stats.total_amount' failed.
+==24424== ERROR: libFuzzer: deadly signal
+    #0 0xaaaab9ded48c in __sanitizer_print_stack_trace (/bitcoin/src/test/fuzz/fuzz+0x103d48c) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
+    #1 0xaaaab9d6ad64 in fuzzer::PrintStackTrace() (/bitcoin/src/test/fuzz/fuzz+0xfbad64) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
+    #2 0xaaaab9d52410 in fuzzer::Fuzzer::CrashCallback() (/bitcoin/src/test/fuzz/fuzz+0xfa2410) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
+    #3 0xffff9b77c79c  (linux-vdso.so.1+0x79c) (BuildId: 14511120b732425d2ab0b0bddf2450b1f31c691c)
+    #4 0xffff9b2e0a0c  (/lib/aarch64-linux-gnu/libc.so.6+0x80a0c) (BuildId: 09928b270aa19314161b21f565d1a9732c2c5332)
+    #5 0xffff9b29a768 in raise (/lib/aarch64-linux-gnu/libc.so.6+0x3a768) (BuildId: 09928b270aa19314161b21f565d1a9732c2c5332)
+    #6 0xffff9b2874b8 in abort (/lib/aarch64-linux-gnu/libc.so.6+0x274b8) (BuildId: 09928b270aa19314161b21f565d1a9732c2c5332)
+    #7 0xffff9b2941e0  (/lib/aarch64-linux-gnu/libc.so.6+0x341e0) (BuildId: 09928b270aa19314161b21f565d1a9732c2c5332)
+    #8 0xffff9b294248 in __assert_fail (/lib/aarch64-linux-gnu/libc.so.6+0x34248) (BuildId: 09928b270aa19314161b21f565d1a9732c2c5332)
+    #9 0xaaaaba3341a4 in utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_4::operator()() const /bitcoin/src/test/fuzz/utxo_total_supply.cpp:86:9
+    #10 0xaaaaba332150 in utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_7::operator()() const /bitcoin/src/test/fuzz/utxo_total_supply.cpp:156:17
+    #11 0xaaaaba332150 in unsigned long CallOneOf<utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_5, utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_6, utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_7>(FuzzedDataProvider&, utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_5, utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_6, utxo_total_supply_fuzz_target(Span<unsigned char const>)::$_7) /bitcoin/src/./test/fuzz/util.h:42:27
+    #12 0xaaaaba332150 in utxo_total_supply_fuzz_target(Span<unsigned char const>) /bitcoin/src/test/fuzz/utxo_total_supply.cpp:125:9
+    #13 0xaaaaba37f6a4 in std::function<void (Span<unsigned char const>)>::operator()(Span<unsigned char const>) const /usr/bin/../lib/gcc/aarch64-linux-gnu/12/../../../../include/c++/12/bits/std_function.h:591:9
+    #14 0xaaaaba37f1f8 in LLVMFuzzerTestOneInput /bitcoin/src/test/fuzz/fuzz.cpp:178:5
+    #15 0xaaaab9d537b0 in fuzzer::Fuzzer::ExecuteCallback(unsigned char const*, unsigned long) (/bitcoin/src/test/fuzz/fuzz+0xfa37b0) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
+    #16 0xaaaab9d3ee84 in fuzzer::RunOneTest(fuzzer::Fuzzer*, char const*, unsigned long) (/bitcoin/src/test/fuzz/fuzz+0xf8ee84) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
+    #17 0xaaaab9d4433c in fuzzer::FuzzerDriver(int*, char***, int (*)(unsigned char const*, unsigned long)) (/bitcoin/src/test/fuzz/fuzz+0xf9433c) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
+    #18 0xaaaab9d6b42c in main (/bitcoin/src/test/fuzz/fuzz+0xfbb42c) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
+    #19 0xffff9b28777c  (/lib/aarch64-linux-gnu/libc.so.6+0x2777c) (BuildId: 09928b270aa19314161b21f565d1a9732c2c5332)
+    #20 0xffff9b287854 in __libc_start_main (/lib/aarch64-linux-gnu/libc.so.6+0x27854) (BuildId: 09928b270aa19314161b21f565d1a9732c2c5332)
+    #21 0xaaaab9d3a8ec in _start (/bitcoin/src/test/fuzz/fuzz+0xf8a8ec) (BuildId: 95a77d550305f582adecb8c934189282a87532cf)
 
 NOTE: libFuzzer has rudimentary signal handlers.
       Combine libFuzzer with AddressSanitizer or similar for better crash reports.
 SUMMARY: libFuzzer: deadly signal
-MS: 5 CrossOver-ShuffleBytes-ChangeASCIIInt-ChangeBit-EraseBytes-; base unit: d1a5c27d68809f2e9c739d76c69065ff17ae7d6f
-0x8f,0x7a,0x5,0xcb,0x7a,0x2,0x2f,0x5,0x5, <trimmed> 0x89,0x89,0x89,0x89,0x0,0x0,0x0,
-\x8fz\x05\xcbz\x02/\x05\x052\x025 <trimmed> \x89\x89\x89\x89\x00\x00\x00
-artifact_prefix='./'; Test unit written to ./crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b
-Base64: j3oFy3oCLwUFMgI1BQIFHS96ekF3uYB6QOLIyAcFjwABenoFZHEFBQFNIMpNBTMFPwXHuYB6CpWVBVBQenp6enpieoB6enoFBQUAplmmDQA9BQV6enoCj/j4+Pj4+Pj4+PgFBQUFBQVQUHp6j4+PjwUFBXpZenp6BVBQenqPj4+PBQUFell6enpZUFCqenp6Anp6eoB6AuZZUFBpenqPelCPeo+JiYmJiQAAAA==
-stat::number_of_executed_units: 23579
-stat::average_exec_per_sec:     2
-stat::new_units_added:          92
-stat::slowest_unit_time_sec:    0
-stat::peak_rss_mb:              683
 ```
 
 I've included two of the crashers in this directory.
@@ -139,11 +123,7 @@ You can run your instance of libFuzzer, using them as input, to recreate the sam
 crash. i.e:
 
 ```bash
-time src/test/fuzz/utxo_total_supply \
--print_final_stats=1 \
--jobs=6 \
--workers=6 \
-crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b
+time FUZZ=utxo_total_supply src/test/fuzz/fuzz /crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b
 ```
 
 You should also check that removing the patch from `src/consensus/tx_check.cpp`
@@ -158,10 +138,7 @@ For example, re-running the fuzzer using this flag, the 172 byte crash input,
 crash-9c947..., can be reduced to < 110 bytes:
 
 ```bash
-src/test/fuzz/utxo_total_supply \
--print_final_stats=1 \
--minimize_crash=1 \
-crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b
+time FUZZ=utxo_total_supply src/test/fuzz/fuzz /crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b -minimize_crash=1
 ...
 CRASH_MIN: minimizing crash input: 'crash-9c947d9ff00fa36eca41ad27d337743fd5fee54b' (172 bytes)
 ...
@@ -190,7 +167,7 @@ You need `~20mb` per datadir (worker) and overhead for the seeds directory. So
 we'll just use 200m.
 
 ```bash
-docker run -it --name fuzz-bitcoin --shm-size=200m ...
+docker run -it --name fuzz_bitcoin --shm-size=200m ...
 ```
 
 Then, run the fuzzers, using the following:
@@ -203,9 +180,5 @@ cp ../qa-assets/fuzz_seed_corpus/utxo_total_supply/f66a2... /dev/shm/fuzz_temp_s
 
 # run the fuzzer
 export TMPDIR=/dev/shm;
-time src/test/fuzz/utxo_total_supply \
--print_final_stats=1 \
--jobs=6 \
--workers=6 \
-/dev/shm/fuzz_temp_seeds
+time FUZZ=utxo_total_supply src/test/fuzz/fuzz /dev/shm/fuzz_temp_seeds
 ```
