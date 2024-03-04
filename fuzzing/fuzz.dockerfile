@@ -5,13 +5,14 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
 	bsdmainutils \
 	bzip2 \
 	ca-certificates \
-	clang-9 \
+	clang-11 \
 	curl \
 	gcc \
 	g++ \
 	git \
 	lbzip2 \
 	libtool \
+	libboost-dev \
 	make \
 	pkg-config \
 	vim

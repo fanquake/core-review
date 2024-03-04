@@ -45,7 +45,7 @@ diff --git a/src/consensus/tx_check.cpp b/src/consensus/tx_check.cpp
 ./autogen.sh
 ./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu \
     --enable-fuzz --with-sanitizers=fuzzer,address,undefined \
-    CC=clang-9 CXX=clang++-9
+    CC=clang-11 CXX=clang++-11
 make -j6
 ```
 
