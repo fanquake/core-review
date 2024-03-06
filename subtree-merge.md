@@ -32,6 +32,7 @@ GOOD
 
 ### [crc32c](https://github.com/bitcoin-core/crc32c-subtree)
 
+- https://github.com/bitcoin/bitcoin/pull/29493
 - https://github.com/bitcoin/bitcoin/pull/25836
 - https://github.com/bitcoin/bitcoin/pull/23133
 - https://github.com/bitcoin/bitcoin/pull/20603
