@@ -54,6 +54,7 @@ GOOD
 
 ### [minisketch](https://github.com/sipa/minisketch)
 
+- https://github.com/bitcoin/bitcoin/pull/29823
 - https://github.com/bitcoin/bitcoin/pull/25502
 - https://github.com/bitcoin/bitcoin/pull/23114
 
@@ -63,6 +64,7 @@ GOOD
 
 ### [secp256k1](https://github.com/bitcoin-core/secp256k1)
 
+- https://github.com/bitcoin/bitcoin/pull/29803
 - https://github.com/bitcoin/bitcoin/pull/29169
 - https://github.com/bitcoin/bitcoin/pull/28404
 - https://github.com/bitcoin/bitcoin/pull/28093
