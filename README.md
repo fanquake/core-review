@@ -29,7 +29,6 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [Links](links.md) - Useful links that I would otherwise forget about.
 - [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
-- [MacOS dylib checker](macos_dylib_check.py) - macOS dylib and dynamic linker flag auditing.
 - [Mesh](mesh.md) - Running bitcoind with Mesh
 - [NixOS](nixos.md) - Building on NixOS
 - [Operating Systems](operating-systems.md) - OS's that Core should support.
