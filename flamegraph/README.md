@@ -22,32 +22,22 @@ git clone https://github.com/brendangregg/FlameGraph && cd FlameGraph
 patch -p1 < path/to/core-review/flamegraph/bitcoin-colour.patch
 
 # run bitcoind
-./path/to/src/bitcoind
+./bitcoind
 
-# capture 120s worth of stackframes using DTrace
-# at 99 Hertz for the process named bitcoind
-# 
-# arg1 is the user-land program counter, so it's checked that it's non-zero.
-# arg0 is the kernel.
-# more info: http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html#Instructions
-sudo dtrace -x ustackframes=100 \
--n 'profile-99 /execname == "bitcoind" && arg1/ { @[ustack()] = count(); } tick-120s { exit(0); }' \
--o out.stacks
+# capture 180s worth of data
+sample bitcoind 180 -wait -f sample.output
 
-./stackcollapse.pl out.stacks > out.folded
-# check ./flamegraph.pl --help for more options
-# i.e you prefer your graphs to hang from the ceiling pass --inverted
-./flamegraph.pl out.folded --color bitcoin --title "Bitcoin Core" --width 1600 > out.svg
+cat sample.output | ./stackcollapse-sample.awk | ./flamegraph.pl --color bitcoin > sample.svg
 
-open out.svg
+firefox --new-window "file://$(realpath sample.svg)"
 ```
 
 You can also filter the stack output before creating the graph:
 
 ```bash
-./stackcollapse.pl out.stacks | \
+cat sample.output | ./stackcollapse-sample.awk | \
 grep -i 'ProcessMessage' | \
-./flamegraph.pl --color bitcoin --title "Bitcoin Core" --width 1600 > out.svg
+./flamegraph.pl --color bitcoin > sample.svg
 ```
 
 You should end up with graphs that look similar too this:
