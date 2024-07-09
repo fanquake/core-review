@@ -19,7 +19,6 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [`fortify.py`](fortify.py) - Calculate _chk % replacement when using FORTIFY_SOURCE
 - [Fuzzing](/fuzzing/) - Fuzzing using Clang & [libFuzzer](https://llvm.org/docs/LibFuzzer.html).
 - [`github-merge.py`](github-merge.md) - Script for merging PRs from GitHub.
-- [Gitian Building](/gitian-building/) - Quick setup gitian building guide.
 - [gnuplot](gnuplot/README.md) - `gnuplot` usage for benchmarking and analysis.
 - [Guix](guix/README.md) - Notes on setting up / using Guix.
 - [Hardening](hardening.md) - Hardening in Bitcoin Core.
