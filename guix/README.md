@@ -12,7 +12,10 @@ If you're interested in downloading a pre-built VM and testing Guix (using QEMU)
 DOCKER_BUILDKIT=1 docker build --pull --no-cache -t alpine_guix - < Dockerfile
 ```
 
-You can override where the docker image fetches the guix binary from with `--build-args`.
+By default, an image *setup to use substitutes* will be created.
+If you do not want to use substitutes, you can pass `--target no-substitutes` to the build command.
+
+You can also override where the docker image fetches the guix binary from with `--build-args`.
 
 ```bash
 pushd bitcoin
