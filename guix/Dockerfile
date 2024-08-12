@@ -34,9 +34,6 @@ RUN guix_file_name=guix-binary-${guix_version}.$(uname -m)-linux.tar.xz    && \
     ln -sf /var/guix/profiles/per-user/root/current-guix ~root/.config/guix/current && \
     source ~root/.config/guix/current/etc/profile
 
-# Guix expects this file to exist
-RUN touch /etc/nsswitch.conf
-
 RUN guix archive --authorize < ~root/.config/guix/current/share/guix/ci.guix.gnu.org.pub
 
 # Build Environment Setup
