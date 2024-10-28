@@ -13,7 +13,7 @@ We want to test the changes added in PR [#17860](https://github.com/bitcoin/bitc
 
 ```bash
 # build depends
-make -C depends NO_QT=1 NO_WALLET=1 NO_UPNP=1 NO_ZMQ=1 CC=clang-15 CXX=clang++-15
+make -C depends NO_QT=1 NO_WALLET=1 NO_ZMQ=1 CC=clang-15 CXX=clang++-15
 ```
 
 ### Patch Bitcoin Core

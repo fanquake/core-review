@@ -17,7 +17,7 @@ g++ -std=c++11 -Wall -Werror -shared audit.cpp -o audit.so
 
 # build bitcoind
 pushd bitcoin
-make -C depends -j5 NO_WALLET=1 NO_QT=1 NO_UPNP=1 NO_ZMQ=1
+make -C depends -j5 NO_WALLET=1 NO_QT=1 NO_ZMQ=1
 ./autogen.sh
 ./configure --prefix=/bitcoin/depends/x86_64-pc-linux-gnu
 make src/bitcoind -j5

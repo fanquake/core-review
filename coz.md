@@ -40,7 +40,7 @@ Add some progress points. For example:
 Configure for debugging and add `-ldl` to LDFLAGS.
 
 ```bash
-make -C depends/ NO_QT=1 NO_WALLET=1 NO_UPNP=1 NO_ZMQ=1
+make -C depends/ NO_QT=1 NO_WALLET=1 NO_ZMQ=1
 ./autogen.sh
 CONFIG_SITE=/home/ubuntu/bitcoin/depends/x86_64-pc-linux-gnu/share/config.site ./configure --enable-debug LDFLAGS="-ldl"
 make -j8

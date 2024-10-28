@@ -6,7 +6,7 @@ An overview of PGO is available in the [Clang Users Manual](https://clang.llvm.o
 
 ```bash
 # build minimal depends
-make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 NO_UPNP=1 \
+make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 \
         CC=clang CXX=clang++ \
         AR=llvm-ar \
         RANLIB=llvm-ranlib \
