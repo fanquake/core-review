@@ -7,7 +7,7 @@
 
 ```bash
 # Minimal depends
-make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 NO_UPNP=1 NO_NATPMP=1 LTO=1 \
+make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 NO_UPNP=1 LTO=1 \
 		AR=llvm-ar \
 		RANLIB=llvm-ranlib \
 		CC=clang CXX=clang++ \
