@@ -5,6 +5,7 @@
 
 | Version | C std | c++ std |
 | ------- | ----- | ------- |
+| 19.1.0  | gnu17 | gnu++17 |
 | 18.1.0  | gnu17 | gnu++17 |
 | 17.0.0  | gnu17 | gnu++17 |
 | 16.0.0  | gnu17 | [gnu++17](https://releases.llvm.org/16.0.0/tools/clang/docs/ReleaseNotes.html#id85) |
