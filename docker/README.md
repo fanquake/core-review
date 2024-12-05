@@ -9,16 +9,15 @@ For example, to build the Debian image and use it for a build targeting the `RIS
 
 ```bash
 # Build container
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian-depends - < debian.dockerfile
+DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian_depends - < debian.dockerfile
 
 # Run with a Bash shell
-docker run -it --name debian-depends debian-depends
+docker run -it debian_depends
 
 # Inside the container: build depends for RISCV-64 bit, skipping Qt packages
 make HOST=riscv64-linux-gnu NO_QT=1 -C depends/ -j5
-./autogen.sh
-./configure --prefix=/bitcoin/depends/riscv64-linux-gnu
-make -j5
+cmake -B build --toolchain /bitcoin/depends/riscv64-linux-gnu/toolchain.cmake
+cmake --build build
 ```
 
 ### macOS SDK
@@ -27,7 +26,7 @@ There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin
 
 You can copy it into a container with:
 ```bash
-docker cp path/to/Xcode-12.2-12B45b-extracted-SDK-with-libcxx-headers.tar.gz <container_name>:bitcoin/depends/SDKs
+docker cp path/to/Xcode-15.0-15A240d-extracted-SDK-with-libcxx-headers.tar.gz <container_name>:bitcoin/depends/SDKs
 ```
 
 ### Platform Triplets
@@ -46,4 +45,4 @@ Common `host-platform-triplets` for cross compilation are:
 - `powerpc64le-linux-gnu` for Linux POWER 64-bit (little endian)
 - `s390x-linux-gnu` for Linux S390X
 
-You can read more about host target triplets in `autoconf` [here](https://www.gnu.org/software/autoconf/manual/html_node/Specifying-Target-Triplets.html).
+You can read more about host target triplets [here](https://www.gnu.org/software/autoconf/manual/html_node/Specifying-Target-Triplets.html).
