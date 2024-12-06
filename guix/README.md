@@ -13,7 +13,11 @@ DOCKER_BUILDKIT=1 docker build --pull --no-cache -t alpine_guix - < Dockerfile
 ```
 
 By default, an image *setup to use substitutes* will be created.
-If you do not want to use substitutes, you can pass `--target no-substitutes` to the build command.
+
+If you do not want to use substitutes, you can pass `--target no-substitutes` to the build command
+```bash
+DOCKER_BUILDKIT=1 docker build --pull --no-cache --target no-substitutes -t no_subs - < Dockerfile
+```
 
 You can also override where the docker image fetches the guix binary from with `--build-args`.
 

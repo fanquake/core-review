@@ -22,10 +22,10 @@ RUN for i in $(seq -w 1 ${builder_count}); do    \
               "guixbuilder${i}" ;                \
     done
 
-CMD guix-daemon \
-      --build-users-group=guixbuild   \
-      --substitute-urls="https://ci.guix.gnu.org"
-
 RUN git clone https://github.com/bitcoin/bitcoin.git /bitcoin
 
+RUN mkdir base_cache sources SDKs
+
 WORKDIR /bitcoin
+
+CMD ["guix-daemon","--build-users-group=guixbuild"]
