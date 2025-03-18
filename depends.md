@@ -29,7 +29,7 @@ host_os = mingw32
 libevent_cflags = -pipe -std=c11 -O2
 
 # make print-boost_cxxflags
-boost_cxxflags = -pipe -std=c++17 -O2
+boost_cxxflags = -pipe -std=c++20 -O2
 
 # make print-libevent_cflags DEBUG=1
 # (ignoring the ENV output)
