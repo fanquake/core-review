@@ -1,16 +1,18 @@
 # Clang Build Analyser
 
-Build [Clang Build Analyser](https://github.com/aras-p/ClangBuildAnalyzer).
+Get [Clang Build Analyser](https://github.com/aras-p/ClangBuildAnalyzer).
 
 ```bash
-./autogen.sh
-./configure CC=/opt/homebrew/opt/llvm/bin/clang CXX=/opt/homebrew/opt/llvm/bin/clang++ CXXFLAGS="-ftime-trace" --disable-ccache
+export CC=clang
+export CXX=clang++
+
+cmake -B build -DCMAKE_CXX_FLAGS="-ftime-trace" -DWITH_CCACHE=NO
 
 # start analyzer
 ClangBuildAnalyzer --start .
 
 # compile
-make -j$(nproc)
+cmake --build build -j$(nproc)
 
 # stop analyzer
 ClangBuildAnalyzer --stop . results
@@ -20,61 +22,48 @@ ClangBuildAnalyzer --analyze results
 
 Analyzing build trace from 'results'...
 **** Time summary:
-Compilation (957 times):
-  Parsing (frontend):         2386.2 s
-  Codegen & opts (backend):   1898.8 s
+Compilation (449 times):
+  Parsing (frontend):         1467.1 s
+  Codegen & opts (backend):    707.1 s
 
 **** Files that took longest to parse (compiler frontend):
- 18241 ms: src/wallet/libbitcoin_wallet_a-wallet.o
- 16566 ms: src/wallet/test/test_test_bitcoin-wallet_tests.o
- 16493 ms: src/qt/test/test_bitcoin_qt-wallettests.o
+ 10754 ms: ./build/src/wallet/CMakeFiles/bitcoin_wallet.dir/rpc/spend.cpp.o
+ 10344 ms: ./build/src/test/CMakeFiles/test_bitcoin.dir/__/wallet/test/wallet_tests.cpp.o
+ 10264 ms: ./build/src/test/CMakeFiles/test_bitcoin.dir/__/wallet/test/coinselector_tests.cpp.o
 
 **** Files that took longest to codegen (compiler backend):
- 50505 ms: src/test/test_bitcoin-script_tests.o
- 48555 ms: src/wallet/libbitcoin_wallet_a-wallet.o
- 48209 ms: src/wallet/libbitcoin_wallet_a-rpcwallet.o
+ 21546 ms: ./build/src/test/CMakeFiles/test_bitcoin.dir/script_tests.cpp.o
+ 15909 ms: ./build/src/test/CMakeFiles/test_bitcoin.dir/util_tests.cpp.o
+ 13415 ms: ./build/src/test/CMakeFiles/test_bitcoin.dir/main.cpp.o
 
 **** Templates that took longest to instantiate:
- 21589 ms: boost::multi_index::multi_index_container<CTxMemPoolEntry, boost::mu... (140 times, avg 154 ms)
- 18124 ms: std::__1::__function::__func<NodeContext::(lambda at ./node/context.... (360 times, avg 50 ms)
- 17556 ms: std::__1::make_shared<std::__1::__fs::filesystem::filesystem_error::... (251 times, avg 69 ms)
+  7087 ms: util::Split<std::string> (349 times, avg 20 ms)
+  6328 ms: std::vector<std::string>::emplace_back<const char *&, const char *&> (345 times, avg 18 ms)
+  5523 ms: std::unordered_map<BCLog::LogFlags, BCLog::Level>::unordered_map (168 times, avg 32 ms)
 
 **** Template sets that took longest to instantiate:
- 76891 ms: std::__1::allocator_traits<$> (31707 times, avg 2 ms)
- 67035 ms: std::__1::decay<$> (89857 times, avg 0 ms)
- 61363 ms: std::__1::map<$> (3625 times, avg 16 ms)
+ 34615 ms: std::map<$>::map (2473 times, avg 13 ms)
+ 33644 ms: std::allocator_traits<$> (17457 times, avg 1 ms)
+ 30308 ms: std::map<$> (3602 times, avg 8 ms)
 
 **** Functions that took longest to compile:
- 47643 ms: sha256d64_sse41::Transform_4way(unsigned char*, unsigned char const*) (crypto/sha256_sse41.cpp)
- 46056 ms: sha256d64_avx2::Transform_8way(unsigned char*, unsigned char const*) (crypto/sha256_avx2.cpp)
- 23579 ms: script_tests::script_build::test_method() (test/script_tests.cpp)
+  5007 ms: script_tests::script_build::test_method() (src/test/script_tests.cpp)
+  2695 ms: descriptor_tests::descriptor_test::test_method() (src/test/descriptor_tests.cpp)
+  1829 ms: wallet::ismine_tests::ismine_standard::test_method() (src/wallet/test/ismine_tests.cpp)
 
- **** Function sets that took longest to compile / optimize:
- 12786 ms: tinyformat::detail::streamStateFromFormat(std::__1::basic_ostream<$>... (208 times, avg 61 ms)
- 11361 ms: std::__1::basic_stringbuf<$>::str() const (185 times, avg 61 ms)
- 11087 ms: tinyformat::detail::formatImpl(std::__1::basic_ostream<$>&, char con... (208 times, avg 53 ms)
+**** Function sets that took longest to compile / optimize:
+  4193 ms: tinyformat::detail::streamStateFromFormat(std::__1::basic_ostream<$>... (166 times, avg 25 ms)
+  3955 ms: tinyformat::detail::formatImpl(std::__1::basic_ostream<$>&, char con... (166 times, avg 23 ms)
+  1284 ms: std::__1::__tree<$>::destroy(std::__1::__tree_node<$>*) (716 times, avg 1 ms)
 
 *** Expensive headers:
-280884 ms: test/util/setup_common.h (included 102 times, avg 2753 ms), included via:
-  test_test_bitcoin-wallet_test_fixture.o wallet_test_fixture.h  (5192 ms)
-  qt_test_test_bitcoin_qt-wallet_test_fixture.o wallet_test_fixture.h  (4947 ms)
-  test_bitcoin-base64_tests.o  (4807 ms)
-  test_bitcoin-getarg_tests.o  (4754 ms)
-  test_bitcoin-base32_tests.o  (4703 ms)
-  test_bitcoin-blockfilter_tests.o  (4643 ms)
-  ...
+144315 ms: /src/span.h (included 355 times, avg 406 ms), included via:
+  23x: args.h settings.h fs.h tinyformat.h string.h 
+  20x: chainparams.h chainparams.h params.h uint256.h 
+  17x: setup_common.h args.h settings.h fs.h tinyformat.h string.h 
 
-242485 ms: fs.h (included 250 times, avg 969 ms), included via:
-  test_test_bitcoin-init_test_fixture.o  (2152 ms)
-  test_bitcoin-fs_tests.o  (2060 ms)
-  libbitcoin_wallet_a-walletutil.o walletutil.h  (1972 ms)
-  libbitcoin_wallet_a-salvage.o  (1907 ms)
-  libtest_util_a-net.o net.h net.h addrdb.h  (1862 ms)
-  libbitcoin_util_a-fs.o  (1861 ms)
-  ...
-
-193370 ms: txmempool.h (included 140 times, avg 1381 ms), included via:
-  libbitcoin_server_a-txmempool.o  (2826 ms)
-  libbitcoin_server_a-rbf.o rbf.h  (2821 ms)
-
+91044 ms: /src/tinyformat.h (included 302 times, avg 301 ms), included via:
+  61x: setup_common.h args.h settings.h fs.h 
+  35x: args.h settings.h fs.h 
+  23x: logging.h
 ```
