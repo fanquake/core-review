@@ -5,6 +5,7 @@
 
 | Version | C std | c++ std |
 | ------- | ----- | ------- |
+| 20.1.0  | gnu17 | gnu++17 |
 | 19.1.0  | gnu17 | gnu++17 |
 | 18.1.0  | gnu17 | gnu++17 |
 | 17.0.0  | gnu17 | gnu++17 |
@@ -27,13 +28,14 @@
 
 | Version | C std | c++ std |
 | ------- | ----- | ------- |
-| 14      | gnu11 | gnu++17 |
-| 13      | gnu11 | gnu++17 |
-| 12      | gnu11 | gnu++17 |
-| 11      | gnu11 | [gnu++17](https://gcc.gnu.org/gcc-11/changes.html) |
-| 10      | gnu11 | gnu++14 |
-| 9       | gnu11 | gnu++14 |
-| 8       | gnu11 | gnu++14 |
+| 15      | [gnu23](https://gcc.gnu.org/gcc-15/changes.html#c) | gnu++17 |
+| 14      | gnu17 | gnu++17 |
+| 13      | gnu17 | gnu++17 |
+| 12      | gnu17 | gnu++17 |
+| 11      | gnu17 | [gnu++17](https://gcc.gnu.org/gcc-11/changes.html) |
+| 10      | gnu17 | gnu++14 |
+| 9       | gnu17 | gnu++14 |
+| 8       | [gnu17](https://gcc.gnu.org/gcc-8/changes.html#c) | gnu++14 |
 | 7       | gnu11 | gnu++14 |
 | 6       | gnu11 | gnu++14 |
 | 5       | gnu11 | gnu++98 |
