@@ -1,21 +1,20 @@
-# Docker
+# Podman
 
 ## General Usage
 
-The dockerfiles in this directory can be used to run `depends` builds for various `HOST`s.
-The images will contain all the dependencies required for cross compiling.
+The imagefiles in this directory can be used to run `depends` builds for various `HOST`s.
 
 For example, to build the Debian image and use it for a build targeting the `RISCV-64` host:
 
 ```bash
 # Build container
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian_depends - < debian.dockerfile
+podman build --pull --no-cache -t debian_depends - < debian.imagefile
 
 # Run with a Bash shell
-docker run -it debian_depends
+podman run -it debian_depends
 
 # Inside the container: build depends for RISCV-64 bit, skipping Qt packages
-make HOST=riscv64-linux-gnu NO_QT=1 -C depends/ -j5
+make HOST=riscv64-linux-gnu NO_QT=1 -C depends/
 cmake -B build --toolchain /bitcoin/depends/riscv64-linux-gnu/toolchain.cmake
 cmake --build build
 ```
@@ -26,7 +25,7 @@ There are [notes in the bitcoin/bitcoin repo](https://github.com/bitcoin/bitcoin
 
 You can copy it into a container with:
 ```bash
-docker cp path/to/Xcode-15.0-15A240d-extracted-SDK-with-libcxx-headers.tar.gz <container_name>:bitcoin/depends/SDKs
+podman cp path/to/Xcode-15.0-15A240d-extracted-SDK-with-libcxx-headers.tar.gz <container_name>:bitcoin/depends/SDKs
 ```
 
 ### Platform Triplets

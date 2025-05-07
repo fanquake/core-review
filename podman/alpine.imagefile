@@ -1,7 +1,7 @@
 FROM alpine:3.21
 
 # linux-headers for futex.h in Qt depends build
-# qt5-qttools-dev for lrelease
+# qt6-qttools-dev for lrelease
 RUN apk --no-cache --update add \
     bash \
     bison \
@@ -19,8 +19,8 @@ RUN apk --no-cache --update add \
     perl \
     pkgconfig \
     python3 \
-    qt5-qtbase-dev \
-    qt5-qttools-dev \
+    qt6-qtbase-dev \
+    qt6-qttools-dev \
     sqlite-dev \
     valgrind \
     vim \
@@ -28,7 +28,7 @@ RUN apk --no-cache --update add \
 
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
 
-RUN make download -C bitcoin/depends
+#RUN make download -C bitcoin/depends
 
 # avoid git complaints
 RUN git config --global pull.rebase false && \
