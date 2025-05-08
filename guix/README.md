@@ -4,26 +4,26 @@
 
 If you're interested in downloading a pre-built VM and testing Guix (using QEMU), I have a short guide [here](vm-intro.md).
 
-## Alpine Guix Dockerfile
+## Alpine Guix Container Image
 
 ### Create the alpine_guix image:
 
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -t alpine_guix - < Dockerfile
+podman build --pull --no-cache -t alpine_guix - < imagefile
 ```
 
 By default, an image *setup to use substitutes* will be created.
 
 If you do not want to use substitutes, you can pass `--target no-substitutes` to the build command
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache --target no-substitutes -t no_subs - < Dockerfile
+podman build --pull --no-cache --target no-substitutes -t no_subs - < imagefile
 ```
 
-You can also override where the docker image fetches the guix binary from with `--build-args`.
+You can also override where the image fetches the guix binary from with `--build-args`.
 
 ```bash
 pushd bitcoin
-docker build -f Dockerfile \
+podman build -f imagefile \
              --build-arg guix_download_path=https://ftpmirror.gnu.org/gnu/guix/ \
              --build-arg guix_file_name=guix-binary-1.4.0.x86_64-linux.tar.xz \
              --build-arg guix_checksum=236ca7c9c5958b1f396c2924fcc5bc9d6fdebcb1b4cf3c7c6d46d4bf660ed9c9 \
@@ -35,19 +35,19 @@ docker build -f Dockerfile \
 To `exec` a `guix-daemon` (a prerequisite for guix builds):
 
 ```bash
-docker run -it --name alpine_guix --privileged alpine_guix
+podman run -it --name alpine_guix --privileged alpine_guix
 ```
 
 The daemon will run in the foreground, so don't be alarmed if it hangs (you may see output like `accepted connection from pid 2828, user root`).
 
-Note the use of `--privileged`. Read the Docker [capabilities documentation](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) before running any image with this flag.
+Note the use of `--privileged`. Read the Podman [capabilities documentation](https://docs.podman.io/en/latest/markdown/podman-run.1.html#privileged) before running any image with this flag.
 
 ### Do a Bitcoin Core build:
 
 Exec into the container:
 
 ```bash
-docker exec -it alpine_guix /bin/bash
+podman exec -it alpine_guix /bin/bash
 ```
 
 Default HOSTS:
@@ -70,13 +70,13 @@ Build:
 time BASE_CACHE="/base_cache" SOURCE_PATH="/sources" SDK_PATH="/SDKs" HOSTS="x86_64-w64-mingw32" ./contrib/guix/guix-build
 ```
 
-## Debian Guix Dockerfile
+## Debian Guix Container Image
 
-A Debian based Dockerfile is also available, which uses the Debian [Guix package](https://packages.debian.org/trixie/guix).
+A Debian based container image is also available, which uses the Debian [Guix package](https://packages.debian.org/trixie/guix).
 
 It can be created using:
 ```bash
-DOCKER_BUILDKIT=1 docker build --pull --no-cache -t debian_guix - < debian.Dockerfile
+podman build --pull --no-cache -t debian_guix - < debian.imagefile
 ```
 
 and used the same way as the Alpine container (see above).
