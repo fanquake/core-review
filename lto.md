@@ -9,7 +9,9 @@
 # Minimal depends
 make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 LTO=1 \
 		AR=llvm-ar \
+		NM=llvm-nm \
 		RANLIB=llvm-ranlib \
+		STRIP=llvm-strip \
 		CC=clang CXX=clang++ \
 		CFLAGS="-flto=thin" \
 		CXXFLAGS="-flto=thin" \
