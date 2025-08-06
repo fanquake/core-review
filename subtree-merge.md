@@ -44,6 +44,9 @@ GOOD
 
 ### [leveldb](https://github.com/bitcoin-core/leveldb)
 
+- https://github.com/bitcoin/bitcoin/pull/32534
+- https://github.com/bitcoin/bitcoin/pull/31671
+- https://github.com/bitcoin/bitcoin/pull/30281
 - https://github.com/bitcoin/bitcoin/pull/24461
 - https://github.com/bitcoin/bitcoin/pull/17398
 - https://github.com/bitcoin/bitcoin/pull/15270
@@ -52,8 +55,15 @@ GOOD
 - https://github.com/bitcoin/bitcoin/pull/2702
 - https://github.com/bitcoin/bitcoin/pull/2916
 
-### [minisketch](https://github.com/sipa/minisketch)
+### [libmultiprocess](https://github.com/bitcoin-core/libmultiprocess)
 
+- https://github.com/bitcoin/bitcoin/pull/32641
+- https://github.com/bitcoin/bitcoin/pull/31741
+
+### [minisketch](https://github.com/bitcoin-core/minisketch/)
+
+- https://github.com/bitcoin/bitcoin/pull/32485
+- https://github.com/bitcoin/bitcoin/pull/32000
 - https://github.com/bitcoin/bitcoin/pull/30270
 - https://github.com/bitcoin/bitcoin/pull/29823
 - https://github.com/bitcoin/bitcoin/pull/25502
@@ -65,6 +75,9 @@ GOOD
 
 ### [secp256k1](https://github.com/bitcoin-core/secp256k1)
 
+- https://github.com/bitcoin/bitcoin/pull/33036
+- https://github.com/bitcoin/bitcoin/pull/32028
+- https://github.com/bitcoin/bitcoin/pull/31216
 - https://github.com/bitcoin/bitcoin/pull/30845
 - https://github.com/bitcoin/bitcoin/pull/30573
 - https://github.com/bitcoin/bitcoin/pull/30334
