@@ -1,35 +1,28 @@
-FROM centos:8
+FROM centos:9
 
-# centos 8 doesn't have a miniupnpc dev package
-# powertools required for qrencode-devel
 RUN dnf -y install dnf-plugins-core \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
-    dnf config-manager --set-enabled powertools && \
     dnf -y install \
-    autoconf \
-    automake \
     bison \
     boost-devel \
     bzip2 \
+    ccache \
     cmake \
-    curl \
     dnf-plugins-core \
     file \
     gcc-c++ \
     git \
     libevent-devel \
-    libnatpmp-devel \
-    libtool \
-    libupnp-devel \
     make \
     patch \
     pkgconfig \
     python3 \
-    qrencode-devel \
     qt5-qtbase-devel \
     qt5-qttools-devel \
+    sqlite-devel \
     valgrind-devel \
     which \
+    xz \
     zeromq-devel
 
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
