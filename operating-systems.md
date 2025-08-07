@@ -9,7 +9,7 @@ Self compilation may continue to work on older systems.
 | [Alpine](https://alpinelinux.org) | 3.x |
 | [CentOS](https://www.centos.org) | 9 Stream, 10 Stream |
 | [Debian](https://wiki.debian.org/DebianReleases#Production_Releases) | 11.x, 12.x |
-| [Fedora](https://docs.fedoraproject.org/en-US/releases/) | 39, 40, 41 |
+| [Fedora](https://docs.fedoraproject.org/en-US/releases/) | 40, 41, 42, 43 |
 | [FreeBSD](https://www.freebsd.org/security/#sup) | 13.x, 14.x |
 | [macOS](https://www.apple.com/au/macos) | 13.x, 14.x, 15.x |
 | [NetBSD](https://www.netbsd.org) | 9.x, 10.x |
