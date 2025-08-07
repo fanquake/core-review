@@ -6,7 +6,7 @@ An overview of PGO is available in the [Clang Users Manual](https://clang.llvm.o
 
 ```bash
 # build minimal depends
-make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 \
+make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 NO_USDT=1 \
         CC=clang CXX=clang++ \
         AR=llvm-ar \
         NM=llvm-nm \
@@ -16,16 +16,15 @@ make -C depends NO_WALLET=1 NO_QT=1 NO_ZMQ=1 \
 # instrumentation using -fprofile-instr-generate
 # -%p is replaced with process ID during profiling
 cmake -B build --toolchain=depends/aarch64-unknown-linux-gnu/toolchain.cmake \
-      -DCMAKE_C_FLAGS="-fprofile-instr-generate=bitcoind-%p.profraw" \
-      -DCMAKE_CXX_FLAGS="-fprofile-instr-generate=bitcoind-%p.profraw"
+      -DCMAKE_C_FLAGS="-fprofile-instr-generate=bitcoind-%p.profraw -flto=full" \
+      -DCMAKE_CXX_FLAGS="-fprofile-instr-generate=bitcoind-%p.profraw -flto=full" \
+      -DREDUCE_EXPORTS=ON \
+      -DAPPEND_LDFLAGS="-flto=full -static-pie"
 
-cmake --build build --target bitcoind -j17
+cmake --build build --target bitcoind
 
-# Generate profiling data using bitcoin.conf with:
-# assumevalid=0
-# par=8
-# reindex-chainstate=1
-build/src/bitcoind
+# TODO: Runtime options?
+./build/bin/bitcoind
 ```
 
 ### Inspect profiling data
@@ -86,7 +85,6 @@ llvm-profdata merge -output=bitcoind.profdata bitcoind-*.profraw
 1,bitcoind-39335.profraw
 1,bitcoind-47729.profraw
 1,bitcoind-47916.profraw
-1,bitcoind-48019.profraw
 ```
 
 ### Compile using profiling data
@@ -97,17 +95,17 @@ rm -rf build
 # reconfigure passing -fprofile-instr-use
 # not passing the full path to bitcoind.profdata may cause issues
 cmake -B build --toolchain=depends/aarch64-unknown-linux-gnu/toolchain.cmake \
-      -DCMAKE_C_FLAGS="-fprofile-instr-use=/root/ci_scratch/bitcoind.profdata" \
-      -DCMAKE_CXX_FLAGS="-fprofile-instr-use=/root/ci_scratch/bitcoind.profdata"
+      -DCMAKE_C_FLAGS="-fprofile-instr-use=/root/bitcoin/bitcoind.profdata -flto=full" \
+      -DCMAKE_CXX_FLAGS="-fprofile-instr-use=/root/bitcoin/bitcoind.profdata -flto=full" \
+      -DREDUCE_EXPORTS=ON \
+      -DAPPEND_LDFLAGS="-flto=full -static-pie"
 
 # recompile using the profiling data you may see warnings like:
 # warning: no profile data available for file "node.cpp" [-Wprofile-instr-unprofiled]
-cmake --build build --target bitcoind -j17
+cmake --build build --target bitcoind
 ```
 
 ### TODO
 
-- PGO + LTO
 - PGO + more compile time optimisations
 - Capture more extensive profiling data
-
