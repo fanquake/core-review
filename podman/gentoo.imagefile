@@ -11,3 +11,5 @@ RUN emerge-webrsync && emerge --sync && emerge \
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
 
 RUN make download -C bitcoin/depends
+
+WORKDIR /bitcoin
