@@ -1,12 +1,19 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recommends -y \
     automake \
     binutils \
+    binutils-aarch64-linux-gnu \
+    binutils-arm-linux-gnueabihf \
+    binutils-riscv64-linux-gnu \
     ca-certificates \
     cmake \
     curl \
     git \
+    g++-aarch64-linux-gnu \
+    g++-arm-linux-gnueabihf \
+    g++-mingw-w64-x86-64-posix \
+    g++-riscv64-linux-gnu \
     lbzip2 \
     make \
     nsis \
@@ -15,16 +22,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install --no-install-recomme
     python3 \
     python3-setuptools \
     xz-utils
-# Split cross-compilers out.
-# apt cant install everything at once
-RUN apt-get install --no-install-recommends -y \
-    g++-aarch64-linux-gnu \
-    binutils-aarch64-linux-gnu \
-    g++-arm-linux-gnueabihf \
-    binutils-arm-linux-gnueabihf \
-    binutils-riscv64-linux-gnu \
-    g++-riscv64-linux-gnu \
-    g++-mingw-w64-x86-64-posix
 
 RUN git clone https://github.com/bitcoin/bitcoin && mkdir bitcoin/depends/SDKs
 
