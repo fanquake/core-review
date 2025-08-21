@@ -6,6 +6,7 @@ RUN pacman --noconfirm -Syu \
     awk \
     bison \
     boost \
+    capnproto
     cmake \
     curl \
     git \
@@ -16,8 +17,8 @@ RUN pacman --noconfirm -Syu \
     pkg-config \
     python3 \
     qrencode \
-    qt5-base \
-    qt5-tools \
+    qt6-base \
+    qt6-tools \
     which \
     zeromq
 
