@@ -6,6 +6,8 @@ RUN apk --no-cache --update add \
     bash \
     bison \
     boost-dev \
+    capnproto-dev \
+    ccache \
     cmake \
     curl \
     g++ \

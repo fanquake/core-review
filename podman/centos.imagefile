@@ -1,6 +1,6 @@
 FROM centos:10
 
-RUN dnf -y install dnf-plugins-core \
+RUN dnf update -y && dnf -y install dnf-plugins-core \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm && \
     dnf -y install \
     bison \
@@ -8,7 +8,6 @@ RUN dnf -y install dnf-plugins-core \
     bzip2 \
     ccache \
     cmake \
-    dnf-plugins-core \
     file \
     gcc-c++ \
     git \

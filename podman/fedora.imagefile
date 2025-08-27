@@ -4,6 +4,7 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     bison \
     boost-devel \
     bzip2 \
+    capnproto-devel \
     ccache \
     cmake \
     gcc-c++ \

@@ -6,7 +6,8 @@ RUN pacman --noconfirm -Syu \
     awk \
     bison \
     boost \
-    capnproto
+    capnproto \
+    ccache \
     cmake \
     curl \
     git \
