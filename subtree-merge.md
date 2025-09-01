@@ -57,6 +57,7 @@ GOOD
 
 ### [libmultiprocess](https://github.com/bitcoin-core/libmultiprocess)
 
+- https://github.com/bitcoin/bitcoin/pull/33241
 - https://github.com/bitcoin/bitcoin/pull/32641
 - https://github.com/bitcoin/bitcoin/pull/31741
 
