@@ -25,8 +25,8 @@ You can also override where the image fetches the guix binary from with `--build
 pushd bitcoin
 podman build -f imagefile \
              --build-arg guix_download_path=https://ftpmirror.gnu.org/gnu/guix/ \
-             --build-arg guix_file_name=guix-binary-1.4.0.x86_64-linux.tar.xz \
-             --build-arg guix_checksum=236ca7c9c5958b1f396c2924fcc5bc9d6fdebcb1b4cf3c7c6d46d4bf660ed9c9 \
+             --build-arg guix_file_name=guix-binary-1.5.0.x86_64-linux.tar.xz \
+             --build-arg guix_checksum=aa41025489c5061543e9c48873eaa829b900b2da75d40f9648913622f5f47817 \
              -t alpine_guix .
 ```
 
@@ -72,7 +72,7 @@ time BASE_CACHE="/base_cache" SOURCE_PATH="/sources" SDK_PATH="/SDKs" HOSTS="x86
 
 ## Debian Guix Container Image
 
-A Debian based container image is also available, which uses the Debian [Guix package](https://packages.debian.org/trixie/guix).
+A Debian based container image is also available, which uses the Debian [Guix package](https://packages.debian.org/sid/guix).
 
 It can be created using:
 ```bash
