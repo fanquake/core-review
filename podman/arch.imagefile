@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM docker.io/archlinux:latest
 
 RUN pacman --noconfirm -Syu \
     autoconf \
@@ -12,7 +12,6 @@ RUN pacman --noconfirm -Syu \
     curl \
     git \
     gcc \
-    libevent \
     make \
     patch \
     pkg-config \
