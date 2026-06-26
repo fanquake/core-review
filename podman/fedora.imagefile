@@ -1,4 +1,4 @@
-FROM fedora:42
+FROM fedora:44
 
 RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     bison \
@@ -9,7 +9,6 @@ RUN dnf update -y && dnf install --setopt=install_weak_deps=False -y \
     cmake \
     gcc-c++ \
     git \
-    libevent-devel \
     make \
     mingw64-gcc-c++ \
     mingw64-winpthreads-static \
