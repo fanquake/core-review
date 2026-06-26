@@ -1,12 +1,13 @@
-FROM gentoo/stage3:arm64-musl-hardened
+FROM docker.io/gentoo/stage3
 
 RUN emerge-webrsync && emerge --sync && emerge \
     boost \
     capnproto \
     ccache \
     cmake \
+    gcc \
     dev-vcs/git \
-    libevent \
+    dev-db/sqlite \
     vim \
     zeromq
 
