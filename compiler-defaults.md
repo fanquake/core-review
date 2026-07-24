@@ -5,6 +5,8 @@
 
 | Version | C std | c++ std |
 | ------- | ----- | ------- |
+| 22.1.0  | gnu17 | gnu++17 |
+| 21.1.0  | gnu17 | gnu++17 |
 | 20.1.0  | gnu17 | gnu++17 |
 | 19.1.0  | gnu17 | gnu++17 |
 | 18.1.0  | gnu17 | gnu++17 |
@@ -28,6 +30,7 @@
 
 | Version | C std | c++ std |
 | ------- | ----- | ------- |
+| 16      | gnu23 | [gnu++20](https://gcc.gnu.org/gcc-16/changes.html#cxx) |
 | 15      | [gnu23](https://gcc.gnu.org/gcc-15/changes.html#c) | gnu++17 |
 | 14      | gnu17 | gnu++17 |
 | 13      | gnu17 | gnu++17 |
