@@ -25,7 +25,6 @@ Scripts, tools & info for doing [Bitcoin Core](https://github.com/bitcoin/bitcoi
 - [IRC](irc.md) - Where to find Bitcoin Core related discussion on IRC.
 - [Link Time Optimization](lto.md) - Notes on using LTO.
 - [Links](links.md) - Useful links that I would otherwise forget about.
-- [LLDB](lldb.md) - Notes on using LLDB.
 - [Locale Dependence](/locale-dependence/) - Locale dependence examples.
 - [Mesh](mesh.md) - Running bitcoind with Mesh
 - [NixOS](nixos.md) - Building on NixOS
