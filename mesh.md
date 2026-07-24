@@ -1,6 +1,6 @@
 # Mesh
 
-Mesh is a replacement for `maclloc` that trys to recover from memory fragmentation.
+Mesh is a replacement for `malloc` that trys to recover from memory fragmentation.
 
 This video is worth watching: https://www.youtube.com/watch?v=c1UBJbfR-H0.
 
