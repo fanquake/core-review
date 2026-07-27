@@ -1,0 +1,152 @@
+#
+# podman build --build-arg NPROC=8 -f bootstrap_image
+#
+FROM debian:trixie
+
+ARG NPROC=8
+ENV MAKEFLAGS="-j${NPROC}"
+
+ENV ACLOCAL_PATH=/usr/local/share/aclocal
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    autoconf \
+    automake \
+    autopoint \
+    ccache \
+    cmake \
+    g++ \
+    git \
+    gnupg \
+    graphviz \
+    help2man \
+    libtool \
+    make \
+    pkgconf \
+    po4a \
+    python3 \
+    texinfo
+
+# Guile 3.0
+RUN apt-get install -y \
+    flex \
+    gperf \
+    libffi-dev \
+    libgc-dev \
+    libgmp-dev \
+    libunistring-dev
+
+RUN git clone --branch v3.0.11 --depth 1 https://codeberg.org/guile/guile.git \
+    && cd guile \
+    && ./autogen.sh \
+    && ./configure \
+    && make install
+
+# Update linker cache
+RUN ldconfig
+
+# Guile-GnuTLS
+RUN apt-get install -y libgnutls28-dev
+
+RUN git clone --branch v5.0.2 --depth 1 https://codeberg.org/guile-gnutls/guile-gnutls \
+    && cd guile-gnutls/ \
+    && ./bootstrap \
+    && ./configure --with-guile-site-dir=no \
+    && make install
+
+# Guile-Git
+RUN git clone --branch v2.0.2 --depth 1 https://github.com/TaylanUB/scheme-bytestructures.git \
+    && cd scheme-bytestructures \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+RUN apt-get install -y libgit2-dev
+
+RUN git clone --branch v0.11.1 --depth 1 https://codeberg.org/guile-git/guile-git \
+    && cd guile-git \
+    && autoreconf -vfi \
+    && ./configure \
+    && make install
+
+# Guile-JSON
+RUN git clone --branch 4.7.3 --depth 1 https://github.com/aconchillo/guile-json \
+    && cd guile-json \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+# Guile-sqlite3
+RUN apt-get install -y libsqlite3-dev
+
+RUN git clone --branch v0.1.3 --depth 1 https://codeberg.org/guile-sqlite3/guile-sqlite3 \
+    && cd guile-sqlite3 \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+# Guile-Gcrypt
+RUN apt-get install -y libgcrypt20-dev
+
+RUN git clone --branch v0.5.0 --depth 1 https://codeberg.org/guile-gcrypt/guile-gcrypt \
+    && cd guile-gcrypt \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+# Guile Zlib
+RUN git clone --branch v0.2.2 --depth 1 https://codeberg.org/guile-compression/guile-zlib \
+    && cd guile-zlib \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+# Guile Lzlib
+RUN git clone --branch 0.3.0 --depth 1 https://codeberg.org/guile-compression/guile-lzlib \
+    && cd guile-lzlib \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+# Guile Semver
+RUN git clone --branch v0.1.1 --depth 1 https://git.ngyro.com/guile-semver \
+    && cd guile-semver \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+RUN apt-get install -y libssh-dev
+
+# Guile SSH
+RUN git clone --branch v1.0.0 --depth 1 https://github.com/artyom-poptsov/guile-ssh \
+    && cd guile-ssh \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+# Guile Lib
+RUN git clone --branch v0.2.8.1 --depth 1 https://https.git.savannah.gnu.org/git/guile-lib.git \
+    && cd guile-lib \
+    && mkdir -p build-aux \
+    && cp /usr/share/gettext/config.rpath build-aux/ \
+    && autoreconf -vif \
+    && ./configure --with-guile-site=yes \
+    && make install
+
+# Guile Avahi
+RUN apt-get install -y libavahi-common-dev libavahi-client-dev
+
+RUN git clone --branch v0.4.1 --depth 1 git://git.sv.gnu.org/guile-avahi.git \
+    && cd guile-avahi \
+    && autoreconf -vif \
+    && ./configure \
+    && make install
+
+# Guix
+RUN apt-get install -y bzip2 libbz2-dev slirp4netns
+
+RUN git clone --branch version-1.5.0 --depth 1 https://codeberg.org/guix/guix.git \
+    && cd guix \
+    && ./bootstrap \
+    && ./configure MAKEINFO=true \
+    && make install \
+    && guix --version
