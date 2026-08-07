@@ -58,5 +58,8 @@ CMD ["/root/.config/guix/current/bin/guix-daemon","--build-users-group=guixbuild
 
 FROM base AS substitutes
 
-RUN guix archive --authorize < ~root/.config/guix/current/share/guix/ci.guix.gnu.org.pub
-CMD ["/root/.config/guix/current/bin/guix-daemon","--build-users-group=guixbuild"]
+ENV SUBSTITUTE_URLS='https://guix.fish.foo https://ci.guix.gnu.org'
+
+RUN curl -fsSL https://guix.fish.foo/signing-key.pub | guix archive --authorize && \
+    guix archive --authorize < ~root/.config/guix/current/share/guix/ci.guix.gnu.org.pub
+CMD ["/root/.config/guix/current/bin/guix-daemon","--build-users-group=guixbuild", "--substitute-urls=https://guix.fish.foo https://ci.guix.gnu.org"]
